@@ -62,31 +62,18 @@
         .category-voice { border-left-color: #a855f7; }
         .category-workflow { border-left-color: #84cc16; }
 
-        /* Animated button hovers */
-        .btn-visit {
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        /* Animated grey gradient buttons */
+        .btn-visit, .btn-learn-more {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
             border: none;
             color: white;
             transition: all 0.3s ease;
         }
 
-        .btn-visit:hover {
-            background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
-        }
-
-        .btn-learn-more {
-            background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
-            border: none;
-            color: white;
-            transition: all 0.3s ease;
-        }
-
-        .btn-learn-more:hover {
-            background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 100%);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(109, 40, 217, 0.4);
+        .btn-visit:hover, .btn-learn-more:hover {
+            background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
         }
 
         .star-rating { color: #fbbf24; }
@@ -338,28 +325,25 @@
                             <!-- Title -->
                             <h3 class="font-bold text-lg mb-1">${tool.name}</h3>
                             
-                            <!-- Description (reduced margin-bottom) -->
+                            <!-- Description -->
                             <p class="text-sm text-base-content/70 mb-1 flex-grow">${tool.description}</p>
                             
-                            <!-- URL (reduced margin-bottom) -->
-                            <a href="${tool.url}" target="_blank" class="text-[13px] text-primary hover:underline truncate block mb-0.5">
+                            <!-- URL -->
+                            <a href="${tool.url}" target="_blank" class="text-[13px] text-primary hover:underline truncate block mb-1">
                                 ${tool.url.replace(/^https?:\/\/(www\.)?/, '')}
                             </a>
                             
-                            <!-- Rating below URL -->
-                            <div class="star-rating text-sm mb-2">${renderStars(tool.rating || 0)}</div>
+                            <!-- Badges (where rating was) -->
+                            <div class="flex gap-1 flex-wrap mb-2">
+                                ${(tool.badges || []).slice(0, 4).map(badge => 
+                                    `<span class="badge ${badgeStyles[badge] || 'badge-ghost'} badge-xs">${badgeLabels[badge] || badge}</span>`
+                                ).join('')}
+                            </div>
                             
-                            <!-- Bottom row: Badges (left) + Learn More (right) -->
-                            <div class="flex items-center justify-between gap-2 -ml-3 -mr-3 -mb-3">
-                                <!-- Badges on left -->
-                                <div class="flex gap-1 flex-wrap pl-3 pb-1">
-                                    ${(tool.badges || []).slice(0, 4).map(badge => 
-                                        `<span class="badge ${badgeStyles[badge] || 'badge-ghost'} badge-xs">${badgeLabels[badge] || badge}</span>`
-                                    ).join('')}
-                                </div>
-                                <!-- Learn More on right (fitted to corner) -->
+                            <!-- Learn More button (bottom right corner) -->
+                            <div class="flex justify-end -mr-3 -mb-3">
                                 <button onclick='showToolDetails(${JSON.stringify(tool).replace(/'/g, "&#39;")}, ${JSON.stringify(category).replace(/'/g, "&#39;")})' 
-                                        class="btn btn-learn-more btn-sm rounded-none rounded-br-lg flex-shrink-0">
+                                        class="btn btn-learn-more btn-sm rounded-none rounded-br-lg">
                                     Learn More
                                 </button>
                             </div>

@@ -77,6 +77,11 @@
             background: rgba(30, 41, 59, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
+
+        /* Reduced line height for compact cards */
+        .card p, .card a {
+            line-height: 1.3;
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -157,7 +162,25 @@
             return favorites.includes(`${categoryName}::${toolName}`);
         }
 
-        // Badge colors
+        // Badge label mapping (abbreviated for cards)
+        const badgeLabels = {
+            'new': 'New',
+            'recommended': 'Top',
+            'popular': 'Popular',
+            'free': 'Free',
+            'paid': 'Paid',
+            'open-source': 'Open',
+            'macos': 'macOS',
+            'windows': 'Windows',
+            'web': 'Web',
+            'desktop': 'Desktop',
+            'plugin': 'Plugin',
+            'cli': 'CLI',
+            'enterprise': 'Enterprise',
+            'beta': 'Beta'
+        };
+
+        // Badge colors (DaisyUI soft style with badge-soft)
         const badgeStyles = {
             'new': 'badge-success',
             'recommended': 'badge-primary',
@@ -170,8 +193,25 @@
             'web': 'badge-ghost',
             'desktop': 'badge-ghost',
             'plugin': 'badge-ghost',
+            'cli': 'badge-ghost',
             'enterprise': 'badge-error',
-            'beta': 'badge-outline'
+            'beta': 'badge-neutral'
+        };
+
+        // Model versions for LLMs (for modal display)
+        const modelVersions = {
+            'Perplexity': 'Sonar Pro',
+            'ChatGPT': 'GPT-4o',
+            'Claude': 'Claude 3.7 Sonnet',
+            'Google Gemini': 'Gemini 2.0 Flash',
+            'Microsoft Copilot': 'GPT-4 Turbo',
+            'Mistral Chat': 'Mistral Large 2',
+            'DeepSeek': 'DeepSeek V3',
+            'Grok': 'Grok 2',
+            'Pi': 'Inflection 2.5',
+            'You.com': 'GPT-4',
+            'HuggingChat': 'Llama 3.3 70B',
+            'Character.AI': 'C1.2'
         };
 
         // Star rating display
@@ -197,21 +237,25 @@
             const modal = document.getElementById('toolModal');
             const content = document.getElementById('modalContent');
             
+            const modelVersion = modelVersions[tool.name] ? 
+                `<div class="badge badge-neutral badge-outline">Model: ${modelVersions[tool.name]}</div>` : '';
+            
             content.innerHTML = `
                 <div class="flex items-start gap-4 mb-4">
                     <img src="${tool.thumbnail}" 
                          alt="${tool.name}" 
-                         class="w-24 h-24 rounded-lg object-cover"
+                         class="w-24 h-24 rounded-lg object-contain bg-base-100/50 p-2"
                          onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(tool.name)}&size=128&background=random'">
                     <div class="flex-1">
                         <h3 class="text-2xl font-bold">${tool.name}</h3>
-                        <div class="star-rating text-xl">${renderStars(tool.rating || 0)}</div>
+                        <div class="star-rating text-xl mb-2">${renderStars(tool.rating || 0)}</div>
+                        ${modelVersion}
                     </div>
                 </div>
                 
-                <div class="mb-4">
+                <div class="mb-4 flex flex-wrap gap-2">
                     ${(tool.badges || []).map(badge => 
-                        `<span class="badge ${badgeStyles[badge] || 'badge-ghost'} badge-outline mr-2">${badge}</span>`
+                        `<span class="badge ${badgeStyles[badge] || 'badge-ghost'} badge-lg">${badgeLabels[badge] || badge}</span>`
                     ).join('')}
                 </div>
                 
@@ -236,50 +280,52 @@
             return `
                 <div class="card shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 tool-card overflow-hidden">
                     <div class="flex h-full">
-                        <!-- Thumbnail (30% width) -->
-                        <div class="w-[30%] flex-shrink-0 relative">
-                            <img src="${tool.thumbnail}" 
-                                 alt="${tool.name}" 
-                                 class="w-full h-full object-cover"
-                                 onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(tool.name)}&size=200&background=random'">
+                        <!-- Thumbnail (30% width) with Visit button at bottom -->
+                        <div class="w-[30%] flex-shrink-0 relative flex flex-col">
+                            <div class="flex-grow bg-base-100/50 p-2 flex items-center justify-center">
+                                <img src="${tool.thumbnail}" 
+                                     alt="${tool.name}" 
+                                     class="max-w-full max-h-full object-contain"
+                                     onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(tool.name)}&size=200&background=random'">
+                            </div>
+                            <a href="${tool.url}" target="_blank" class="btn btn-primary btn-sm w-full rounded-none rounded-bl-lg">
+                                Visit
+                            </a>
                             <button onclick="event.stopPropagation(); toggleFavorite('${tool.name}', '${category.name}')" 
                                     class="absolute top-2 left-2 btn btn-circle btn-xs ${isFav ? 'btn-warning' : 'btn-ghost bg-base-100/80'}">
                                 ${isFav ? '★' : '☆'}
                             </button>
                         </div>
                         
-                        <!-- Content (70% width) -->
-                        <div class="flex-1 p-4 flex flex-col relative">
-                            <!-- Badges (Top Right) -->
-                            <div class="absolute top-2 right-2 flex flex-wrap gap-1 justify-end max-w-[60%]">
-                                ${(tool.badges || []).slice(0, 3).map(badge => 
-                                    `<span class="badge ${badgeStyles[badge] || 'badge-ghost'} badge-outline badge-xs">${badge}</span>`
+                        <!-- Content (70% width) - Reduced padding -->
+                        <div class="flex-1 p-3 flex flex-col relative">
+                            <!-- Badges (Floating top-right, vertically stacked) -->
+                            <div class="absolute top-2 right-2 flex flex-col gap-1 items-end">
+                                ${(tool.badges || []).slice(0, 2).map(badge => 
+                                    `<span class="badge ${badgeStyles[badge] || 'badge-ghost'} badge-sm">${badgeLabels[badge] || badge}</span>`
                                 ).join('')}
                             </div>
                             
                             <!-- Title -->
-                            <h3 class="font-bold text-lg mb-1 pr-20">${tool.name}</h3>
-                            
-                            <!-- Rating -->
-                            <div class="star-rating text-sm mb-2">${renderStars(tool.rating || 0)}</div>
+                            <h3 class="font-bold text-lg mb-1 pr-16">${tool.name}</h3>
                             
                             <!-- Description -->
-                            <p class="text-sm text-base-content/70 mb-2 flex-grow line-clamp-3">${tool.description}</p>
+                            <p class="text-sm text-base-content/70 mb-2 flex-grow">${tool.description}</p>
                             
-                            <!-- URL -->
-                            <a href="${tool.url}" target="_blank" class="text-xs text-primary hover:underline truncate block mb-3">
+                            <!-- URL (increased size) -->
+                            <a href="${tool.url}" target="_blank" class="text-[13px] text-primary hover:underline truncate block mb-1">
                                 ${tool.url.replace(/^https?:\/\/(www\.)?/, '')}
                             </a>
                             
-                            <!-- Actions -->
-                            <div class="flex gap-2">
+                            <!-- Rating below URL -->
+                            <div class="star-rating text-sm mb-2">${renderStars(tool.rating || 0)}</div>
+                            
+                            <!-- Details button -->
+                            <div>
                                 <button onclick='showToolDetails(${JSON.stringify(tool).replace(/'/g, "&#39;")}, ${JSON.stringify(category).replace(/'/g, "&#39;")})' 
-                                        class="btn btn-sm btn-outline flex-1">
+                                        class="btn btn-sm btn-outline w-full">
                                     Details
                                 </button>
-                                <a href="${tool.url}" target="_blank" class="btn btn-sm btn-primary">
-                                    Visit →
-                                </a>
                             </div>
                         </div>
                     </div>

@@ -62,67 +62,10 @@
         .category-voice { border-left-color: #a855f7; }
         .category-workflow { border-left-color: #84cc16; }
 
-        /* Subtle transparent gradient buttons (reduced 15% in height) */
-        .btn-visit {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.05) 100%);
-            border: 1px solid rgba(0, 0, 0, 0.04);
-            backdrop-filter: blur(8px);
-            color: inherit;
-            font-weight: 600;
-            transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-            height: 2.125rem; /* Reduced from ~2.5rem */
-            min-height: 2.125rem;
-        }
-
-        .btn-visit:hover {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.09) 100%);
-            border-color: rgba(0, 0, 0, 0.08);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        }
-
-        [data-theme="dark"] .btn-visit {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.05) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-        }
-
-        [data-theme="dark"] .btn-visit:hover {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.09) 100%);
-            border-color: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
-        }
-
-        .btn-learn-more {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.03) 100%);
-            border: 1px solid rgba(0, 0, 0, 0.03);
-            backdrop-filter: blur(8px);
-            color: inherit;
-            font-weight: 500;
-            transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-            height: 2.125rem; /* Reduced from ~2.5rem */
-            min-height: 2.125rem;
-        }
-
-        .btn-learn-more:hover {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.07) 100%);
-            border-color: rgba(0, 0, 0, 0.06);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-        }
-
-        [data-theme="dark"] .btn-learn-more {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.03) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        [data-theme="dark"] .btn-learn-more:hover {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.07) 100%);
-            border-color: rgba(255, 255, 255, 0.06);
-            box-shadow: 0 2px 6px rgba(255, 255, 255, 0.04);
-        }
-
-        /* Corner button base styling - uniform height across all corners */
+        /* Corner button base styling - uniform height and width across all corners */
         .corner-button {
-            width: 44px;
-            height: 40px; /* Reduced by 15% from 47px */
+            width: 52px;
+            height: 40px;
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.05) 100%);
             backdrop-filter: blur(8px);
             border: 1px solid rgba(0, 0, 0, 0.04);
@@ -131,6 +74,8 @@
             justify-content: center;
             transition: all 0.3s ease;
             cursor: pointer;
+            font-weight: 600;
+            font-size: 0.8rem;
         }
 
         [data-theme="dark"] .corner-button {
@@ -157,7 +102,6 @@
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.25) 100%);
             border: 1px solid rgba(16, 185, 129, 0.3);
             font-weight: 700;
-            font-size: 0.7rem;
             color: #059669;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -188,7 +132,7 @@
         }
 
         .favorite-star {
-            font-size: 1.35rem; /* Slightly reduced to balance with new corner */
+            font-size: 1.35rem;
             cursor: pointer;
             transition: all 0.3s ease;
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
@@ -200,6 +144,26 @@
 
         .favorite-star.favorited {
             color: rgb(251, 191, 36);
+        }
+
+        /* Bottom-left corner: Visit button */
+        .btn-visit {
+            width: 52px;
+            height: 40px;
+            border-top-right-radius: 12px;
+            border-bottom-left-radius: 0.5rem; /* Match card radius */
+            border-top-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        /* Bottom-right corner: More button */
+        .btn-more {
+            width: 52px;
+            height: 40px;
+            border-top-left-radius: 12px;
+            border-bottom-right-radius: 0.5rem; /* Match card radius */
+            border-top-right-radius: 0;
+            border-bottom-left-radius: 0;
         }
 
         /* Price badge styling */
@@ -487,7 +451,7 @@
                         <!-- Thumbnail (30% width) with Visit button -->
                         <div class="w-[30%] flex-shrink-0 relative flex flex-col">
                             <!-- New corner badge (top-left) -->
-                            ${isNew ? '<div class="new-corner corner-button">New</div>' : ''}
+                            ${isNew ? '<div class="new-corner corner-button">NEW</div>' : ''}
 
                             <div class="flex-grow bg-base-100/50 p-2 flex items-center justify-center">
                                 <img src="${tool.thumbnail}" 
@@ -495,7 +459,7 @@
                                      class="max-w-full max-h-full object-contain"
                                      onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(tool.name)}&size=200&background=random'">
                             </div>
-                            <a href="${tool.url}" target="_blank" class="btn btn-visit btn-sm w-full rounded-none rounded-bl-lg">
+                            <a href="${tool.url}" target="_blank" class="btn-visit corner-button">
                                 Visit
                             </a>
                         </div>
@@ -531,8 +495,8 @@
                                     ${tool.url.replace(/^https?:\/\/(www\.)?/, '')}
                                 </a>
                                 <button onclick='showToolDetails(${JSON.stringify(tool).replace(/'/g, "&#39;")}, ${JSON.stringify(category).replace(/'/g, "&#39;")})' 
-                                        class="btn btn-learn-more btn-sm rounded-none rounded-br-lg flex-shrink-0">
-                                    Learn More
+                                        class="btn-more corner-button">
+                                    More
                                 </button>
                             </div>
                         </div>

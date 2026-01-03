@@ -28,27 +28,20 @@
             background-attachment: fixed;
         }
 
-        /* Transparent Gradient Category Headers */
+        /* Sleek Category Headers - Left Border Gradient Style */
         .category-header {
-            background: linear-gradient(135deg, 
-                rgba(99, 102, 241, 0.15) 0%, 
-                rgba(139, 92, 246, 0.1) 50%, 
-                rgba(168, 85, 247, 0.05) 100%);
+            background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left-width: 4px;
         }
 
         [data-theme="dark"] .category-header {
-            background: linear-gradient(135deg, 
-                rgba(99, 102, 241, 0.2) 0%, 
-                rgba(139, 92, 246, 0.15) 50%, 
-                rgba(168, 85, 247, 0.1) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(30, 41, 59, 0.3);
         }
 
         .category-header h2 {
             font-weight: 700;
-            font-size: 1.875rem;
+            font-size: 1.75rem;
             background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -61,6 +54,13 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+
+        /* Category-specific left border colors */
+        .category-chat { border-left-color: #6366f1; }
+        .category-dev { border-left-color: #10b981; }
+        .category-video { border-left-color: #f97316; }
+        .category-voice { border-left-color: #a855f7; }
+        .category-workflow { border-left-color: #84cc16; }
 
         .star-rating { color: #fbbf24; }
         .tool-card { min-height: 180px; }
@@ -162,6 +162,15 @@
             return favorites.includes(`${categoryName}::${toolName}`);
         }
 
+        // Category styling mapping
+        const categoryStyles = {
+            'AI Chat & LLMs': 'category-chat',
+            'AI Development Tools': 'category-dev',
+            'Video & Image Production': 'category-video',
+            'TTS & Voice AI': 'category-voice',
+            'Workflow & Automation': 'category-workflow'
+        };
+
         // Badge label mapping (abbreviated for cards)
         const badgeLabels = {
             'new': 'New',
@@ -180,7 +189,7 @@
             'beta': 'Beta'
         };
 
-        // Badge colors (DaisyUI soft style with badge-soft)
+        // Badge colors (DaisyUI soft style)
         const badgeStyles = {
             'new': 'badge-success',
             'recommended': 'badge-primary',
@@ -297,7 +306,7 @@
                             </button>
                         </div>
                         
-                        <!-- Content (70% width) - Reduced padding -->
+                        <!-- Content (70% width) -->
                         <div class="flex-1 p-3 flex flex-col relative">
                             <!-- Badges (Floating top-right, vertically stacked) -->
                             <div class="absolute top-2 right-2 flex flex-col gap-1 items-end">
@@ -320,11 +329,11 @@
                             <!-- Rating below URL -->
                             <div class="star-rating text-sm mb-2">${renderStars(tool.rating || 0)}</div>
                             
-                            <!-- Details button -->
-                            <div>
+                            <!-- Info button (fitted to bottom-right corner) -->
+                            <div class="mt-auto -mr-3 -mb-3">
                                 <button onclick='showToolDetails(${JSON.stringify(tool).replace(/'/g, "&#39;")}, ${JSON.stringify(category).replace(/'/g, "&#39;")})' 
-                                        class="btn btn-sm btn-outline w-full">
-                                    Details
+                                        class="btn btn-ghost btn-sm w-full rounded-none rounded-br-lg">
+                                    Info
                                 </button>
                             </div>
                         </div>
@@ -361,12 +370,14 @@
                     
                     // Render all categories
                     data.categories.forEach(category => {
+                        const categoryClass = categoryStyles[category.name] || 'category-chat';
+                        
                         const categorySection = document.createElement('div');
                         categorySection.className = 'mb-12';
                         categorySection.innerHTML = `
-                            <div class="category-header rounded-2xl p-8 mb-6">
-                                <h2 class="mb-2">${category.name}</h2>
-                                <p class="text-base-content/70 text-lg">${category.description}</p>
+                            <div class="category-header ${categoryClass} rounded-r-xl py-3 px-6 mb-6">
+                                <h2 class="mb-1">${category.name}</h2>
+                                <p class="text-base-content/70">${category.description}</p>
                             </div>
                             
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

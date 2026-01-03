@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools Directory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-base-200 p-8">
+    <div class="max-w-7xl mx-auto">
+        <h1 class="text-4xl font-bold text-center mb-12">AI Tools Master Directory</h1>
+        <div id="categories-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+    <script>
+        fetch("ai-tools-directory.json")
+            .then(r => r.json())
+            .then(data => {
+                const container = document.getElementById("categories-container");
+                data.categories.forEach(cat => {
+                    const catDiv = document.createElement("div");
+                    catDiv.className = "bg-base-100 p-6 rounded-xl shadow-xl";
+                    catDiv.innerHTML = `
+                        <h2 class="text-2xl font-bold mb-4">${cat.name}</h2>
+                        <p class="mb-6">${cat.description}</p>
+                        <div class="grid grid-cols-1 gap-4">
+                            ${cat.tools.map(tool => 
+                                `<div class="${cat.daisyui_theme} p-4 rounded-lg">
+                                    <h3 class="font-semibold mb-1">${tool.name}</h3>
+                                    <p class="mb-2 text-sm">${tool.desc}</p>
+                                    <a href="${tool.url}" class="btn btn-sm btn-primary">Visit</a>
+                                </div>`
+                            ).join("")}
+                        </div>
+                    `;
+                    container.appendChild(catDiv);
+                });
+            });
+    </script>
+</body>
+</html>

@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
@@ -9,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" rel="stylesheet" />
     <style>
         .star-rating { color: #fbbf24; }
-        .tool-card { min-height: 200px; }
+        .tool-card { min-height: 180px; }
         .modal-box { max-width: 800px; }
     </style>
 </head>
@@ -80,7 +79,7 @@
             }
             
             localStorage.setItem('favorites', JSON.stringify(favorites));
-            loadTools(); // Reload to update UI
+            loadTools();
         }
 
         function isFavorite(toolName, categoryName) {
@@ -90,14 +89,16 @@
         // Badge colors
         const badgeStyles = {
             'new': 'badge-success',
-            'popular': 'badge-primary',
+            'recommended': 'badge-primary',
+            'popular': 'badge-secondary',
             'free': 'badge-info',
             'paid': 'badge-warning',
             'open-source': 'badge-accent',
             'macos': 'badge-ghost',
             'windows': 'badge-ghost',
             'web': 'badge-ghost',
-            'enterprise': 'badge-secondary'
+            'enterprise': 'badge-error',
+            'beta': 'badge-outline'
         };
 
         // Category themes
@@ -129,6 +130,20 @@
             return html;
         }
 
+        // Get thumbnail with fallback
+        function getThumbnail(tool) {
+            if (tool.thumbnail) return tool.thumbnail;
+            if (tool.logo) return tool.logo;
+            
+            // Fallback: Try to extract domain and use Clearbit
+            try {
+                const domain = new URL(tool.url).hostname.replace('www.', '');
+                return `https://logo.clearbit.com/${domain}`;
+            } catch {
+                return `https://ui-avatars.com/api/?name=${encodeURIComponent(tool.name)}&size=128&background=random`;
+            }
+        }
+
         // Show modal
         function showToolDetails(tool, category) {
             const modal = document.getElementById('toolModal');
@@ -136,10 +151,10 @@
             
             content.innerHTML = `
                 <div class="flex items-start gap-4 mb-4">
-                    <img src="${tool.logo || 'https://via.placeholder.com/80'}" 
+                    <img src="${getThumbnail(tool)}" 
                          alt="${tool.name}" 
-                         class="w-20 h-20 rounded-lg object-cover"
-                         onerror="this.src='<https://via.placeholder.com/80?text=${tool.name>[0]}'">
+                         class="w-24 h-24 rounded-lg object-cover"
+                         onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(tool.name)}&size=128&background=random'">
                     <div class="flex-1">
                         <h3 class="text-2xl font-bold">${tool.name}</h3>
                         <div class="star-rating text-xl">${renderStars(tool.rating || 0)}</div>
@@ -175,62 +190,58 @@
             modal.showModal();
         }
 
-        // Create tool card
+        // Create tool card (NEW LAYOUT)
         function createToolCard(tool, category) {
-            const themeGradient = categoryThemes[category.name] || categoryThemes['default'];
             const isFav = isFavorite(tool.name, category.name);
             
             return `
-                <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 tool-card">
-                    <div class="card-body p-4">
-                        <div class="flex gap-4">
-                            <!-- Thumbnail -->
-                            <div class="flex-shrink-0">
-                                <img src="${tool.logo || 'https://via.placeholder.com/80'}" 
-                                     alt="${tool.name}" 
-                                     class="w-20 h-20 rounded-lg object-cover"
-                                     onerror="this.src='<https://via.placeholder.com/80?text=${tool.name>[0]}'">
+                <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 tool-card overflow-hidden">
+                    <div class="flex h-full">
+                        <!-- Larger Thumbnail (30% width, no padding) -->
+                        <div class="w-[30%] flex-shrink-0 relative">
+                            <img src="${getThumbnail(tool)}" 
+                                 alt="${tool.name}" 
+                                 class="w-full h-full object-cover"
+                                 onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(tool.name)}&size=200&background=random'">
+                            <!-- Favorite heart overlay -->
+                            <button onclick="event.stopPropagation(); toggleFavorite('${tool.name}', '${category.name}')" 
+                                    class="absolute top-2 left-2 btn btn-circle btn-xs ${isFav ? 'btn-warning' : 'btn-ghost bg-base-100/80'}">
+                                ${isFav ? '★' : '☆'}
+                            </button>
+                        </div>
+                        
+                        <!-- Content (70% width) -->
+                        <div class="flex-1 p-4 flex flex-col relative">
+                            <!-- Badges (Top Right) -->
+                            <div class="absolute top-2 right-2 flex flex-wrap gap-1 justify-end max-w-[60%]">
+                                ${(tool.badges || []).slice(0, 3).map(badge => 
+                                    `<span class="badge ${badgeStyles[badge] || 'badge-ghost'} badge-outline badge-xs">${badge}</span>`
+                                ).join('')}
                             </div>
                             
-                            <!-- Content -->
-                            <div class="flex-1 min-w-0">
-                                <!-- Badges -->
-                                <div class="flex flex-wrap gap-1 mb-2">
-                                    ${(tool.badges || []).map(badge => 
-                                        `<span class="badge ${badgeStyles[badge] || 'badge-ghost'} badge-outline badge-sm">${badge}</span>`
-                                    ).join('')}
-                                </div>
-                                
-                                <!-- Title -->
-                                <h3 class="card-title text-lg mb-1 flex items-center gap-2">
-                                    ${tool.name}
-                                    <button onclick="toggleFavorite('${tool.name}', '${category.name}')" 
-                                            class="btn btn-ghost btn-xs">
-                                        ${isFav ? '★' : '☆'}
-                                    </button>
-                                </h3>
-                                
-                                <!-- Rating -->
-                                <div class="star-rating text-sm mb-2">${renderStars(tool.rating || 0)}</div>
-                                
-                                <!-- Description -->
-                                <p class="text-sm text-base-content/70 mb-2 line-clamp-2">${tool.description}</p>
-                                
-                                <!-- URL -->
-                                <a href="${tool.url}" target="_blank" class="text-xs text-primary hover:underline truncate block mb-3">
-                                    ${tool.url.replace(/^https?:\/\//, '')}
+                            <!-- Title (with space for badges) -->
+                            <h3 class="font-bold text-lg mb-1 pr-20">${tool.name}</h3>
+                            
+                            <!-- Rating -->
+                            <div class="star-rating text-sm mb-2">${renderStars(tool.rating || 0)}</div>
+                            
+                            <!-- Description -->
+                            <p class="text-sm text-base-content/70 mb-2 flex-grow line-clamp-3">${tool.description}</p>
+                            
+                            <!-- URL -->
+                            <a href="${tool.url}" target="_blank" class="text-xs text-primary hover:underline truncate block mb-3">
+                                ${tool.url.replace(/^https?:\/\/(www\.)?/, '')}
+                            </a>
+                            
+                            <!-- Actions -->
+                            <div class="flex gap-2">
+                                <button onclick='showToolDetails(${JSON.stringify(tool).replace(/'/g, "&#39;")}, ${JSON.stringify(category).replace(/'/g, "&#39;")})' 
+                                        class="btn btn-sm btn-outline flex-1">
+                                    Details
+                                </button>
+                                <a href="${tool.url}" target="_blank" class="btn btn-sm btn-primary">
+                                    Visit →
                                 </a>
-                                
-                                <!-- Actions -->
-                                <div class="card-actions justify-end">
-                                    <button onclick='showToolDetails(${JSON.stringify(tool).replace(/'/g, "&#39;")}, ${JSON.stringify(category).replace(/'/g, "&#39;")})' 
-                                            class="btn btn-sm btn-outline">
-                                        More Info
-                                    </button>
-                                    <a href="${tool.url}" target="_blank" class="btn btn-sm btn-primary">
-                                        Visit →
-                                    </a>
-                                </div>
                             </div>
                         </div>
                     </div>

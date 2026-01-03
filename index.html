@@ -62,7 +62,7 @@
         .category-voice { border-left-color: #a855f7; }
         .category-workflow { border-left-color: #84cc16; }
 
-        /* Subtle transparent gradient buttons */
+        /* Subtle transparent gradient buttons (reduced 15% in height) */
         .btn-visit {
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.05) 100%);
             border: 1px solid rgba(0, 0, 0, 0.04);
@@ -70,6 +70,8 @@
             color: inherit;
             font-weight: 600;
             transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            height: 2.125rem; /* Reduced from ~2.5rem */
+            min-height: 2.125rem;
         }
 
         .btn-visit:hover {
@@ -96,6 +98,8 @@
             color: inherit;
             font-weight: 500;
             transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            height: 2.125rem; /* Reduced from ~2.5rem */
+            min-height: 2.125rem;
         }
 
         .btn-learn-more:hover {
@@ -115,36 +119,76 @@
             box-shadow: 0 2px 6px rgba(255, 255, 255, 0.04);
         }
 
-        /* Favorite star corner styling */
-        .favorite-corner {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 48px;
-            height: 48px;
+        /* Corner button base styling - uniform height across all corners */
+        .corner-button {
+            width: 44px;
+            height: 40px; /* Reduced by 15% from 47px */
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.05) 100%);
             backdrop-filter: blur(8px);
-            border-bottom-left-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
-        [data-theme="dark"] .favorite-corner {
+        [data-theme="dark"] .corner-button {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.04);
         }
 
-        .favorite-corner:hover {
+        .corner-button:hover {
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.09) 100%);
+            border-color: rgba(0, 0, 0, 0.08);
         }
 
-        [data-theme="dark"] .favorite-corner:hover {
+        [data-theme="dark"] .corner-button:hover {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.09) 100%);
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Top-left corner: New badge */
+        .new-corner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-bottom-right-radius: 12px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.25) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            font-weight: 700;
+            font-size: 0.7rem;
+            color: #059669;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        [data-theme="dark"] .new-corner {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0.3) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #34d399;
+        }
+
+        .new-corner:hover {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.25) 0%, rgba(16, 185, 129, 0.35) 100%);
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+
+        [data-theme="dark"] .new-corner:hover {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(16, 185, 129, 0.4) 100%);
+            border-color: rgba(16, 185, 129, 0.5);
+        }
+
+        /* Top-right corner: Favorite star */
+        .favorite-corner {
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-bottom-left-radius: 12px;
         }
 
         .favorite-star {
-            font-size: 1.5rem;
+            font-size: 1.35rem; /* Slightly reduced to balance with new corner */
             cursor: pointer;
             transition: all 0.3s ease;
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
@@ -385,6 +429,11 @@
             return html;
         }
 
+        // Check if tool has 'new' badge
+        function hasNewBadge(tool) {
+            return tool.badges && tool.badges.includes('new');
+        }
+
         // Show modal
         function showToolDetails(tool, category) {
             const modal = document.getElementById('toolModal');
@@ -430,12 +479,16 @@
         function createToolCard(tool, category) {
             const isFav = isFavorite(tool.name, category.name);
             const price = tool.price || 'Free';
+            const isNew = hasNewBadge(tool);
 
             return `
                 <div class="card shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 tool-card overflow-hidden">
                     <div class="flex h-full">
                         <!-- Thumbnail (30% width) with Visit button -->
                         <div class="w-[30%] flex-shrink-0 relative flex flex-col">
+                            <!-- New corner badge (top-left) -->
+                            ${isNew ? '<div class="new-corner corner-button">New</div>' : ''}
+
                             <div class="flex-grow bg-base-100/50 p-2 flex items-center justify-center">
                                 <img src="${tool.thumbnail}" 
                                      alt="${tool.name}" 
@@ -450,16 +503,16 @@
                         <!-- Content (70% width) -->
                         <div class="flex-1 p-3 flex flex-col relative">
                             <!-- Favorite star in top-right corner -->
-                            <div class="favorite-corner" onclick="event.stopPropagation(); toggleFavorite('${tool.name}', '${category.name}')">
+                            <div class="favorite-corner corner-button" onclick="event.stopPropagation(); toggleFavorite('${tool.name}', '${category.name}')">
                                 <span class="favorite-star ${isFav ? 'favorited' : 'unfavorited'}">★</span>
                             </div>
 
                             <!-- Title -->
                             <h3 class="font-bold text-lg mb-1 pr-12">${tool.name}</h3>
 
-                            <!-- Badges (below name, above description) -->
+                            <!-- Badges (below name, above description) - filter out 'new' since it's in corner -->
                             <div class="flex gap-1 flex-wrap mb-2">
-                                ${(tool.badges || []).slice(0, 4).map(badge => 
+                                ${(tool.badges || []).filter(b => b !== 'new').slice(0, 4).map(badge => 
                                     `<span class="badge ${badgeStyles[badge] || 'badge-ghost'} badge-xs">${badgeLabels[badge] || badge}</span>`
                                 ).join('')}
                             </div>

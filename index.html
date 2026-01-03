@@ -17,7 +17,7 @@
                 #cdd7e0 100%);
             background-attachment: fixed;
         }
-        
+
         [data-theme="dark"] body {
             background: linear-gradient(135deg, 
                 #0f172a 0%, 
@@ -62,7 +62,7 @@
         .category-voice { border-left-color: #a855f7; }
         .category-workflow { border-left-color: #84cc16; }
 
-        /* Subtle transparent gradient buttons (increased opacity by 60% = reduced to 40% of original) */
+        /* Subtle transparent gradient buttons */
         .btn-visit {
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.05) 100%);
             border: 1px solid rgba(0, 0, 0, 0.04);
@@ -115,6 +115,75 @@
             box-shadow: 0 2px 6px rgba(255, 255, 255, 0.04);
         }
 
+        /* Favorite star corner styling */
+        .favorite-corner {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.05) 100%);
+            backdrop-filter: blur(8px);
+            border-bottom-left-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .favorite-corner {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.05) 100%);
+        }
+
+        .favorite-corner:hover {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.09) 100%);
+        }
+
+        [data-theme="dark"] .favorite-corner:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.09) 100%);
+        }
+
+        .favorite-star {
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        .favorite-star.unfavorited {
+            color: rgba(251, 191, 36, 0.3);
+        }
+
+        .favorite-star.favorited {
+            color: rgb(251, 191, 36);
+        }
+
+        /* Price badge styling */
+        .price-badge {
+            display: inline-block;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #059669;
+            padding: 0.25rem 0.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 6px;
+        }
+
+        [data-theme="dark"] .price-badge {
+            color: #34d399;
+            background: rgba(16, 185, 129, 0.15);
+        }
+
+        .price-badge.paid {
+            color: #d97706;
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        [data-theme="dark"] .price-badge.paid {
+            color: #fbbf24;
+            background: rgba(245, 158, 11, 0.15);
+        }
+
         .star-rating { color: #fbbf24; }
         .tool-card { min-height: 180px; }
         .modal-box { max-width: 800px; }
@@ -135,10 +204,24 @@
         .card p, .card a {
             line-height: 1.3;
         }
+
+        /* URL link in button area */
+        .url-link {
+            font-size: 0.7rem;
+            color: inherit;
+            opacity: 0.6;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .url-link:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body class="min-h-screen">
-    
+
     <!-- Theme Toggle -->
     <div class="fixed top-4 right-4 z-50">
         <label class="swap swap-rotate btn btn-circle btn-ghost backdrop-blur-md bg-base-100/50">
@@ -156,7 +239,7 @@
             </h1>
             <p class="text-xl text-base-content/70">Curated collection of AI tools and services</p>
         </div>
-        
+
         <!-- Favorites Section -->
         <div id="favoritesSection" class="mb-12 hidden">
             <h2 class="text-3xl font-bold mb-4 flex items-center gap-2">
@@ -187,7 +270,7 @@
         const savedTheme = localStorage.getItem('theme') || 'light';
         htmlElement.setAttribute('data-theme', savedTheme);
         themeToggle.checked = savedTheme === 'dark';
-        
+
         themeToggle.addEventListener('change', () => {
             const newTheme = themeToggle.checked ? 'dark' : 'light';
             htmlElement.setAttribute('data-theme', newTheme);
@@ -200,13 +283,13 @@
         function toggleFavorite(toolName, categoryName) {
             const favKey = `${categoryName}::${toolName}`;
             const index = favorites.indexOf(favKey);
-            
+
             if (index > -1) {
                 favorites.splice(index, 1);
             } else {
                 favorites.push(favKey);
             }
-            
+
             localStorage.setItem('favorites', JSON.stringify(favorites));
             loadTools();
         }
@@ -276,12 +359,20 @@
             'Character.AI': 'C1.2'
         };
 
+        // Format price display
+        function formatPrice(price) {
+            if (!price || price === 'Free' || price === '0' || price === 0) {
+                return '<span class="price-badge">Free</span>';
+            }
+            return `<span class="price-badge paid">${price}</span>`;
+        }
+
         // Star rating display
         function renderStars(rating) {
             const fullStars = Math.floor(rating);
             const halfStar = rating % 1 >= 0.5;
             let html = '';
-            
+
             for (let i = 0; i < 5; i++) {
                 if (i < fullStars) {
                     html += '★';
@@ -298,10 +389,10 @@
         function showToolDetails(tool, category) {
             const modal = document.getElementById('toolModal');
             const content = document.getElementById('modalContent');
-            
+
             const modelVersion = modelVersions[tool.name] ? 
                 `<div class="badge badge-neutral badge-outline">Model: ${modelVersions[tool.name]}</div>` : '';
-            
+
             content.innerHTML = `
                 <div class="flex items-start gap-4 mb-4">
                     <img src="${tool.thumbnail}" 
@@ -314,15 +405,15 @@
                         ${modelVersion}
                     </div>
                 </div>
-                
+
                 <div class="mb-4 flex flex-wrap gap-2">
                     ${(tool.badges || []).map(badge => 
                         `<span class="badge ${badgeStyles[badge] || 'badge-ghost'} badge-lg">${badgeLabels[badge] || badge}</span>`
                     ).join('')}
                 </div>
-                
+
                 <p class="text-base-content/80 mb-4">${tool.description}</p>
-                
+
                 <div class="flex gap-2 mt-6">
                     <a href="${tool.url}" target="_blank" class="btn btn-primary flex-1">Visit Website →</a>
                     <button onclick="toggleFavorite('${tool.name}', '${category.name}')" 
@@ -331,14 +422,15 @@
                     </button>
                 </div>
             `;
-            
+
             modal.showModal();
         }
 
         // Create tool card
         function createToolCard(tool, category) {
             const isFav = isFavorite(tool.name, category.name);
-            
+            const price = tool.price || 'Free';
+
             return `
                 <div class="card shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 tool-card overflow-hidden">
                     <div class="flex h-full">
@@ -353,36 +445,40 @@
                             <a href="${tool.url}" target="_blank" class="btn btn-visit btn-sm w-full rounded-none rounded-bl-lg">
                                 Visit
                             </a>
-                            <button onclick="event.stopPropagation(); toggleFavorite('${tool.name}', '${category.name}')" 
-                                    class="absolute top-2 left-2 btn btn-circle btn-xs ${isFav ? 'btn-warning' : 'btn-ghost bg-base-100/80'}">
-                                ${isFav ? '★' : '☆'}
-                            </button>
                         </div>
-                        
+
                         <!-- Content (70% width) -->
                         <div class="flex-1 p-3 flex flex-col relative">
+                            <!-- Favorite star in top-right corner -->
+                            <div class="favorite-corner" onclick="event.stopPropagation(); toggleFavorite('${tool.name}', '${category.name}')">
+                                <span class="favorite-star ${isFav ? 'favorited' : 'unfavorited'}">★</span>
+                            </div>
+
                             <!-- Title -->
-                            <h3 class="font-bold text-lg mb-1">${tool.name}</h3>
-                            
+                            <h3 class="font-bold text-lg mb-1 pr-12">${tool.name}</h3>
+
                             <!-- Badges (below name, above description) -->
                             <div class="flex gap-1 flex-wrap mb-2">
                                 ${(tool.badges || []).slice(0, 4).map(badge => 
                                     `<span class="badge ${badgeStyles[badge] || 'badge-ghost'} badge-xs">${badgeLabels[badge] || badge}</span>`
                                 ).join('')}
                             </div>
-                            
+
                             <!-- Description -->
-                            <p class="text-sm text-base-content/70 mb-1 flex-grow">${tool.description}</p>
-                            
-                            <!-- URL -->
-                            <a href="${tool.url}" target="_blank" class="text-[13px] text-primary hover:underline truncate block mb-2">
-                                ${tool.url.replace(/^https?:\/\/(www\.)?/, '')}
-                            </a>
-                            
-                            <!-- Learn More button (bottom right corner) -->
-                            <div class="flex justify-end -mr-3 -mb-3">
+                            <p class="text-sm text-base-content/70 mb-2 flex-grow">${tool.description}</p>
+
+                            <!-- Price (where URL was) -->
+                            <div class="mb-2">
+                                ${formatPrice(price)}
+                            </div>
+
+                            <!-- Action buttons with URL in between -->
+                            <div class="flex items-center justify-between gap-2 -mr-3 -mb-3">
+                                <a href="${tool.url}" target="_blank" class="url-link truncate flex-shrink min-w-0 px-1">
+                                    ${tool.url.replace(/^https?:\/\/(www\.)?/, '')}
+                                </a>
                                 <button onclick='showToolDetails(${JSON.stringify(tool).replace(/'/g, "&#39;")}, ${JSON.stringify(category).replace(/'/g, "&#39;")})' 
-                                        class="btn btn-learn-more btn-sm rounded-none rounded-br-lg">
+                                        class="btn btn-learn-more btn-sm rounded-none rounded-br-lg flex-shrink-0">
                                     Learn More
                                 </button>
                             </div>
@@ -400,10 +496,10 @@
                     const container = document.getElementById('toolsContainer');
                     const favSection = document.getElementById('favoritesSection');
                     const favGrid = document.getElementById('favoritesGrid');
-                    
+
                     container.innerHTML = '';
                     favGrid.innerHTML = '';
-                    
+
                     // Render favorites
                     if (favorites.length > 0) {
                         favSection.classList.remove('hidden');
@@ -417,11 +513,11 @@
                     } else {
                         favSection.classList.add('hidden');
                     }
-                    
+
                     // Render all categories
                     data.categories.forEach(category => {
                         const categoryClass = categoryStyles[category.name] || 'category-chat';
-                        
+
                         const categorySection = document.createElement('div');
                         categorySection.className = 'mb-12';
                         categorySection.innerHTML = `
@@ -429,12 +525,12 @@
                                 <h2 class="mb-1">${category.name}</h2>
                                 <p class="text-base-content/70">${category.description}</p>
                             </div>
-                            
+
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 ${category.tools.map(tool => createToolCard(tool, category)).join('')}
                             </div>
                         `;
-                        
+
                         container.appendChild(categorySection);
                     });
                 })

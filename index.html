@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
@@ -5,11 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Tools Directory</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" rel="stylesheet" />
+    <style>
+        .star-rating { color: #fbbf24; }
+        .tool-card { min-height: 200px; }
+        .modal-box { max-width: 800px; }
+    </style>
 </head>
 <body class="min-h-screen bg-base-200">
     
-    <!-- Theme Toggle (Top Right) -->
+    <!-- Theme Toggle -->
     <div class="fixed top-4 right-4 z-50">
         <label class="swap swap-rotate btn btn-circle btn-ghost">
             <input type="checkbox" id="themeToggle" />
@@ -19,17 +25,37 @@
     </div>
 
     <!-- Main Container -->
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-4xl font-bold text-center mb-8">AI Tools Directory</h1>
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
+        <h1 class="text-5xl font-bold text-center mb-4">AI Tools Directory</h1>
+        <p class="text-center text-base-content/70 mb-8">Curated collection of AI tools and services</p>
+        
+        <!-- Favorites Section -->
+        <div id="favoritesSection" class="mb-12 hidden">
+            <h2 class="text-3xl font-bold mb-4 flex items-center gap-2">
+                ⭐ Your Favorites
+            </h2>
+            <div id="favoritesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"></div>
+        </div>
+
+        <!-- All Tools -->
         <div id="toolsContainer"></div>
     </div>
 
+    <!-- Modal Template -->
+    <dialog id="toolModal" class="modal">
+        <div class="modal-box">
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <div id="modalContent"></div>
+        </div>
+        <form method="dialog" class="modal-backdrop"><button>close</button></form>
+    </dialog>
+
     <script>
-        // Theme toggle functionality
+        // Theme toggle
         const themeToggle = document.getElementById('themeToggle');
         const htmlElement = document.documentElement;
-        
-        // Load saved theme
         const savedTheme = localStorage.getItem('theme') || 'light';
         htmlElement.setAttribute('data-theme', savedTheme);
         themeToggle.checked = savedTheme === 'dark';
@@ -40,65 +66,229 @@
             localStorage.setItem('theme', newTheme);
         });
 
-        // Category theme colors (DaisyUI classes)
-        const categoryThemes = {
-            'AI Client Apps (macOS)': 'bg-gradient-to-br from-blue-400 to-indigo-500 text-white',
-            'TTS & Voice AI': 'bg-gradient-to-r from-purple-500 to-pink-500 text-white',
-            'AI Coding & IDEs': 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white',
-            'Video/Image Production': 'bg-gradient-to-br from-orange-500 to-red-500 text-white',
-            'AI Notebooks & Assistants': 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white',
-            'Workflow & Automation': 'bg-gradient-to-br from-lime-400 to-green-500',
-            'LLM Free APIs': 'bg-base-100 border-l-4 border-primary shadow-xl hover:shadow-2xl',
-            'default': 'bg-base-100 shadow-xl hover:shadow-2xl'
+        // Favorites management
+        let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+
+        function toggleFavorite(toolName, categoryName) {
+            const favKey = `${categoryName}::${toolName}`;
+            const index = favorites.indexOf(favKey);
+            
+            if (index > -1) {
+                favorites.splice(index, 1);
+            } else {
+                favorites.push(favKey);
+            }
+            
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            loadTools(); // Reload to update UI
+        }
+
+        function isFavorite(toolName, categoryName) {
+            return favorites.includes(`${categoryName}::${toolName}`);
+        }
+
+        // Badge colors
+        const badgeStyles = {
+            'new': 'badge-success',
+            'popular': 'badge-primary',
+            'free': 'badge-info',
+            'paid': 'badge-warning',
+            'open-source': 'badge-accent',
+            'macos': 'badge-ghost',
+            'windows': 'badge-ghost',
+            'web': 'badge-ghost',
+            'enterprise': 'badge-secondary'
         };
 
-        // Load and render tools
-        fetch('ai-tools-directory.json')
-            .then(response => response.json())
-            .then(data => {
-                const container = document.getElementById('toolsContainer');
+        // Category themes
+        const categoryThemes = {
+            'AI Client Apps (macOS)': 'from-blue-400 to-indigo-500',
+            'TTS & Voice AI': 'from-purple-500 to-pink-500',
+            'AI Coding & IDEs': 'from-emerald-500 to-teal-600',
+            'Video/Image Production': 'from-orange-500 to-red-500',
+            'AI Notebooks & Assistants': 'from-cyan-500 to-blue-600',
+            'Workflow & Automation': 'from-lime-400 to-green-500',
+            'default': 'from-slate-400 to-slate-600'
+        };
+
+        // Star rating display
+        function renderStars(rating) {
+            const fullStars = Math.floor(rating);
+            const halfStar = rating % 1 >= 0.5;
+            let html = '';
+            
+            for (let i = 0; i < 5; i++) {
+                if (i < fullStars) {
+                    html += '★';
+                } else if (i === fullStars && halfStar) {
+                    html += '⯨';
+                } else {
+                    html += '☆';
+                }
+            }
+            return html;
+        }
+
+        // Show modal
+        function showToolDetails(tool, category) {
+            const modal = document.getElementById('toolModal');
+            const content = document.getElementById('modalContent');
+            
+            content.innerHTML = `
+                <div class="flex items-start gap-4 mb-4">
+                    <img src="${tool.logo || 'https://via.placeholder.com/80'}" 
+                         alt="${tool.name}" 
+                         class="w-20 h-20 rounded-lg object-cover"
+                         onerror="this.src='<https://via.placeholder.com/80?text=${tool.name>[0]}'">
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-bold">${tool.name}</h3>
+                        <div class="star-rating text-xl">${renderStars(tool.rating || 0)}</div>
+                    </div>
+                </div>
                 
-                data.categories.forEach(category => {
-                    // Category header
-                    const categorySection = document.createElement('div');
-                    categorySection.className = 'mb-12';
-                    categorySection.innerHTML = `
-                        <h2 class="text-3xl font-bold mb-2">${category.name}</h2>
-                        <p class="text-base-content/70 mb-6">${category.description}</p>
-                    `;
-                    
-                    // Tools grid
-                    const toolsGrid = document.createElement('div');
-                    toolsGrid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6';
-                    
-                    // Get theme for this category
-                    const themeClass = categoryThemes[category.name] || categoryThemes['default'];
-                    
-                    // Create individual tool cards
-                    category.tools.forEach(tool => {
-                        const card = document.createElement('div');
-                        card.className = `card ${themeClass} transition-all duration-300 hover:scale-105`;
-                        card.innerHTML = `
-                            <div class="card-body p-6">
-                                <h3 class="card-title text-lg mb-2">${tool.name}</h3>
-                                <p class="text-sm opacity-90 flex-grow">${tool.desc}</p>
-                                <div class="card-actions justify-end mt-4">
-                                    <a href="${tool.url.startsWith('http') ? tool.url : 'https://' + tool.url}" 
-                                       target="_blank" 
-                                       class="btn btn-sm ${themeClass.includes('text-white') ? 'btn-outline btn-white' : 'btn-primary'}">
+                <div class="mb-4">
+                    ${(tool.badges || []).map(badge => 
+                        `<span class="badge ${badgeStyles[badge] || 'badge-ghost'} badge-outline mr-2">${badge}</span>`
+                    ).join('')}
+                </div>
+                
+                <p class="text-base-content/80 mb-4">${tool.description}</p>
+                
+                ${tool.features ? `
+                    <div class="mb-4">
+                        <h4 class="font-bold mb-2">Features:</h4>
+                        <ul class="list-disc list-inside space-y-1">
+                            ${tool.features.map(f => `<li>${f}</li>`).join('')}
+                        </ul>
+                    </div>
+                ` : ''}
+                
+                <div class="flex gap-2 mt-6">
+                    <a href="${tool.url}" target="_blank" class="btn btn-primary flex-1">Visit Website →</a>
+                    <button onclick="toggleFavorite('${tool.name}', '${category.name}')" 
+                            class="btn btn-outline ${isFavorite(tool.name, category.name) ? 'btn-warning' : ''}">
+                        ${isFavorite(tool.name, category.name) ? '★ Favorited' : '☆ Favorite'}
+                    </button>
+                </div>
+            `;
+            
+            modal.showModal();
+        }
+
+        // Create tool card
+        function createToolCard(tool, category) {
+            const themeGradient = categoryThemes[category.name] || categoryThemes['default'];
+            const isFav = isFavorite(tool.name, category.name);
+            
+            return `
+                <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 tool-card">
+                    <div class="card-body p-4">
+                        <div class="flex gap-4">
+                            <!-- Thumbnail -->
+                            <div class="flex-shrink-0">
+                                <img src="${tool.logo || 'https://via.placeholder.com/80'}" 
+                                     alt="${tool.name}" 
+                                     class="w-20 h-20 rounded-lg object-cover"
+                                     onerror="this.src='<https://via.placeholder.com/80?text=${tool.name>[0]}'">
+                            </div>
+                            
+                            <!-- Content -->
+                            <div class="flex-1 min-w-0">
+                                <!-- Badges -->
+                                <div class="flex flex-wrap gap-1 mb-2">
+                                    ${(tool.badges || []).map(badge => 
+                                        `<span class="badge ${badgeStyles[badge] || 'badge-ghost'} badge-outline badge-sm">${badge}</span>`
+                                    ).join('')}
+                                </div>
+                                
+                                <!-- Title -->
+                                <h3 class="card-title text-lg mb-1 flex items-center gap-2">
+                                    ${tool.name}
+                                    <button onclick="toggleFavorite('${tool.name}', '${category.name}')" 
+                                            class="btn btn-ghost btn-xs">
+                                        ${isFav ? '★' : '☆'}
+                                    </button>
+                                </h3>
+                                
+                                <!-- Rating -->
+                                <div class="star-rating text-sm mb-2">${renderStars(tool.rating || 0)}</div>
+                                
+                                <!-- Description -->
+                                <p class="text-sm text-base-content/70 mb-2 line-clamp-2">${tool.description}</p>
+                                
+                                <!-- URL -->
+                                <a href="${tool.url}" target="_blank" class="text-xs text-primary hover:underline truncate block mb-3">
+                                    ${tool.url.replace(/^https?:\/\//, '')}
+                                </a>
+                                
+                                <!-- Actions -->
+                                <div class="card-actions justify-end">
+                                    <button onclick='showToolDetails(${JSON.stringify(tool).replace(/'/g, "&#39;")}, ${JSON.stringify(category).replace(/'/g, "&#39;")})' 
+                                            class="btn btn-sm btn-outline">
+                                        More Info
+                                    </button>
+                                    <a href="${tool.url}" target="_blank" class="btn btn-sm btn-primary">
                                         Visit →
                                     </a>
                                 </div>
                             </div>
-                        `;
-                        toolsGrid.appendChild(card);
-                    });
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Load and render tools
+        function loadTools() {
+            fetch('ai-tools-directory.json')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('toolsContainer');
+                    const favSection = document.getElementById('favoritesSection');
+                    const favGrid = document.getElementById('favoritesGrid');
                     
-                    categorySection.appendChild(toolsGrid);
-                    container.appendChild(categorySection);
-                });
-            })
-            .catch(error => console.error('Error loading tools:', error));
+                    container.innerHTML = '';
+                    favGrid.innerHTML = '';
+                    
+                    // Render favorites
+                    if (favorites.length > 0) {
+                        favSection.classList.remove('hidden');
+                        data.categories.forEach(category => {
+                            category.tools.forEach(tool => {
+                                if (isFavorite(tool.name, category.name)) {
+                                    favGrid.innerHTML += createToolCard(tool, category);
+                                }
+                            });
+                        });
+                    } else {
+                        favSection.classList.add('hidden');
+                    }
+                    
+                    // Render all categories
+                    data.categories.forEach(category => {
+                        const themeGradient = categoryThemes[category.name] || categoryThemes['default'];
+                        
+                        const categorySection = document.createElement('div');
+                        categorySection.className = 'mb-12';
+                        categorySection.innerHTML = `
+                            <div class="bg-gradient-to-r ${themeGradient} rounded-lg p-6 mb-6 text-white">
+                                <h2 class="text-3xl font-bold mb-2">${category.name}</h2>
+                                <p class="opacity-90">${category.description}</p>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                ${category.tools.map(tool => createToolCard(tool, category)).join('')}
+                            </div>
+                        `;
+                        
+                        container.appendChild(categorySection);
+                    });
+                })
+                .catch(error => console.error('Error loading tools:', error));
+        }
+
+        // Initialize
+        loadTools();
     </script>
 </body>
 </html>

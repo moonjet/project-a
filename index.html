@@ -28,7 +28,7 @@
             background-attachment: fixed;
         }
 
-        /* Sleek Category Headers - Left Border Gradient Style */
+        /* Sleek Category Headers */
         .category-header {
             background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
@@ -61,6 +61,33 @@
         .category-video { border-left-color: #f97316; }
         .category-voice { border-left-color: #a855f7; }
         .category-workflow { border-left-color: #84cc16; }
+
+        /* Animated button hovers */
+        .btn-visit {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            border: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-visit:hover {
+            background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-learn-more {
+            background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
+            border: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-learn-more:hover {
+            background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(109, 40, 217, 0.4);
+        }
 
         .star-rating { color: #fbbf24; }
         .tool-card { min-height: 180px; }
@@ -171,7 +198,7 @@
             'Workflow & Automation': 'category-workflow'
         };
 
-        // Badge label mapping (abbreviated for cards)
+        // Badge label mapping
         const badgeLabels = {
             'new': 'New',
             'recommended': 'Top',
@@ -189,7 +216,7 @@
             'beta': 'Beta'
         };
 
-        // Badge colors (DaisyUI soft style)
+        // Badge colors
         const badgeStyles = {
             'new': 'badge-success',
             'recommended': 'badge-primary',
@@ -207,7 +234,7 @@
             'beta': 'badge-neutral'
         };
 
-        // Model versions for LLMs (for modal display)
+        // Model versions for LLMs
         const modelVersions = {
             'Perplexity': 'Sonar Pro',
             'ChatGPT': 'GPT-4o',
@@ -289,7 +316,7 @@
             return `
                 <div class="card shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 tool-card overflow-hidden">
                     <div class="flex h-full">
-                        <!-- Thumbnail (30% width) with Visit button at bottom -->
+                        <!-- Thumbnail (30% width) with Visit button -->
                         <div class="w-[30%] flex-shrink-0 relative flex flex-col">
                             <div class="flex-grow bg-base-100/50 p-2 flex items-center justify-center">
                                 <img src="${tool.thumbnail}" 
@@ -297,7 +324,7 @@
                                      class="max-w-full max-h-full object-contain"
                                      onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(tool.name)}&size=200&background=random'">
                             </div>
-                            <a href="${tool.url}" target="_blank" class="btn btn-primary btn-sm w-full rounded-none rounded-bl-lg">
+                            <a href="${tool.url}" target="_blank" class="btn btn-visit btn-sm w-full rounded-none rounded-bl-lg">
                                 Visit
                             </a>
                             <button onclick="event.stopPropagation(); toggleFavorite('${tool.name}', '${category.name}')" 
@@ -308,20 +335,13 @@
                         
                         <!-- Content (70% width) -->
                         <div class="flex-1 p-3 flex flex-col relative">
-                            <!-- Badges (Floating top-right, vertically stacked) -->
-                            <div class="absolute top-2 right-2 flex flex-col gap-1 items-end">
-                                ${(tool.badges || []).slice(0, 2).map(badge => 
-                                    `<span class="badge ${badgeStyles[badge] || 'badge-ghost'} badge-sm">${badgeLabels[badge] || badge}</span>`
-                                ).join('')}
-                            </div>
-                            
                             <!-- Title -->
-                            <h3 class="font-bold text-lg mb-1 pr-16">${tool.name}</h3>
+                            <h3 class="font-bold text-lg mb-1">${tool.name}</h3>
                             
                             <!-- Description -->
                             <p class="text-sm text-base-content/70 mb-2 flex-grow">${tool.description}</p>
                             
-                            <!-- URL (increased size) -->
+                            <!-- URL -->
                             <a href="${tool.url}" target="_blank" class="text-[13px] text-primary hover:underline truncate block mb-1">
                                 ${tool.url.replace(/^https?:\/\/(www\.)?/, '')}
                             </a>
@@ -329,12 +349,17 @@
                             <!-- Rating below URL -->
                             <div class="star-rating text-sm mb-2">${renderStars(tool.rating || 0)}</div>
                             
-                            <!-- Info button (fitted to bottom-right corner) -->
-                            <div class="mt-auto -mr-3 -mb-3">
+                            <!-- Learn More button with badges on right (bottom row) -->
+                            <div class="flex items-center gap-2 -mr-3 -mb-3">
                                 <button onclick='showToolDetails(${JSON.stringify(tool).replace(/'/g, "&#39;")}, ${JSON.stringify(category).replace(/'/g, "&#39;")})' 
-                                        class="btn btn-ghost btn-sm w-full rounded-none rounded-br-lg">
-                                    Info
+                                        class="btn btn-learn-more btn-sm rounded-none rounded-br-lg text-left flex-shrink-0">
+                                    Learn More
                                 </button>
+                                <div class="flex gap-1 flex-wrap justify-end flex-1 pr-3 pb-1">
+                                    ${(tool.badges || []).slice(0, 2).map(badge => 
+                                        `<span class="badge ${badgeStyles[badge] || 'badge-ghost'} badge-xs">${badgeLabels[badge] || badge}</span>`
+                                    ).join('')}
+                                </div>
                             </div>
                         </div>
                     </div>

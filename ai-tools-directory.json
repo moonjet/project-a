@@ -1,560 +1,214 @@
 {
   "categories": [
     {
-      "name": "AI Client Apps (macOS),\"Native Mac apps for accessing LLMs and APIs like OpenRouter with system-wide integration.\",\"- BoltAI",
-      "description": " Native app with OpenRouter support via API keys, inline actions, local LLMs. [boltai.com/pricing]",
-      "daisyui_theme": "theme-macos",
+      "name": "AI Chat & LLMs",
+      "description": "Leading conversational AI assistants and large language models",
       "tools": [
         {
-          "name": "TypingMind",
-          "url": "",
-          "desc": "Feature-rich chat UI with model selection including OpenRouter. [typingmind.com]",
-          "tags": [
-            "macos"
-          ]
+          "name": "Perplexity",
+          "url": "https://perplexity.ai",
+          "description": "AI-powered answer engine with real-time web search and cited sources",
+          "badges": ["web", "free", "recommended", "popular"],
+          "rating": 5.0,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=perplexity.ai&sz=128"
         },
         {
-          "name": "MindMac",
-          "url": "",
-          "desc": "Native client with OpenRouter, inline mode, Keychain storage. [mindmac.app]",
-          "tags": [
-            "macos"
-          ]
+          "name": "ChatGPT",
+          "url": "https://chat.openai.com",
+          "description": "OpenAI's conversational AI with GPT-4o and advanced reasoning",
+          "badges": ["web", "free", "popular"],
+          "rating": 4.8,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=openai.com&sz=128"
         },
         {
-          "name": "Raycast AI",
-          "url": "",
-          "desc": "Launcher with OpenRouter extensions for quick prompts. [raycast.com]",
-          "tags": [
-            "macos"
-          ]
+          "name": "Claude",
+          "url": "https://claude.ai",
+          "description": "Anthropic's AI assistant with 200K context window and advanced analysis",
+          "badges": ["web", "free", "recommended", "popular"],
+          "rating": 4.9,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=anthropic.com&sz=128"
         },
         {
-          "name": "Elephas",
-          "url": "",
-          "desc": "Writing assistant supporting OpenRouter and knowledge bases. [elephas.app]",
-          "tags": [
-            "macos"
-          ]
+          "name": "Google Gemini",
+          "url": "https://gemini.google.com",
+          "description": "Google's multimodal AI with Gemini 2.0 Flash for text, images, and code",
+          "badges": ["web", "free", "popular"],
+          "rating": 4.7,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=google.com&sz=128"
         },
         {
-          "name": "Macaify",
-          "url": "",
-          "desc": "Lightweight shortcut-driven prompts for external APIs. [macaify.app]\"",
-          "tags": [
-            "macos"
-          ]
+          "name": "Microsoft Copilot",
+          "url": "https://copilot.microsoft.com",
+          "description": "Microsoft's AI assistant powered by GPT-4 with web integration",
+          "badges": ["web", "free"],
+          "rating": 4.5,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=microsoft.com&sz=128"
+        },
+        {
+          "name": "Mistral Chat",
+          "url": "https://chat.mistral.ai",
+          "description": "European AI with open models and strong multilingual capabilities",
+          "badges": ["web", "free", "open-source"],
+          "rating": 4.6,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=mistral.ai&sz=128"
+        },
+        {
+          "name": "DeepSeek",
+          "url": "https://chat.deepseek.com",
+          "description": "Chinese AI startup with powerful reasoning models at low cost",
+          "badges": ["web", "free", "new"],
+          "rating": 4.4,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=deepseek.com&sz=128"
+        },
+        {
+          "name": "Grok",
+          "url": "https://grok.x.ai",
+          "description": "xAI's conversational AI with real-time X (Twitter) integration",
+          "badges": ["web", "paid"],
+          "rating": 4.3,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=x.ai&sz=128"
+        },
+        {
+          "name": "Pi",
+          "url": "https://pi.ai",
+          "description": "Personal AI from Inflection with empathetic conversation style",
+          "badges": ["web", "free"],
+          "rating": 4.2,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=pi.ai&sz=128"
+        },
+        {
+          "name": "You.com",
+          "url": "https://you.com",
+          "description": "AI search engine combining web results with LLM responses",
+          "badges": ["web", "free"],
+          "rating": 4.4,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=you.com&sz=128"
+        },
+        {
+          "name": "HuggingChat",
+          "url": "https://huggingface.co/chat",
+          "description": "Open-source chat interface for leading community models",
+          "badges": ["web", "free", "open-source"],
+          "rating": 4.3,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=huggingface.co&sz=128"
+        },
+        {
+          "name": "Character.AI",
+          "url": "https://character.ai",
+          "description": "Platform for chatting with AI characters and custom personalities",
+          "badges": ["web", "free", "popular"],
+          "rating": 4.1,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=character.ai&sz=128"
         }
       ]
     },
     {
-      "name": "AI Web Page Builders,\"Tools for building websites with integrated AI content generation.\",\"- Odoo Website Builder",
-      "description": " AI-assisted content creation in ERP platform. [odoo.com/r/S0w]",
-      "daisyui_theme": "theme-directory",
+      "name": "AI Development Tools",
+      "description": "AI-powered code editors, assistants, and development platforms",
       "tools": [
         {
-          "name": "Readdy",
-          "url": "",
-          "desc": "AI-powered website creation. [readdy.ai]\"",
-          "tags": [
-            "directory"
-          ]
-        }
-      ]
-    },
-    {
-      "name": "AI Trading & Finance,\"Platforms using AI for stock analysis and real estate listings.\",\"- Public.com AI",
-      "description": " AI-based stock analysis. [public.com/disclosures/ga]",
-      "daisyui_theme": "theme-llm",
-      "tools": [
-        {
-          "name": "Cloze AI",
-          "url": "",
-          "desc": "Auto-generates real estate listing descriptions. [ai.cloze.com/resource-center/create-real-estate-listing-descriptions-automatically-using-cloze-ai]\"",
-          "tags": [
-            "llm"
-          ]
-        }
-      ]
-    },
-    {
-      "name": "AI Business Pipeline,\"CRM and pipeline tools with AI features.\",\"- Odoo Sales",
-      "description": " AI-driven pipeline management. [odoo.com/r/xV3j]",
-      "daisyui_theme": "theme-directory",
-      "tools": []
-    },
-    {
-      "name": "AI OCR & Benchmarking,\"Optical character recognition and LLM evaluation sites.\",\"- Mistral OCR 3",
-      "description": " Handles handwritten text. [mistral.ai]",
-      "daisyui_theme": "theme-llm",
-      "tools": [
-        {
-          "name": "Deepseek-OCR",
-          "url": "",
-          "desc": "Advanced OCR tool. [deepseek.com]",
-          "tags": [
-            "llm"
-          ]
+          "name": "Cursor",
+          "url": "https://cursor.com",
+          "description": "AI-first code editor with tab autocomplete, inline edits, and codebase chat",
+          "badges": ["desktop", "paid", "recommended", "popular"],
+          "rating": 4.9,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=cursor.com&sz=128"
         },
         {
-          "name": "LMArena",
-          "url": "",
-          "desc": "LLM benchmarking arena. [lmarena.ai]\"",
-          "tags": [
-            "llm"
-          ]
-        },
-        {
-          "name": "AIToolsDirectory",
-          "url": "",
-          "desc": "aitoolsdirectory.com]",
-          "tags": [
-            "llm"
-          ]
-        },
-        {
-          "name": "WikiGlitz",
-          "url": "",
-          "desc": "wikiglitz.co]",
-          "tags": [
-            "llm"
-          ]
-        },
-        {
-          "name": "AIToolHunt",
-          "url": "",
-          "desc": "aitoolhunt.com]",
-          "tags": [
-            "llm"
-          ]
-        },
-        {
-          "name": "Toolify AI",
-          "url": "",
-          "desc": "toolify.ai]",
-          "tags": [
-            "llm"
-          ]
-        },
-        {
-          "name": "AIToolsClub",
-          "url": "",
-          "desc": "aitoolsclub.com]",
-          "tags": [
-            "llm"
-          ]
-        },
-        {
-          "name": "AICyclopedia",
-          "url": "",
-          "desc": "aicyclopedia.com]",
-          "tags": [
-            "llm"
-          ]
-        },
-        {
-          "name": "Insidr AI",
-          "url": "",
-          "desc": "insidr.ai]",
-          "tags": [
-            "llm"
-          ]
-        },
-        {
-          "name": "AllThingsAI",
-          "url": "",
-          "desc": "allthingsai.com]",
-          "tags": [
-            "llm"
-          ]
-        },
-        {
-          "name": "AIScout",
-          "url": "",
-          "desc": "aiscout.io]",
-          "tags": [
-            "llm"
-          ]
-        },
-        {
-          "name": "Directory.ai",
-          "url": "",
-          "desc": "directory.ai]",
-          "tags": [
-            "llm"
-          ]
-        },
-        {
-          "name": "OpenTools",
-          "url": "",
-          "desc": "opentools.ai]",
-          "tags": [
-            "llm"
-          ]
-        },
-        {
-          "name": "AIXploria",
-          "url": "",
-          "desc": "aixploria.com]",
-          "tags": [
-            "llm"
-          ]
-        },
-        {
-          "name": "Awesome AI Directories",
-          "url": "",
-          "desc": "github.com/best-of-ai/ai-directories]\"",
-          "tags": [
-            "llm"
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Workflow & Automation,\"Orchestration platforms for AI workflows and automations.\",\"- Prefect",
-      "description": " Workflow automation and orchestration. [prefect.io]",
-      "daisyui_theme": "theme-workflow",
-      "tools": [
-        {
-          "name": "Make.com",
-          "url": "",
-          "desc": "No-code automation builder. [make.com]",
-          "tags": [
-            "workflow"
-          ]
-        },
-        {
-          "name": "N8N.io",
-          "url": "",
-          "desc": "Self-hosted automation with AI nodes. [n8n.io]",
-          "tags": [
-            "workflow"
-          ]
-        },
-        {
-          "name": "UiPath",
-          "url": "",
-          "desc": "Enterprise RPA automation. [uipath.com]\"",
-          "tags": [
-            "workflow"
-          ]
-        },
-        {
-          "name": "Hugging Face",
-          "url": "",
-          "desc": "huggingface.co]",
-          "tags": [
-            "workflow"
-          ]
-        },
-        {
-          "name": "Cohere",
-          "url": "",
-          "desc": "cohere.com]",
-          "tags": [
-            "workflow"
-          ]
-        },
-        {
-          "name": "Together AI",
-          "url": "",
-          "desc": "together.ai]",
-          "tags": [
-            "workflow"
-          ]
-        },
-        {
-          "name": "Anthropic",
-          "url": "",
-          "desc": "anthropic.com]",
-          "tags": [
-            "workflow"
-          ]
-        },
-        {
-          "name": "Groq",
-          "url": "",
-          "desc": "groq.com]",
-          "tags": [
-            "workflow"
-          ]
-        },
-        {
-          "name": "Perplexity AI",
-          "url": "",
-          "desc": "perplexity.ai]",
-          "tags": [
-            "workflow"
-          ]
-        },
-        {
-          "name": "Replicate",
-          "url": "",
-          "desc": "replicate.com]",
-          "tags": [
-            "workflow"
-          ]
-        },
-        {
-          "name": "Fireworks AI",
-          "url": "",
-          "desc": "fireworks.ai]\"",
-          "tags": [
-            "workflow"
-          ]
-        }
-      ]
-    },
-    {
-      "name": "TTS & Voice AI,\"Text-to-speech, voice cloning, and assistant builders.\",\"- Coqui TTS",
-      "description": " Open-source TTS with Docker. [coqui.ai/TTS]",
-      "daisyui_theme": "theme-tts",
-      "tools": [
-        {
-          "name": "Murph",
-          "url": "",
-          "desc": "Subscription TTS API. [coquitts.com]",
-          "tags": [
-            "tts"
-          ]
-        },
-        {
-          "name": "Vapi",
-          "url": "",
-          "desc": "Voice assistant creator. [vapi.ai]",
-          "tags": [
-            "tts"
-          ]
-        },
-        {
-          "name": "VMEG.ai",
-          "url": "",
-          "desc": "Video localization with dubbing. [vmeg.ai]",
-          "tags": [
-            "tts"
-          ]
-        },
-        {
-          "name": "Extensions",
-          "url": "",
-          "desc": "Read Aloud [chrome.google.com/webstore/detail/read-aloud], Talkie [github.com/blab/talkie]\"",
-          "tags": [
-            "tts"
-          ]
-        }
-      ]
-    },
-    {
-      "name": "AI Notebooks & Assistants,\"Research and note-taking tools powered by AI.\",\"- NotebookLM",
-      "description": " Google AI notebooks (up to 50k words). [notebooklm.google.com]",
-      "daisyui_theme": "theme-directory",
-      "tools": [
-        {
-          "name": "Kortex",
-          "url": "",
-          "desc": "kortex.co]",
-          "tags": [
-            "directory"
-          ]
-        },
-        {
-          "name": "Affine",
-          "url": "",
-          "desc": "affine.pro]",
-          "tags": [
-            "directory"
-          ]
-        },
-        {
-          "name": "Obsidian Copilot",
-          "url": "",
-          "desc": "Plugin for notes. [obsidian.md]\"",
-          "tags": [
-            "directory"
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Video/Image Production,\"AI tools for generation, editing, and post-production.\",\"- LTX2",
-      "description": " 4K video gen at 50fps. [ltx.studio]",
-      "daisyui_theme": "theme-coding",
-      "tools": [
-        {
-          "name": "Adobe Firefly",
-          "url": "",
-          "desc": "Prompt-based video editing. [firefly.adobe.com]",
-          "tags": [
-            "coding"
-          ]
-        },
-        {
-          "name": "Luma Dream Machine",
-          "url": "",
-          "desc": "Ray 3 video. [luma.ai]",
-          "tags": [
-            "coding"
-          ]
-        },
-        {
-          "name": "Gling AI",
-          "url": "",
-          "desc": "Video editing. [gling.ai]",
-          "tags": [
-            "coding"
-          ]
-        },
-        {
-          "name": "Rodin AI",
-          "url": "",
-          "desc": "2D to 3D conversion. [rodin.ai]",
-          "tags": [
-            "coding"
-          ]
-        },
-        {
-          "name": "Glif AI",
-          "url": "",
-          "desc": "Image/video agents. [glif.app]",
-          "tags": [
-            "coding"
-          ]
-        },
-        {
-          "name": "Higgsfield AI",
-          "url": "",
-          "desc": "Scene gen with character continuity. [higgsfield.ai]",
-          "tags": [
-            "coding"
-          ]
-        },
-        {
-          "name": "Google Flow",
-          "url": "",
-          "desc": "FX tools. [labs.google/fx/tools/flow]",
-          "tags": [
-            "coding"
-          ]
-        },
-        {
-          "name": "ComfyUI",
-          "url": "",
-          "desc": "Prompt video editing. [comfy.org]",
-          "tags": [
-            "coding"
-          ]
-        },
-        {
-          "name": "Topaz AI",
-          "url": "",
-          "desc": "Video restoration. [topazlabs.com]\"",
-          "tags": [
-            "coding"
-          ]
+          "name": "GitHub Copilot",
+          "url": "https://github.com/features/copilot",
+          "description": "AI pair programmer from GitHub and OpenAI integrated into your IDE",
+          "badges": ["plugin", "paid", "popular"],
+          "rating": 4.7,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=github.com&sz=128"
         },
         {
           "name": "Windsurf",
-          "url": "",
-          "desc": "windsurf.com]",
-          "tags": [
-            "coding"
-          ]
-        },
-        {
-          "name": "Kino",
-          "url": "",
-          "desc": "kino.ai]",
-          "tags": [
-            "coding"
-          ]
-        },
-        {
-          "name": "Graphite",
-          "url": "",
-          "desc": "graphite.com]",
-          "tags": [
-            "coding"
-          ]
-        },
-        {
-          "name": "Genspark",
-          "url": "",
-          "desc": "genspark.ai]",
-          "tags": [
-            "coding"
-          ]
-        },
-        {
-          "name": "Jetbrains Matter",
-          "url": "",
-          "desc": "jetbrains.com/lp/matter]",
-          "tags": [
-            "coding"
-          ]
-        },
-        {
-          "name": "Goose",
-          "url": "",
-          "desc": "block.github.io/goose]",
-          "tags": [
-            "coding"
-          ]
-        },
-        {
-          "name": "Kiro",
-          "url": "",
-          "desc": "kiro.dev]",
-          "tags": [
-            "coding"
-          ]
+          "url": "https://codeium.com/windsurf",
+          "description": "AI IDE with agentic flows and multi-file editing at lower cost than Cursor",
+          "badges": ["desktop", "free", "popular"],
+          "rating": 4.6,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=codeium.com&sz=128"
         },
         {
           "name": "Bolt.new",
-          "url": "",
-          "desc": "bolt.new]",
-          "tags": [
-            "coding"
-          ]
+          "url": "https://bolt.new",
+          "description": "Instant full-stack web app development with AI - prompt to production",
+          "badges": ["web", "free", "new", "recommended"],
+          "rating": 4.7,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=bolt.new&sz=128"
         },
         {
-          "name": "Copilot",
-          "url": "",
-          "desc": "copilot.microsoft.com]\"",
-          "tags": [
-            "coding"
-          ]
+          "name": "Replit Agent",
+          "url": "https://replit.com/ai",
+          "description": "AI that builds complete applications in minutes with deployment",
+          "badges": ["web", "paid", "popular"],
+          "rating": 4.5,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=replit.com&sz=128"
         },
         {
-          "name": "Duck AI",
-          "url": "",
-          "desc": "duck.ai]",
-          "tags": [
-            "coding"
-          ]
+          "name": "v0 by Vercel",
+          "url": "https://v0.dev",
+          "description": "Generate UI components and apps using shadcn and React",
+          "badges": ["web", "paid", "recommended"],
+          "rating": 4.6,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=v0.dev&sz=128"
         },
         {
-          "name": "Perplexity",
-          "url": "",
-          "desc": "perplexity.ai]\"",
-          "tags": [
-            "coding"
-          ]
+          "name": "Cline",
+          "url": "https://github.com/cline/cline",
+          "description": "Autonomous coding agent for VS Code with terminal and browser control",
+          "badges": ["plugin", "open-source", "free", "popular"],
+          "rating": 4.5,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=github.com&sz=128"
         },
         {
-          "name": "Botpress",
-          "url": "",
-          "desc": "Chatbot builder. [botpress.com]",
-          "tags": [
-            "coding"
-          ]
+          "name": "Aider",
+          "url": "https://aider.chat",
+          "description": "AI pair programming in your terminal with git integration",
+          "badges": ["cli", "open-source", "free"],
+          "rating": 4.4,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=aider.chat&sz=128"
         },
         {
-          "name": "AI Actors",
-          "url": "",
-          "desc": "Synthesia [synthesia.io], HeyGen [heygen.com], etc.\"",
-          "tags": [
-            "coding"
-          ]
+          "name": "Sourcegraph Cody",
+          "url": "https://sourcegraph.com/cody",
+          "description": "AI coding assistant with deep codebase understanding",
+          "badges": ["plugin", "free", "enterprise"],
+          "rating": 4.3,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=sourcegraph.com&sz=128"
+        },
+        {
+          "name": "Tabnine",
+          "url": "https://tabnine.com",
+          "description": "AI code completion trained on your codebase with privacy focus",
+          "badges": ["plugin", "paid", "enterprise"],
+          "rating": 4.2,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=tabnine.com&sz=128"
+        },
+        {
+          "name": "Amazon Q Developer",
+          "url": "https://aws.amazon.com/q/developer",
+          "description": "AWS's AI assistant for software development with free tier",
+          "badges": ["plugin", "free"],
+          "rating": 4.1,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=128"
+        },
+        {
+          "name": "Pieces for Developers",
+          "url": "https://pieces.app",
+          "description": "AI-powered snippet manager with context-aware code suggestions",
+          "badges": ["desktop", "free"],
+          "rating": 4.3,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=pieces.app&sz=128"
+        },
+        {
+          "name": "Blackbox AI",
+          "url": "https://blackbox.ai",
+          "description": "AI coding assistant with real-time autocomplete and chat",
+          "badges": ["web", "free"],
+          "rating": 4.0,
+          "thumbnail": "https://www.google.com/s2/favicons?domain=blackbox.ai&sz=128"
         }
       ]
     }

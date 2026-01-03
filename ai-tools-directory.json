@@ -8,7 +8,12 @@
           "name": "Perplexity",
           "url": "https://perplexity.ai",
           "description": "AI-powered answer engine with real-time web search and cited sources",
-          "badges": ["web", "free", "recommended", "popular"],
+          "badges": [
+            "web",
+            "free",
+            "recommended",
+            "popular"
+          ],
           "rating": 5.0,
           "thumbnail": "https://www.google.com/s2/favicons?domain=perplexity.ai&sz=128"
         },
@@ -16,7 +21,11 @@
           "name": "ChatGPT",
           "url": "https://chat.openai.com",
           "description": "OpenAI's conversational AI with GPT-4o and advanced reasoning",
-          "badges": ["web", "free", "popular"],
+          "badges": [
+            "web",
+            "free",
+            "popular"
+          ],
           "rating": 4.8,
           "thumbnail": "https://www.google.com/s2/favicons?domain=openai.com&sz=128"
         },
@@ -24,7 +33,12 @@
           "name": "Claude",
           "url": "https://claude.ai",
           "description": "Anthropic's AI assistant with 200K context window and advanced analysis",
-          "badges": ["web", "free", "recommended", "popular"],
+          "badges": [
+            "web",
+            "free",
+            "recommended",
+            "popular"
+          ],
           "rating": 4.9,
           "thumbnail": "https://www.google.com/s2/favicons?domain=anthropic.com&sz=128"
         },
@@ -32,7 +46,11 @@
           "name": "Google Gemini",
           "url": "https://gemini.google.com",
           "description": "Google's multimodal AI with Gemini 2.0 Flash for text, images, and code",
-          "badges": ["web", "free", "popular"],
+          "badges": [
+            "web",
+            "free",
+            "popular"
+          ],
           "rating": 4.7,
           "thumbnail": "https://www.google.com/s2/favicons?domain=google.com&sz=128"
         },
@@ -40,7 +58,10 @@
           "name": "Microsoft Copilot",
           "url": "https://copilot.microsoft.com",
           "description": "Microsoft's AI assistant powered by GPT-4 with web integration",
-          "badges": ["web", "free"],
+          "badges": [
+            "web",
+            "free"
+          ],
           "rating": 4.5,
           "thumbnail": "https://www.google.com/s2/favicons?domain=microsoft.com&sz=128"
         },
@@ -48,7 +69,11 @@
           "name": "Mistral Chat",
           "url": "https://chat.mistral.ai",
           "description": "European AI with open models and strong multilingual capabilities",
-          "badges": ["web", "free", "open-source"],
+          "badges": [
+            "web",
+            "free",
+            "open-source"
+          ],
           "rating": 4.6,
           "thumbnail": "https://www.google.com/s2/favicons?domain=mistral.ai&sz=128"
         },
@@ -56,15 +81,51 @@
           "name": "DeepSeek",
           "url": "https://chat.deepseek.com",
           "description": "Chinese AI startup with powerful reasoning models at low cost",
-          "badges": ["web", "free", "new"],
+          "badges": [
+            "web",
+            "free",
+            "new"
+          ],
           "rating": 4.4,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=deepseek.com&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=deepseek.com&sz=128",
+          "whatsNew": {
+            "version": "DeepSeek V3",
+            "releaseDate": "December 2024",
+            "features": [
+              "671B parameter MoE architecture",
+              "Cost-effective training at $5.5M",
+              "Open-source weights available",
+              "Matches GPT-4o on many benchmarks",
+              "Efficient inference with MoE design"
+            ],
+            "benchmarks": [
+              {
+                "name": "MMLU",
+                "score": "88.5%",
+                "comparison": "Matches GPT-4o"
+              },
+              {
+                "name": "HumanEval",
+                "score": "89.1%",
+                "comparison": "Top tier coding"
+              },
+              {
+                "name": "MATH",
+                "score": "82.6%",
+                "comparison": "Strong reasoning"
+              }
+            ],
+            "rankingUrl": "https://huggingface.co/spaces/lmsys/chatbot-arena-leaderboard"
+          }
         },
         {
           "name": "Grok",
           "url": "https://grok.x.ai",
           "description": "xAI's conversational AI with real-time X (Twitter) integration",
-          "badges": ["web", "paid"],
+          "badges": [
+            "web",
+            "paid"
+          ],
           "rating": 4.3,
           "thumbnail": "https://www.google.com/s2/favicons?domain=x.ai&sz=128"
         },
@@ -72,7 +133,10 @@
           "name": "Pi",
           "url": "https://pi.ai",
           "description": "Personal AI from Inflection with empathetic conversation style",
-          "badges": ["web", "free"],
+          "badges": [
+            "web",
+            "free"
+          ],
           "rating": 4.2,
           "thumbnail": "https://www.google.com/s2/favicons?domain=pi.ai&sz=128"
         },
@@ -80,7 +144,10 @@
           "name": "You.com",
           "url": "https://you.com",
           "description": "AI search engine combining web results with LLM responses",
-          "badges": ["web", "free"],
+          "badges": [
+            "web",
+            "free"
+          ],
           "rating": 4.4,
           "thumbnail": "https://www.google.com/s2/favicons?domain=you.com&sz=128"
         },
@@ -88,7 +155,11 @@
           "name": "HuggingChat",
           "url": "https://huggingface.co/chat",
           "description": "Open-source chat interface for leading community models",
-          "badges": ["web", "free", "open-source"],
+          "badges": [
+            "web",
+            "free",
+            "open-source"
+          ],
           "rating": 4.3,
           "thumbnail": "https://www.google.com/s2/favicons?domain=huggingface.co&sz=128"
         },
@@ -96,7 +167,11 @@
           "name": "Character.AI",
           "url": "https://character.ai",
           "description": "Platform for chatting with AI characters and custom personalities",
-          "badges": ["web", "free", "popular"],
+          "badges": [
+            "web",
+            "free",
+            "popular"
+          ],
           "rating": 4.1,
           "thumbnail": "https://www.google.com/s2/favicons?domain=character.ai&sz=128"
         }
@@ -110,7 +185,12 @@
           "name": "Cursor",
           "url": "https://cursor.com",
           "description": "AI-first code editor with tab autocomplete, inline edits, and codebase chat",
-          "badges": ["desktop", "paid", "recommended", "popular"],
+          "badges": [
+            "desktop",
+            "paid",
+            "recommended",
+            "popular"
+          ],
           "rating": 4.9,
           "thumbnail": "https://www.google.com/s2/favicons?domain=cursor.com&sz=128"
         },
@@ -118,7 +198,11 @@
           "name": "GitHub Copilot",
           "url": "https://github.com/features/copilot",
           "description": "AI pair programmer from GitHub and OpenAI integrated into your IDE",
-          "badges": ["plugin", "paid", "popular"],
+          "badges": [
+            "plugin",
+            "paid",
+            "popular"
+          ],
           "rating": 4.7,
           "thumbnail": "https://www.google.com/s2/favicons?domain=github.com&sz=128"
         },
@@ -126,7 +210,11 @@
           "name": "Windsurf",
           "url": "https://codeium.com/windsurf",
           "description": "AI IDE with agentic flows and multi-file editing at lower cost than Cursor",
-          "badges": ["desktop", "free", "popular"],
+          "badges": [
+            "desktop",
+            "free",
+            "popular"
+          ],
           "rating": 4.6,
           "thumbnail": "https://www.google.com/s2/favicons?domain=codeium.com&sz=128"
         },
@@ -134,7 +222,12 @@
           "name": "Bolt.new",
           "url": "https://bolt.new",
           "description": "Instant full-stack web app development with AI - prompt to production",
-          "badges": ["web", "free", "new", "recommended"],
+          "badges": [
+            "web",
+            "free",
+            "new",
+            "recommended"
+          ],
           "rating": 4.7,
           "thumbnail": "https://www.google.com/s2/favicons?domain=bolt.new&sz=128"
         },
@@ -142,7 +235,11 @@
           "name": "Replit Agent",
           "url": "https://replit.com/ai",
           "description": "AI that builds complete applications in minutes with deployment",
-          "badges": ["web", "paid", "popular"],
+          "badges": [
+            "web",
+            "paid",
+            "popular"
+          ],
           "rating": 4.5,
           "thumbnail": "https://www.google.com/s2/favicons?domain=replit.com&sz=128"
         },
@@ -150,7 +247,11 @@
           "name": "v0 by Vercel",
           "url": "https://v0.dev",
           "description": "Generate UI components and apps using shadcn and React",
-          "badges": ["web", "paid", "recommended"],
+          "badges": [
+            "web",
+            "paid",
+            "recommended"
+          ],
           "rating": 4.6,
           "thumbnail": "https://www.google.com/s2/favicons?domain=v0.dev&sz=128"
         },
@@ -158,7 +259,12 @@
           "name": "Cline",
           "url": "https://github.com/cline/cline",
           "description": "Autonomous coding agent for VS Code with terminal and browser control",
-          "badges": ["plugin", "open-source", "free", "popular"],
+          "badges": [
+            "plugin",
+            "open-source",
+            "free",
+            "popular"
+          ],
           "rating": 4.5,
           "thumbnail": "https://www.google.com/s2/favicons?domain=github.com&sz=128"
         },
@@ -166,7 +272,11 @@
           "name": "Aider",
           "url": "https://aider.chat",
           "description": "AI pair programming in your terminal with git integration",
-          "badges": ["cli", "open-source", "free"],
+          "badges": [
+            "cli",
+            "open-source",
+            "free"
+          ],
           "rating": 4.4,
           "thumbnail": "https://www.google.com/s2/favicons?domain=aider.chat&sz=128"
         },
@@ -174,7 +284,11 @@
           "name": "Sourcegraph Cody",
           "url": "https://sourcegraph.com/cody",
           "description": "AI coding assistant with deep codebase understanding",
-          "badges": ["plugin", "free", "enterprise"],
+          "badges": [
+            "plugin",
+            "free",
+            "enterprise"
+          ],
           "rating": 4.3,
           "thumbnail": "https://www.google.com/s2/favicons?domain=sourcegraph.com&sz=128"
         },
@@ -182,7 +296,11 @@
           "name": "Tabnine",
           "url": "https://tabnine.com",
           "description": "AI code completion trained on your codebase with privacy focus",
-          "badges": ["plugin", "paid", "enterprise"],
+          "badges": [
+            "plugin",
+            "paid",
+            "enterprise"
+          ],
           "rating": 4.2,
           "thumbnail": "https://www.google.com/s2/favicons?domain=tabnine.com&sz=128"
         },
@@ -190,7 +308,10 @@
           "name": "Amazon Q Developer",
           "url": "https://aws.amazon.com/q/developer",
           "description": "AWS's AI assistant for software development with free tier",
-          "badges": ["plugin", "free"],
+          "badges": [
+            "plugin",
+            "free"
+          ],
           "rating": 4.1,
           "thumbnail": "https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=128"
         },
@@ -198,7 +319,10 @@
           "name": "Pieces for Developers",
           "url": "https://pieces.app",
           "description": "AI-powered snippet manager with context-aware code suggestions",
-          "badges": ["desktop", "free"],
+          "badges": [
+            "desktop",
+            "free"
+          ],
           "rating": 4.3,
           "thumbnail": "https://www.google.com/s2/favicons?domain=pieces.app&sz=128"
         },
@@ -206,7 +330,10 @@
           "name": "Blackbox AI",
           "url": "https://blackbox.ai",
           "description": "AI coding assistant with real-time autocomplete and chat",
-          "badges": ["web", "free"],
+          "badges": [
+            "web",
+            "free"
+          ],
           "rating": 4.0,
           "thumbnail": "https://www.google.com/s2/favicons?domain=blackbox.ai&sz=128"
         }

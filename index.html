@@ -338,28 +338,30 @@
                             <!-- Title -->
                             <h3 class="font-bold text-lg mb-1">${tool.name}</h3>
                             
-                            <!-- Description -->
-                            <p class="text-sm text-base-content/70 mb-2 flex-grow">${tool.description}</p>
+                            <!-- Description (reduced margin-bottom) -->
+                            <p class="text-sm text-base-content/70 mb-1 flex-grow">${tool.description}</p>
                             
-                            <!-- URL -->
-                            <a href="${tool.url}" target="_blank" class="text-[13px] text-primary hover:underline truncate block mb-1">
+                            <!-- URL (reduced margin-bottom) -->
+                            <a href="${tool.url}" target="_blank" class="text-[13px] text-primary hover:underline truncate block mb-0.5">
                                 ${tool.url.replace(/^https?:\/\/(www\.)?/, '')}
                             </a>
                             
                             <!-- Rating below URL -->
                             <div class="star-rating text-sm mb-2">${renderStars(tool.rating || 0)}</div>
                             
-                            <!-- Learn More button with badges on right (bottom row) -->
-                            <div class="flex items-center gap-2 -mr-3 -mb-3">
-                                <button onclick='showToolDetails(${JSON.stringify(tool).replace(/'/g, "&#39;")}, ${JSON.stringify(category).replace(/'/g, "&#39;")})' 
-                                        class="btn btn-learn-more btn-sm rounded-none rounded-br-lg text-left flex-shrink-0">
-                                    Learn More
-                                </button>
-                                <div class="flex gap-1 flex-wrap justify-end flex-1 pr-3 pb-1">
-                                    ${(tool.badges || []).slice(0, 2).map(badge => 
+                            <!-- Bottom row: Badges (left) + Learn More (right) -->
+                            <div class="flex items-center justify-between gap-2 -ml-3 -mr-3 -mb-3">
+                                <!-- Badges on left -->
+                                <div class="flex gap-1 flex-wrap pl-3 pb-1">
+                                    ${(tool.badges || []).slice(0, 4).map(badge => 
                                         `<span class="badge ${badgeStyles[badge] || 'badge-ghost'} badge-xs">${badgeLabels[badge] || badge}</span>`
                                     ).join('')}
                                 </div>
+                                <!-- Learn More on right (fitted to corner) -->
+                                <button onclick='showToolDetails(${JSON.stringify(tool).replace(/'/g, "&#39;")}, ${JSON.stringify(category).replace(/'/g, "&#39;")})' 
+                                        class="btn btn-learn-more btn-sm rounded-none rounded-br-lg flex-shrink-0">
+                                    Learn More
+                                </button>
                             </div>
                         </div>
                     </div>

@@ -15,8 +15,8 @@
                CORNER BUTTON DIMENSIONS (Sleeker = smaller height)
                ───────────────────────────────────────────────────── */
             --corner-btn-width: 52px;
-            --corner-btn-height: 32px;      /* ← Reduced from 40px */
-            --corner-btn-padding: 0.25rem;  /* ← Reduced padding */
+            --corner-btn-height: 32px;
+            --corner-btn-padding: 0.25rem;
             --corner-radius: 12px;
 
             /* ─────────────────────────────────────────────────────
@@ -27,18 +27,18 @@
             --animation-speed-slow: 0.8s;
 
             /* ─────────────────────────────────────────────────────
-               PRICING PILL STYLING
+               PRICING PILL STYLING (10% smaller)
                ───────────────────────────────────────────────────── */
-            --pricing-pill-height: 28px;
-            --pricing-pill-padding: 0.4rem 0.75rem;
-            --pricing-pill-font-size: 0.875rem;
+            --pricing-pill-height: 25px;      /* ← Reduced from 28px */
+            --pricing-pill-padding: 0.35rem 0.7rem;
+            --pricing-pill-font-size: 0.8rem;
             --pricing-pill-font-weight: 600;
         }
 
         /* ═══════════════════════════════════════════════════════════
-           📝 THEME CONFIGURATION (Edit available themes below)
+           📝 THEME CONFIGURATION
 
-           To change themes, edit the JavaScript section:
+           To change themes, edit the JavaScript section at bottom:
            - Search for: "const LIGHT_THEMES"
            - Search for: "const DARK_THEMES"
 
@@ -70,7 +70,24 @@
         }
 
         /* ═══════════════════════════════════════════════════════════
-           AVATAR & NAVBAR
+           NAVBAR (Smart title hide/show)
+           ═══════════════════════════════════════════════════════════ */
+
+        .navbar-title {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(-5px);
+            pointer-events: none;
+        }
+
+        .navbar-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           AVATAR
            ═══════════════════════════════════════════════════════════ */
 
         .avatar-hover {
@@ -200,12 +217,12 @@
         }
 
         /* ═══════════════════════════════════════════════════════════
-           💰 PRICING PILL SYSTEM (Theme-aware colors)
+           💰 PRICING PILL SYSTEM (Improved contrast & size)
            ═══════════════════════════════════════════════════════════ */
 
         .pricing-pills {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.4rem;
             flex-wrap: wrap;
             align-items: center;
         }
@@ -224,67 +241,67 @@
             border: 1px solid transparent;
         }
 
-        /* Free tier - success/green color */
+        /* Free tier - success/green */
         .pricing-pill.free {
-            background: oklch(var(--su) / 0.15);
+            background: oklch(var(--su) / 0.2);
             color: oklch(var(--suc));
-            border-color: oklch(var(--su) / 0.3);
+            border-color: oklch(var(--su) / 0.4);
         }
 
         .pricing-pill.free:hover {
-            background: oklch(var(--su) / 0.25);
-            border-color: oklch(var(--su) / 0.5);
+            background: oklch(var(--su) / 0.3);
+            border-color: oklch(var(--su) / 0.6);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px oklch(var(--su) / 0.3);
         }
 
-        /* First paid tier - primary color */
+        /* First paid tier - primary (better contrast) */
         .pricing-pill.tier-1 {
-            background: oklch(var(--p) / 0.15);
+            background: oklch(var(--p) / 0.25);
             color: oklch(var(--pc));
-            border-color: oklch(var(--p) / 0.3);
+            border-color: oklch(var(--p) / 0.4);
         }
 
         .pricing-pill.tier-1:hover {
-            background: oklch(var(--p) / 0.25);
-            border-color: oklch(var(--p) / 0.5);
+            background: oklch(var(--p) / 0.35);
+            border-color: oklch(var(--p) / 0.6);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px oklch(var(--p) / 0.3);
         }
 
-        /* Second paid tier - secondary color */
+        /* Second paid tier - secondary (better contrast) */
         .pricing-pill.tier-2 {
-            background: oklch(var(--s) / 0.15);
+            background: oklch(var(--s) / 0.25);
             color: oklch(var(--sc));
-            border-color: oklch(var(--s) / 0.3);
+            border-color: oklch(var(--s) / 0.4);
         }
 
         .pricing-pill.tier-2:hover {
-            background: oklch(var(--s) / 0.25);
-            border-color: oklch(var(--s) / 0.5);
+            background: oklch(var(--s) / 0.35);
+            border-color: oklch(var(--s) / 0.6);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px oklch(var(--s) / 0.3);
         }
 
-        /* Third paid tier - accent color */
+        /* Third paid tier - accent (better contrast) */
         .pricing-pill.tier-3 {
-            background: oklch(var(--a) / 0.15);
+            background: oklch(var(--a) / 0.25);
             color: oklch(var(--ac));
-            border-color: oklch(var(--a) / 0.3);
+            border-color: oklch(var(--a) / 0.4);
         }
 
         .pricing-pill.tier-3:hover {
-            background: oklch(var(--a) / 0.25);
-            border-color: oklch(var(--a) / 0.5);
+            background: oklch(var(--a) / 0.35);
+            border-color: oklch(var(--a) / 0.6);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px oklch(var(--a) / 0.3);
         }
 
         /* Larger pills for modal */
         .pricing-pill-lg {
-            height: 36px;
+            height: 32px;
             padding: 0.5rem 1rem;
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
         /* Theme dropdown styling */
@@ -342,7 +359,7 @@
         .category-workflow { border-left-color: oklch(var(--su)); }
 
         /* ═══════════════════════════════════════════════════════════
-           CORNER BUTTON SYSTEM (Sleeker with reduced height)
+           🏷️ CORNER BADGE SYSTEM (Theme-aware colors)
            ═══════════════════════════════════════════════════════════ */
 
         .corner-button {
@@ -358,7 +375,7 @@
             transition: all var(--animation-speed-fast) ease;
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.75rem;  /* Slightly smaller font for sleeker look */
+            font-size: 0.7rem;
             position: relative;
         }
 
@@ -368,15 +385,13 @@
             box-shadow: 0 4px 12px oklch(var(--bc) / 0.1);
         }
 
-        /* NEW corner badge */
-        .new-corner {
+        /* Corner badge base */
+        .corner-badge {
             position: absolute;
             top: 0;
             left: 0;
             border-bottom-right-radius: var(--corner-radius);
-            background: oklch(var(--su) / 0.2);
-            border: 1px solid oklch(var(--su) / 0.4);
-            color: oklch(var(--suc));
+            border: 1.5px solid;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -386,26 +401,66 @@
 
         @keyframes pulse-glow {
             0%, 100% {
-                box-shadow: 0 0 0 0 oklch(var(--su) / 0.4);
+                box-shadow: 0 0 0 0 currentColor;
             }
             50% {
-                box-shadow: 0 0 15px 3px oklch(var(--su) / 0.6);
+                box-shadow: 0 0 15px 3px currentColor;
             }
         }
 
-        .new-corner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, oklch(var(--b1) / 0.3), transparent);
-            transition: left 0.5s ease;
+        .corner-badge.pop-in {
+            animation: pop-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55), pulse-glow 2s ease-in-out infinite 0.6s;
         }
 
-        .new-corner:hover::before {
-            left: 100%;
+        @keyframes pop-in {
+            0% {
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        /* Badge type colors (theme-aware) */
+        .corner-badge.badge-new,
+        .corner-badge.badge-updated {
+            background: oklch(var(--su) / 0.25);
+            color: oklch(var(--suc));
+            border-color: oklch(var(--su) / 0.5);
+        }
+
+        .corner-badge.badge-popular {
+            background: oklch(var(--p) / 0.25);
+            color: oklch(var(--pc));
+            border-color: oklch(var(--p) / 0.5);
+        }
+
+        .corner-badge.badge-best,
+        .corner-badge.badge-top {
+            background: oklch(var(--er) / 0.25);
+            color: oklch(var(--erc));
+            border-color: oklch(var(--er) / 0.5);
+        }
+
+        .corner-badge.badge-fast {
+            background: oklch(var(--in) / 0.25);
+            color: oklch(var(--inc));
+            border-color: oklch(var(--in) / 0.5);
+        }
+
+        .corner-badge.badge-value {
+            background: oklch(var(--s) / 0.25);
+            color: oklch(var(--sc));
+            border-color: oklch(var(--s) / 0.5);
+        }
+
+        .corner-badge.badge-offer,
+        .corner-badge.badge-discount {
+            background: oklch(var(--wa) / 0.25);
+            color: oklch(var(--wac));
+            border-color: oklch(var(--wa) / 0.5);
         }
 
         .sparkle {
@@ -423,21 +478,6 @@
             100% {
                 transform: translate(var(--tx), var(--ty)) scale(1.2) rotate(180deg);
                 opacity: 0;
-            }
-        }
-
-        .new-corner.pop-in {
-            animation: pop-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55), pulse-glow 2s ease-in-out infinite 0.6s;
-        }
-
-        @keyframes pop-in {
-            0% {
-                transform: scale(0) rotate(-180deg);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(1) rotate(0deg);
-                opacity: 1;
             }
         }
 
@@ -659,7 +699,7 @@
 <body>
 
     <!-- ═══════════════════════════════════════════════════════════
-         NAVBAR
+         NAVBAR (Smart title hide/show)
          ═══════════════════════════════════════════════════════════ -->
     <div class="navbar bg-base-100 shadow-lg sticky top-0 z-50 backdrop-blur-lg bg-base-100/80">
         <div class="navbar-start">
@@ -671,7 +711,7 @@
         </div>
 
         <div class="navbar-center">
-            <a class="btn btn-ghost text-xl md:text-2xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            <a class="navbar-title btn btn-ghost text-xl md:text-2xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
                 AI Tools Directory
             </a>
         </div>
@@ -737,7 +777,7 @@
          HERO SECTION
          ═══════════════════════════════════════════════════════════ -->
     <div class="container mx-auto px-4">
-        <div class="hero-title-container">
+        <div class="hero-title-container" id="heroSection">
             <h1 class="hero-title">
                 <span class="word-ai">AI</span>
                 <span class="word-tools">Tools</span>
@@ -823,29 +863,13 @@
         <form method="dialog" class="modal-backdrop"><button>close</button></form>
     </dialog>
 
-    <dialog id="whatsNewModal" class="modal">
-        <div class="modal-box">
-            <form method="dialog">
-                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-            </form>
-            <div id="whatsNewContent"></div>
-        </div>
-        <form method="dialog" class="modal-backdrop"><button>close</button></form>
-    </dialog>
-
     <script>
         // ═══════════════════════════════════════════════════════════
         // 🎨 THEME CONFIGURATION
-        // Edit these arrays to change available themes
         // ═══════════════════════════════════════════════════════════
 
         const LIGHT_THEMES = ['light', 'cupcake', 'lemonade'];
         const DARK_THEMES = ['dark', 'dracula', 'synthwave'];
-
-        // TO CHANGE THEMES:
-        // Replace theme names in arrays above with any DaisyUI theme:
-        // Light options: light, cupcake, bumblebee, emerald, corporate, garden, lofi, pastel, fantasy, wireframe, cmyk, autumn, acid, lemonade, winter, nord
-        // Dark options: dark, synthwave, halloween, forest, aqua, black, luxury, dracula, business, night, coffee
 
         function initTheme() {
             const savedTheme = localStorage.getItem('theme');
@@ -873,6 +897,30 @@
 
         initTheme();
         document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // ═══════════════════════════════════════════════════════════
+        // 🎯 SMART NAVBAR TITLE (Hide/Show on scroll)
+        // ═══════════════════════════════════════════════════════════
+
+        const heroSection = document.getElementById('heroSection');
+        const navbarTitle = document.querySelector('.navbar-title');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Hero is visible, hide navbar title
+                    navbarTitle.classList.remove('visible');
+                } else {
+                    // Hero is not visible, show navbar title
+                    navbarTitle.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '-60px 0px 0px 0px'
+        });
+
+        observer.observe(heroSection);
 
         // ═══════════════════════════════════════════════════════════
         // ANIMATED COUNTER
@@ -975,7 +1023,7 @@
         }
 
         // ═══════════════════════════════════════════════════════════
-        // PRICING PILL GENERATOR
+        // 💰 PRICING PILL GENERATOR
         // ═══════════════════════════════════════════════════════════
 
         function renderPricingPills(pricing, isLarge = false) {
@@ -992,6 +1040,22 @@
         }
 
         // ═══════════════════════════════════════════════════════════
+        // 🏷️ CORNER BADGE RENDERER
+        // ═══════════════════════════════════════════════════════════
+
+        function renderCornerBadge(badgeType) {
+            if (!badgeType) return '';
+
+            const badgeClass = `badge-${badgeType.toLowerCase()}`;
+            return `
+                <div class="corner-badge ${badgeClass} corner-button pop-in" 
+                     onmouseenter="createSparkles(this)">
+                    ${badgeType}
+                </div>
+            `;
+        }
+
+        // ═══════════════════════════════════════════════════════════
         // DATA & RENDERING
         // ═══════════════════════════════════════════════════════════
 
@@ -1001,24 +1065,6 @@
             'Video & Image Production': 'category-video',
             'TTS & Voice AI': 'category-voice',
             'Workflow & Automation': 'category-workflow'
-        };
-
-        const badgeLabels = {
-            'new': 'New', 'recommended': 'Top', 'popular': 'Popular',
-            'free': 'Free', 'paid': 'Paid', 'open-source': 'Open',
-            'macos': 'macOS', 'windows': 'Windows', 'web': 'Web',
-            'desktop': 'Desktop', 'plugin': 'Plugin', 'cli': 'CLI',
-            'enterprise': 'Enterprise', 'beta': 'Beta'
-        };
-
-        const badgeStyles = {
-            'new': 'badge-success', 'recommended': 'badge-primary',
-            'popular': 'badge-secondary', 'free': 'badge-info',
-            'paid': 'badge-warning', 'open-source': 'badge-accent',
-            'macos': 'badge-ghost', 'windows': 'badge-ghost',
-            'web': 'badge-ghost', 'desktop': 'badge-ghost',
-            'plugin': 'badge-ghost', 'cli': 'badge-ghost',
-            'enterprise': 'badge-error', 'beta': 'badge-neutral'
         };
 
         const modelVersions = {
@@ -1042,85 +1088,15 @@
             return html;
         }
 
-        function hasNewBadge(tool) {
-            return tool.badges && tool.badges.includes('new');
-        }
-
-        function showWhatsNew(tool) {
-            const modal = document.getElementById('whatsNewModal');
-            const content = document.getElementById('whatsNewContent');
-
-            const info = tool.whatsNew || {
-                version: 'Latest Update', releaseDate: 'Recently',
-                features: ['New features and improvements', 'Enhanced performance', 'Bug fixes and stability updates'],
-                benchmarks: [], rankingUrl: tool.url
-            };
-
-            const benchmarksHtml = info.benchmarks && info.benchmarks.length > 0 ? `
-                <div class="mb-6">
-                    <h4 class="font-bold text-lg mb-3 flex items-center gap-2">📊 Performance Benchmarks</h4>
-                    <div class="grid grid-cols-1 gap-3">
-                        ${info.benchmarks.map(b => `
-                            <div class="benchmark-card">
-                                <div class="flex justify-between items-center">
-                                    <div class="flex-1">
-                                        <div class="font-bold text-lg">${b.name}</div>
-                                        <div class="text-sm opacity-60 mt-1">${b.comparison}</div>
-                                    </div>
-                                    <div class="text-right">
-                                        <div class="text-2xl font-bold text-primary">${b.score}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            ` : '';
-
-            content.innerHTML = `
-                <div class="flex items-start gap-4 mb-6">
-                    <img src="${tool.thumbnail}" alt="${tool.name}" 
-                         class="w-20 h-20 rounded-lg object-contain bg-base-100/50 p-2"
-                         onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(tool.name)}&size=128&background=random'">
-                    <div class="flex-1">
-                        <h3 class="text-2xl font-bold mb-2">${tool.name}</h3>
-                        <div class="flex items-center gap-2 flex-wrap">
-                            <span class="badge badge-success badge-lg">NEW</span>
-                            <span class="font-semibold text-base">${info.version}</span>
-                            <span class="text-sm opacity-50">• ${info.releaseDate}</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mb-6">
-                    <h4 class="font-bold text-lg mb-3 flex items-center gap-2">✨ What's New</h4>
-                    <ul class="space-y-2">
-                        ${info.features.map(f => `
-                            <li class="flex items-start gap-3 p-2 rounded-lg hover:bg-base-200 transition-colors">
-                                <span class="text-success text-xl flex-shrink-0">✓</span>
-                                <span class="flex-1">${f}</span>
-                            </li>
-                        `).join('')}
-                    </ul>
-                </div>
-
-                ${benchmarksHtml}
-
-                <div class="flex gap-2 mt-6">
-                    <a href="${info.rankingUrl}" target="_blank" class="btn btn-primary flex-1">View Rankings →</a>
-                    <a href="${tool.url}" target="_blank" class="btn btn-outline">Try ${tool.name}</a>
-                </div>
-            `;
-
-            modal.showModal();
-        }
-
         function showToolDetails(tool, category) {
             const modal = document.getElementById('toolModal');
             const content = document.getElementById('modalContent');
 
             const modelVersion = modelVersions[tool.name] ? 
                 `<div class="badge badge-neutral badge-outline">Model: ${modelVersions[tool.name]}</div>` : '';
+
+            const cornerBadgeDisplay = tool.cornerBadge ? 
+                `<span class="badge badge-lg badge-primary">${tool.cornerBadge}</span>` : '';
 
             const pricingHtml = tool.pricing ? `
                 <div class="pricing-section">
@@ -1139,14 +1115,11 @@
                     <div class="flex-1">
                         <h3 class="text-2xl font-bold">${tool.name}</h3>
                         <div class="star-rating text-xl mb-2">${renderStars(tool.rating || 0)}</div>
-                        ${modelVersion}
+                        <div class="flex gap-2 flex-wrap">
+                            ${cornerBadgeDisplay}
+                            ${modelVersion}
+                        </div>
                     </div>
-                </div>
-
-                <div class="mb-4 flex flex-wrap gap-2">
-                    ${(tool.badges || []).map(badge => 
-                        `<span class="badge ${badgeStyles[badge] || 'badge-ghost'} badge-lg">${badgeLabels[badge] || badge}</span>`
-                    ).join('')}
                 </div>
 
                 <p class="opacity-80 mb-4">${tool.description}</p>
@@ -1167,17 +1140,13 @@
 
         function createToolCard(tool, category) {
             const isFav = isFavorite(tool.name, category.name);
-            const isNew = hasNewBadge(tool);
+            const cornerBadge = renderCornerBadge(tool.cornerBadge);
 
             return `
                 <div class="card shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 tool-card overflow-hidden">
                     <div class="flex h-full">
                         <div class="w-[30%] flex-shrink-0 relative flex flex-col">
-                            ${isNew ? `
-                                <div class="new-corner corner-button pop-in" 
-                                     onclick="event.stopPropagation(); showWhatsNew(${JSON.stringify(tool).replace(/'/g, "&#39;")})"
-                                     onmouseenter="createSparkles(this)">NEW</div>
-                            ` : ''}
+                            ${cornerBadge}
 
                             <div class="flex-grow bg-base-100/50 p-2 flex items-center justify-center">
                                 <img src="${tool.thumbnail}" alt="${tool.name}" 
@@ -1197,18 +1166,11 @@
 
                             <h3 class="font-bold text-lg mb-1 pr-12">${tool.name}</h3>
 
-                            <!-- PRICING PILLS (High Visibility) -->
                             ${tool.pricing ? `
                                 <div class="pricing-pills mb-2">
                                     ${renderPricingPills(tool.pricing)}
                                 </div>
                             ` : ''}
-
-                            <div class="flex gap-1 flex-wrap mb-2">
-                                ${(tool.badges || []).filter(b => b !== 'new').slice(0, 4).map(badge => 
-                                    `<span class="badge ${badgeStyles[badge] || 'badge-ghost'} badge-xs">${badgeLabels[badge] || badge}</span>`
-                                ).join('')}
-                            </div>
 
                             <p class="text-sm opacity-70 mb-2 flex-grow">${tool.description}</p>
 

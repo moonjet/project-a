@@ -1226,7 +1226,7 @@
         }
 
         function loadTools() {
-            fetch('ai-tools-directory-with-pricing.json')
+            fetch('ai-tools-directory.json')
                 .then(response => response.json())
                 .then(data => {
                     const container = document.getElementById('toolsContainer');

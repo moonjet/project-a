@@ -36,14 +36,136 @@
             flex: 1;
         }
 
-        /* Avatar hover animation */
+        /* ═══════════════════════════════════════════════════════════
+           AVATAR & NAVBAR ENHANCEMENTS
+           ═══════════════════════════════════════════════════════════ */
+
         .avatar-hover {
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
         .avatar-hover:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 8px 20px oklch(var(--p) / 0.3);
+        }
+
+        .avatar-hover img {
+            transition: all 0.3s ease;
+        }
+
+        .avatar-hover:hover img {
+            filter: brightness(1.1);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           ENHANCED TITLE & SUBTITLE
+           ═══════════════════════════════════════════════════════════ */
+
+        .hero-title-container {
+            background: oklch(var(--b1) / 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid oklch(var(--bc) / 0.1);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            box-shadow: 0 8px 32px oklch(var(--bc) / 0.08);
+        }
+
+        /* Animated gradient title - each word gets different gradient */
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        .hero-title .word-ai {
+            background: linear-gradient(135deg, 
+                oklch(var(--p)), 
+                oklch(var(--s)));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradient-shift-1 4s ease infinite;
+        }
+
+        .hero-title .word-tools {
+            background: linear-gradient(135deg, 
+                oklch(var(--s)), 
+                oklch(var(--a)));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradient-shift-2 4s ease infinite;
+        }
+
+        .hero-title .word-directory {
+            background: linear-gradient(135deg, 
+                oklch(var(--a)), 
+                oklch(var(--p)));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradient-shift-3 4s ease infinite;
+        }
+
+        @keyframes gradient-shift-1 {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes gradient-shift-2 {
+            0%, 100% { background-position: 100% 50%; }
+            50% { background-position: 0% 50%; }
+        }
+
+        @keyframes gradient-shift-3 {
+            0%, 100% { background-position: 50% 0%; }
+            50% { background-position: 50% 100%; }
+        }
+
+        /* Animated subtitle with counter */
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            opacity: 0.8;
+        }
+
+        .stat-number {
+            display: inline-block;
+            font-weight: 700;
+            color: oklch(var(--p));
+            min-width: 3ch;
+            text-align: center;
+        }
+
+        .stat-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.75rem;
+            background: oklch(var(--p) / 0.1);
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.95rem;
         }
 
         /* Theme dropdown styling */
@@ -60,7 +182,6 @@
             transform: translateX(4px);
         }
 
-        /* Divider for theme groups */
         .theme-divider {
             font-size: 0.75rem;
             font-weight: 700;
@@ -95,7 +216,6 @@
             background-clip: text;
         }
 
-        /* Category-specific accent colors */
         .category-chat { border-left-color: oklch(var(--p)); }
         .category-dev { border-left-color: oklch(var(--s)); }
         .category-video { border-left-color: oklch(var(--a)); }
@@ -128,10 +248,7 @@
             box-shadow: 0 4px 12px oklch(var(--bc) / 0.1);
         }
 
-        /* ═══════════════════════════════════════════════════════════
-           NEW CORNER BADGE
-           ═══════════════════════════════════════════════════════════ */
-
+        /* NEW corner badge */
         .new-corner {
             position: absolute;
             top: 0;
@@ -223,12 +340,10 @@
             filter: drop-shadow(0 2px 4px oklch(var(--bc) / 0.2));
         }
 
-        /* Grey unfavorited star */
         .favorite-star.unfavorited {
             color: oklch(var(--bc) / 0.3);
         }
 
-        /* Gold favorited star */
         .favorite-star.favorited {
             color: oklch(var(--wa));
         }
@@ -310,10 +425,7 @@
             }
         }
 
-        /* ═══════════════════════════════════════════════════════════
-           BOTTOM CORNER BUTTONS
-           ═══════════════════════════════════════════════════════════ */
-
+        /* Bottom corner buttons */
         .btn-visit {
             width: var(--corner-btn-width);
             height: var(--corner-btn-height);
@@ -333,6 +445,29 @@
         }
 
         /* ═══════════════════════════════════════════════════════════
+           ENHANCED URL DISPLAY
+           ═══════════════════════════════════════════════════════════ */
+
+        .url-link {
+            font-size: 0.7rem;
+            opacity: 0.9;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            background: oklch(var(--bc) / 0.05);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            border: 1px solid oklch(var(--bc) / 0.08);
+        }
+
+        .url-link:hover {
+            opacity: 1;
+            background: oklch(var(--bc) / 0.1);
+            border-color: oklch(var(--bc) / 0.15);
+            text-decoration: none;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
            CARDS & MISC COMPONENTS
            ═══════════════════════════════════════════════════════════ */
 
@@ -345,18 +480,6 @@
 
         .card p, .card a {
             line-height: 1.3;
-        }
-
-        .url-link {
-            font-size: 0.7rem;
-            opacity: 0.6;
-            text-decoration: none;
-            transition: opacity 0.2s ease;
-        }
-
-        .url-link:hover {
-            opacity: 1;
-            text-decoration: underline;
         }
 
         .price-badge {
@@ -415,16 +538,14 @@
 <body>
 
     <!-- ═══════════════════════════════════════════════════════════
-         NAVBAR WITH AVATAR, TITLE, MENU, THEME DROPDOWN
+         NAVBAR WITH AVATAR, MENU, THEME DROPDOWN
          ═══════════════════════════════════════════════════════════ -->
     <div class="navbar bg-base-100 shadow-lg sticky top-0 z-50 backdrop-blur-lg bg-base-100/80">
         <div class="navbar-start">
-            <!-- Avatar with hover animation -->
+            <!-- Avatar with user's image -->
             <div class="avatar avatar-hover">
-                <div class="w-12 rounded-lg ring ring-primary ring-offset-base-100 ring-offset-2">
-                    <div class="w-full h-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-primary-content font-bold text-xl">
-                        AI
-                    </div>
+                <div class="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                    <img src="avatar.jpeg" alt="Avatar" />
                 </div>
             </div>
         </div>
@@ -444,7 +565,7 @@
                 <a href="#contact" class="btn btn-ghost btn-sm">Contact</a>
             </div>
 
-            <!-- Theme Dropdown -->
+            <!-- Theme Dropdown (6 themes) -->
             <div class="dropdown dropdown-end">
                 <label tabindex="0" class="btn btn-ghost btn-circle">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -463,8 +584,6 @@
                     <li><a class="theme-option" data-theme="light">Light</a></li>
                     <li><a class="theme-option" data-theme="cupcake">Cupcake</a></li>
                     <li><a class="theme-option" data-theme="lemonade">Lemonade</a></li>
-                    <li><a class="theme-option" data-theme="retro">Retro</a></li>
-                    <li><a class="theme-option" data-theme="acid">Acid</a></li>
 
                     <div class="theme-divider">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -472,11 +591,9 @@
                         </svg>
                         Dark Themes
                     </div>
-                    <li><a class="theme-option" data-theme="black">Black</a></li>
+                    <li><a class="theme-option" data-theme="dark">Dark</a></li>
                     <li><a class="theme-option" data-theme="dracula">Dracula</a></li>
                     <li><a class="theme-option" data-theme="synthwave">Synthwave</a></li>
-                    <li><a class="theme-option" data-theme="cyberpunk">Cyberpunk</a></li>
-                    <li><a class="theme-option" data-theme="luxury">Luxury</a></li>
                 </ul>
             </div>
 
@@ -498,14 +615,37 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════════════════
+         ENHANCED HERO SECTION
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="container mx-auto px-4">
+        <div class="hero-title-container">
+            <h1 class="hero-title">
+                <span class="word-ai">AI</span>
+                <span class="word-tools">Tools</span>
+                <span class="word-directory">Directory</span>
+            </h1>
+            <div class="hero-subtitle">
+                <span>✨</span>
+                <span>Discover</span>
+                <span class="stat-badge">
+                    <span class="stat-number" id="toolCount">0</span>+ Tools
+                </span>
+                <span>•</span>
+                <span class="stat-badge">
+                    <span class="stat-number" id="categoryCount">0</span> Categories
+                </span>
+                <span>•</span>
+                <span>Updated Daily</span>
+                <span>🚀</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
          MAIN CONTENT
          ═══════════════════════════════════════════════════════════ -->
     <div class="main-content">
         <div class="container mx-auto px-4 py-8 max-w-7xl">
-            <div class="text-center mb-12">
-                <p class="text-xl opacity-70">Curated collection of AI tools and services</p>
-            </div>
-
             <!-- Favorites Section -->
             <div id="favoritesSection" class="mb-12 hidden">
                 <h2 class="text-3xl font-bold mb-4 flex items-center gap-2">
@@ -580,24 +720,22 @@
 
     <script>
         // ═══════════════════════════════════════════════════════════
-        // THEME CONFIGURATION
+        // THEME CONFIGURATION (6 themes)
         // ═══════════════════════════════════════════════════════════
 
-        const LIGHT_THEMES = ['light', 'cupcake', 'lemonade', 'retro', 'acid'];
-        const DARK_THEMES = ['black', 'dracula', 'synthwave', 'cyberpunk', 'luxury'];
+        const LIGHT_THEMES = ['light', 'cupcake', 'lemonade'];
+        const DARK_THEMES = ['dark', 'dracula', 'synthwave'];
 
-        // Auto-detect OS theme preference and set random theme
+        // Auto-detect OS theme preference and set light/dark (not random)
         function initTheme() {
             const savedTheme = localStorage.getItem('theme');
 
             if (savedTheme) {
                 setTheme(savedTheme);
             } else {
-                // Detect OS preference
+                // Detect OS preference - default to light or dark (not random)
                 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                const themes = prefersDark ? DARK_THEMES : LIGHT_THEMES;
-                const randomTheme = themes[Math.floor(Math.random() * themes.length)];
-                setTheme(randomTheme);
+                setTheme(prefersDark ? 'dark' : 'light');
             }
         }
 
@@ -612,17 +750,33 @@
                 e.preventDefault();
                 const theme = option.getAttribute('data-theme');
                 setTheme(theme);
-
-                // Close dropdown
                 document.activeElement.blur();
             });
         });
 
-        // Initialize theme on load
         initTheme();
 
         // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // ═══════════════════════════════════════════════════════════
+        // ANIMATED COUNTER FOR STATS
+        // ═══════════════════════════════════════════════════════════
+
+        function animateCounter(element, target, duration = 1000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start);
+                }
+            }, 16);
+        }
 
         // ═══════════════════════════════════════════════════════════
         // FAVORITES MANAGEMENT
@@ -643,13 +797,11 @@
 
             localStorage.setItem('favorites', JSON.stringify(favorites));
 
-            // Trigger animations
             const starElements = document.querySelectorAll(`[data-tool="${toolName}"][data-category="${categoryName}"] .favorite-star`);
             starElements.forEach(star => {
                 star.classList.add('pulse');
                 setTimeout(() => star.classList.remove('pulse'), 500);
 
-                // Show up arrow when favoriting
                 if (!wasFavorited) {
                     const arrow = document.createElement('div');
                     arrow.className = 'arrow-up';
@@ -969,7 +1121,7 @@
                             </div>
 
                             <div class="flex items-center justify-between gap-2 -mr-3 -mb-3">
-                                <a href="${tool.url}" target="_blank" class="url-link truncate flex-shrink min-w-0 px-1">
+                                <a href="${tool.url}" target="_blank" class="url-link truncate flex-shrink min-w-0">
                                     ${tool.url.replace(/^https?:\/\/(www\.)?/, '')}
                                 </a>
                                 <button onclick='showToolDetails(${JSON.stringify(tool).replace(/'/g, "&#39;")}, ${JSON.stringify(category).replace(/'/g, "&#39;")})' 
@@ -993,6 +1145,16 @@
 
                     container.innerHTML = '';
                     favGrid.innerHTML = '';
+
+                    // Calculate stats for animated counters
+                    let totalTools = 0;
+                    data.categories.forEach(category => {
+                        totalTools += category.tools.length;
+                    });
+
+                    // Animate the counters
+                    animateCounter(document.getElementById('toolCount'), totalTools, 1500);
+                    animateCounter(document.getElementById('categoryCount'), data.categories.length, 1500);
 
                     if (favorites.length > 0) {
                         favSection.classList.remove('hidden');

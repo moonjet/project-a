@@ -62,7 +62,7 @@
         .category-voice { border-left-color: #a855f7; }
         .category-workflow { border-left-color: #84cc16; }
 
-        /* Corner button base styling */
+        /* Corner button base styling - uniform height and width across all corners */
         .corner-button {
             width: 52px;
             height: 40px;
@@ -93,7 +93,7 @@
             border-color: rgba(255, 255, 255, 0.08);
         }
 
-        /* NEW corner badge with animations */
+        /* Top-left corner: New badge */
         .new-corner {
             position: absolute;
             top: 0;
@@ -105,8 +105,6 @@
             color: #059669;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            overflow: visible;
-            animation: pulse-glow 2s ease-in-out infinite;
         }
 
         [data-theme="dark"] .new-corner {
@@ -115,65 +113,14 @@
             color: #34d399;
         }
 
-        /* Default pulse glow animation */
-        @keyframes pulse-glow {
-            0%, 100% {
-                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
-            }
-            50% {
-                box-shadow: 0 0 15px 3px rgba(16, 185, 129, 0.6);
-            }
+        .new-corner:hover {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.25) 0%, rgba(16, 185, 129, 0.35) 100%);
+            border-color: rgba(16, 185, 129, 0.4);
         }
 
-        /* Shimmer effect on hover */
-        .new-corner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .new-corner:hover::before {
-            left: 100%;
-        }
-
-        /* Sparkle particles on hover */
-        .sparkle {
-            position: absolute;
-            pointer-events: none;
-            font-size: 0.7rem;
-            animation: sparkle-burst 0.8s ease-out forwards;
-        }
-
-        @keyframes sparkle-burst {
-            0% {
-                transform: translate(0, 0) scale(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(var(--tx), var(--ty)) scale(1.2) rotate(180deg);
-                opacity: 0;
-            }
-        }
-
-        /* Pop-in animation on page load */
-        .new-corner.pop-in {
-            animation: pop-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55), pulse-glow 2s ease-in-out infinite 0.6s;
-        }
-
-        @keyframes pop-in {
-            0% {
-                transform: scale(0) rotate(-180deg);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(1) rotate(0deg);
-                opacity: 1;
-            }
+        [data-theme="dark"] .new-corner:hover {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(16, 185, 129, 0.4) 100%);
+            border-color: rgba(16, 185, 129, 0.5);
         }
 
         /* Top-right corner: Favorite star */
@@ -204,7 +151,7 @@
             width: 52px;
             height: 40px;
             border-top-right-radius: 12px;
-            border-bottom-left-radius: 0.5rem;
+            border-bottom-left-radius: 0.5rem; /* Match card radius */
             border-top-left-radius: 0;
             border-bottom-right-radius: 0;
         }
@@ -214,7 +161,7 @@
             width: 52px;
             height: 40px;
             border-top-left-radius: 12px;
-            border-bottom-right-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem; /* Match card radius */
             border-top-right-radius: 0;
             border-bottom-left-radius: 0;
         }
@@ -243,37 +190,6 @@
         [data-theme="dark"] .price-badge.paid {
             color: #fbbf24;
             background: rgba(245, 158, 11, 0.15);
-        }
-
-        /* What's New modal styling */
-        .whats-new-badge {
-            display: inline-block;
-            padding: 0.125rem 0.5rem;
-            border-radius: 999px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-right: 0.25rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .badge-feature {
-            background: rgba(99, 102, 241, 0.1);
-            color: #4f46e5;
-        }
-
-        [data-theme="dark"] .badge-feature {
-            background: rgba(129, 140, 248, 0.2);
-            color: #a5b4fc;
-        }
-
-        .badge-benchmark {
-            background: rgba(245, 158, 11, 0.1);
-            color: #d97706;
-        }
-
-        [data-theme="dark"] .badge-benchmark {
-            background: rgba(251, 191, 36, 0.2);
-            color: #fbbf24;
         }
 
         .star-rating { color: #fbbf24; }
@@ -310,22 +226,6 @@
             opacity: 1;
             text-decoration: underline;
         }
-
-        /* Modal slide-up animation */
-        dialog[open] {
-            animation: slide-up 0.3s ease-out;
-        }
-
-        @keyframes slide-up {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -360,24 +260,13 @@
         <div id="toolsContainer"></div>
     </div>
 
-    <!-- Regular Tool Modal -->
+    <!-- Modal Template -->
     <dialog id="toolModal" class="modal">
         <div class="modal-box">
             <form method="dialog">
                 <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             </form>
             <div id="modalContent"></div>
-        </div>
-        <form method="dialog" class="modal-backdrop"><button>close</button></form>
-    </dialog>
-
-    <!-- What's New Modal -->
-    <dialog id="whatsNewModal" class="modal">
-        <div class="modal-box">
-            <form method="dialog">
-                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-            </form>
-            <div id="whatsNewContent"></div>
         </div>
         <form method="dialog" class="modal-backdrop"><button>close</button></form>
     </dialog>
@@ -415,26 +304,6 @@
 
         function isFavorite(toolName, categoryName) {
             return favorites.includes(`${categoryName}::${toolName}`);
-        }
-
-        // Sparkle effect on NEW badge hover
-        function createSparkles(badge) {
-            const sparkles = ['✨', '⭐', '💫', '✦'];
-            for (let i = 0; i < 4; i++) {
-                setTimeout(() => {
-                    const sparkle = document.createElement('div');
-                    sparkle.className = 'sparkle';
-                    sparkle.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
-
-                    const angle = (Math.PI * 2 * i) / 4;
-                    const distance = 20 + Math.random() * 10;
-                    sparkle.style.setProperty('--tx', `${Math.cos(angle) * distance}px`);
-                    sparkle.style.setProperty('--ty', `${Math.sin(angle) * distance}px`);
-
-                    badge.appendChild(sparkle);
-                    setTimeout(() => sparkle.remove(), 800);
-                }, i * 50);
-            }
         }
 
         // Category styling mapping
@@ -498,41 +367,6 @@
             'Character.AI': 'C1.2'
         };
 
-        // What's New information (you can extend this with JSON data)
-        const whatsNewInfo = {
-            'ChatGPT': {
-                version: 'GPT-5.2',
-                releaseDate: 'January 2026',
-                features: [
-                    'Advanced reasoning with 40% faster response times',
-                    'Improved context window to 200K tokens',
-                    'Enhanced multimodal understanding (images, video, audio)',
-                    'Better code generation with real-time debugging'
-                ],
-                benchmarks: [
-                    { name: 'MMLU', score: '92.3%', comparison: '+8% vs GPT-4' },
-                    { name: 'HumanEval', score: '89.1%', comparison: '+12% vs GPT-4' },
-                    { name: 'GPQA', score: '78.5%', comparison: 'State-of-the-art' }
-                ],
-                rankingUrl: 'https://huggingface.co/spaces/lmsys/chatbot-arena-leaderboard'
-            },
-            'Claude': {
-                version: 'Claude 3.7 Sonnet',
-                releaseDate: 'December 2025',
-                features: [
-                    'Extended context to 500K tokens',
-                    'Improved creative writing and analysis',
-                    'Better adherence to complex instructions',
-                    'Enhanced safety and refusal handling'
-                ],
-                benchmarks: [
-                    { name: 'MMLU', score: '91.8%', comparison: 'Industry leading' },
-                    { name: 'GPQA', score: '82.1%', comparison: '#1 on benchmark' }
-                ],
-                rankingUrl: 'https://huggingface.co/spaces/lmsys/chatbot-arena-leaderboard'
-            }
-        };
-
         // Format price display
         function formatPrice(price) {
             if (!price || price === 'Free' || price === '0' || price === 0) {
@@ -564,83 +398,7 @@
             return tool.badges && tool.badges.includes('new');
         }
 
-        // Show What's New modal
-        function showWhatsNew(tool) {
-            const modal = document.getElementById('whatsNewModal');
-            const content = document.getElementById('whatsNewContent');
-            const info = whatsNewInfo[tool.name] || {
-                version: 'Latest Update',
-                releaseDate: 'Recently',
-                features: ['New features and improvements', 'Enhanced performance', 'Bug fixes and stability updates'],
-                benchmarks: [],
-                rankingUrl: tool.url
-            };
-
-            const benchmarksHtml = info.benchmarks.length > 0 ? `
-                <div class="mb-4">
-                    <h4 class="font-bold mb-2 flex items-center gap-2">
-                        📊 Performance Benchmarks
-                    </h4>
-                    <div class="space-y-2">
-                        ${info.benchmarks.map(b => `
-                            <div class="flex justify-between items-center p-2 bg-base-200 rounded-lg">
-                                <div>
-                                    <span class="font-semibold">${b.name}</span>
-                                    <span class="text-xs text-base-content/60 ml-2">${b.comparison}</span>
-                                </div>
-                                <span class="badge badge-lg badge-primary">${b.score}</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            ` : '';
-
-            content.innerHTML = `
-                <div class="flex items-start gap-4 mb-4">
-                    <img src="${tool.thumbnail}" 
-                         alt="${tool.name}" 
-                         class="w-20 h-20 rounded-lg object-contain bg-base-100/50 p-2"
-                         onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(tool.name)}&size=128&background=random'">
-                    <div class="flex-1">
-                        <h3 class="text-2xl font-bold mb-1">${tool.name}</h3>
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="badge badge-success">NEW</span>
-                            <span class="text-sm text-base-content/70">${info.version}</span>
-                            <span class="text-xs text-base-content/50">• ${info.releaseDate}</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mb-4">
-                    <h4 class="font-bold mb-2 flex items-center gap-2">
-                        ✨ What's New
-                    </h4>
-                    <ul class="space-y-2">
-                        ${info.features.map(f => `
-                            <li class="flex items-start gap-2">
-                                <span class="text-success mt-1">▸</span>
-                                <span>${f}</span>
-                            </li>
-                        `).join('')}
-                    </ul>
-                </div>
-
-                ${benchmarksHtml}
-
-                <div class="flex gap-2 mt-6">
-                    <a href="${info.rankingUrl}" target="_blank" class="btn btn-primary flex-1">
-                        View Rankings →
-                    </a>
-                    <a href="${tool.url}" target="_blank" class="btn btn-outline">
-                        Try ${tool.name}
-                    </a>
-                </div>
-            `;
-
-            modal.showModal();
-        }
-
-        // Show tool details modal
+        // Show modal
         function showToolDetails(tool, category) {
             const modal = document.getElementById('toolModal');
             const content = document.getElementById('modalContent');
@@ -692,14 +450,8 @@
                     <div class="flex h-full">
                         <!-- Thumbnail (30% width) with Visit button -->
                         <div class="w-[30%] flex-shrink-0 relative flex flex-col">
-                            <!-- New corner badge (top-left) with animations -->
-                            ${isNew ? `
-                                <div class="new-corner corner-button pop-in" 
-                                     onclick="event.stopPropagation(); showWhatsNew(${JSON.stringify(tool).replace(/'/g, "&#39;")})"
-                                     onmouseenter="createSparkles(this)">
-                                    NEW
-                                </div>
-                            ` : ''}
+                            <!-- New corner badge (top-left) -->
+                            ${isNew ? '<div class="new-corner corner-button">NEW</div>' : ''}
 
                             <div class="flex-grow bg-base-100/50 p-2 flex items-center justify-center">
                                 <img src="${tool.thumbnail}" 

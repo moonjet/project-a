@@ -15,7 +15,9 @@
             "popular"
           ],
           "rating": 5.0,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=perplexity.ai&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=perplexity.ai&sz=128",
+          "pricing": "Free/$20/$200",
+          "hasFree": true
         },
         {
           "name": "ChatGPT",
@@ -27,7 +29,9 @@
             "popular"
           ],
           "rating": 4.8,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=openai.com&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=openai.com&sz=128",
+          "pricing": "Free/$20/$200",
+          "hasFree": true
         },
         {
           "name": "Claude",
@@ -40,7 +44,9 @@
             "popular"
           ],
           "rating": 4.9,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=anthropic.com&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=anthropic.com&sz=128",
+          "pricing": "Free/$20/$200",
+          "hasFree": true
         },
         {
           "name": "Google Gemini",
@@ -52,7 +58,9 @@
             "popular"
           ],
           "rating": 4.7,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=google.com&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=google.com&sz=128",
+          "pricing": "Free/$20/$30",
+          "hasFree": true
         },
         {
           "name": "Microsoft Copilot",
@@ -63,7 +71,9 @@
             "free"
           ],
           "rating": 4.5,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=microsoft.com&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=microsoft.com&sz=128",
+          "pricing": "Free/$20/$30",
+          "hasFree": true
         },
         {
           "name": "Mistral Chat",
@@ -75,7 +85,9 @@
             "open-source"
           ],
           "rating": 4.6,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=mistral.ai&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=mistral.ai&sz=128",
+          "pricing": "Free/$16/$42",
+          "hasFree": true
         },
         {
           "name": "DeepSeek",
@@ -88,35 +100,8 @@
           ],
           "rating": 4.4,
           "thumbnail": "https://www.google.com/s2/favicons?domain=deepseek.com&sz=128",
-          "whatsNew": {
-            "version": "DeepSeek V3",
-            "releaseDate": "December 2024",
-            "features": [
-              "671B parameter MoE architecture",
-              "Cost-effective training at $5.5M",
-              "Open-source weights available",
-              "Matches GPT-4o on many benchmarks",
-              "Efficient inference with MoE design"
-            ],
-            "benchmarks": [
-              {
-                "name": "MMLU",
-                "score": "88.5%",
-                "comparison": "Matches GPT-4o"
-              },
-              {
-                "name": "HumanEval",
-                "score": "89.1%",
-                "comparison": "Top tier coding"
-              },
-              {
-                "name": "MATH",
-                "score": "82.6%",
-                "comparison": "Strong reasoning"
-              }
-            ],
-            "rankingUrl": "https://huggingface.co/spaces/lmsys/chatbot-arena-leaderboard"
-          }
+          "pricing": "Free/$8/$16",
+          "hasFree": true
         },
         {
           "name": "Grok",
@@ -127,7 +112,9 @@
             "paid"
           ],
           "rating": 4.3,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=x.ai&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=x.ai&sz=128",
+          "pricing": "$16/$84",
+          "hasFree": false
         },
         {
           "name": "Pi",
@@ -138,7 +125,9 @@
             "free"
           ],
           "rating": 4.2,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=pi.ai&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=pi.ai&sz=128",
+          "pricing": "Free",
+          "hasFree": true
         },
         {
           "name": "You.com",
@@ -149,7 +138,9 @@
             "free"
           ],
           "rating": 4.4,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=you.com&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=you.com&sz=128",
+          "pricing": "Free/$10/$20",
+          "hasFree": true
         },
         {
           "name": "HuggingChat",
@@ -161,7 +152,9 @@
             "open-source"
           ],
           "rating": 4.3,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=huggingface.co&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=huggingface.co&sz=128",
+          "pricing": "Free",
+          "hasFree": true
         },
         {
           "name": "Character.AI",
@@ -173,7 +166,9 @@
             "popular"
           ],
           "rating": 4.1,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=character.ai&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=character.ai&sz=128",
+          "pricing": "Free/$10",
+          "hasFree": true
         }
       ]
     },
@@ -192,7 +187,9 @@
             "popular"
           ],
           "rating": 4.9,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=cursor.com&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=cursor.com&sz=128",
+          "pricing": "Free/$20/$40",
+          "hasFree": true
         },
         {
           "name": "GitHub Copilot",
@@ -204,7 +201,9 @@
             "popular"
           ],
           "rating": 4.7,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=github.com&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=github.com&sz=128",
+          "pricing": "Free/$10/$19/$39",
+          "hasFree": true
         },
         {
           "name": "Windsurf",
@@ -216,7 +215,9 @@
             "popular"
           ],
           "rating": 4.6,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=codeium.com&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=codeium.com&sz=128",
+          "pricing": "Free/$10/$20",
+          "hasFree": true
         },
         {
           "name": "Bolt.new",
@@ -229,7 +230,9 @@
             "recommended"
           ],
           "rating": 4.7,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=bolt.new&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=bolt.new&sz=128",
+          "pricing": "Free/$10/$25",
+          "hasFree": true
         },
         {
           "name": "Replit Agent",
@@ -241,7 +244,9 @@
             "popular"
           ],
           "rating": 4.5,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=replit.com&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=replit.com&sz=128",
+          "pricing": "Free/$20/$33",
+          "hasFree": true
         },
         {
           "name": "v0 by Vercel",
@@ -253,7 +258,9 @@
             "recommended"
           ],
           "rating": 4.6,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=v0.dev&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=v0.dev&sz=128",
+          "pricing": "Free/$20",
+          "hasFree": true
         },
         {
           "name": "Cline",
@@ -266,7 +273,9 @@
             "popular"
           ],
           "rating": 4.5,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=github.com&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=github.com&sz=128",
+          "pricing": "Free",
+          "hasFree": true
         },
         {
           "name": "Aider",
@@ -278,7 +287,9 @@
             "free"
           ],
           "rating": 4.4,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=aider.chat&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=aider.chat&sz=128",
+          "pricing": "Free",
+          "hasFree": true
         },
         {
           "name": "Sourcegraph Cody",
@@ -290,7 +301,9 @@
             "enterprise"
           ],
           "rating": 4.3,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=sourcegraph.com&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=sourcegraph.com&sz=128",
+          "pricing": "Free/$9/$19",
+          "hasFree": true
         },
         {
           "name": "Tabnine",
@@ -302,7 +315,9 @@
             "enterprise"
           ],
           "rating": 4.2,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=tabnine.com&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=tabnine.com&sz=128",
+          "pricing": "Free/$12/$39",
+          "hasFree": true
         },
         {
           "name": "Amazon Q Developer",
@@ -313,7 +328,9 @@
             "free"
           ],
           "rating": 4.1,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=128",
+          "pricing": "Free/$19",
+          "hasFree": true
         },
         {
           "name": "Pieces for Developers",
@@ -324,7 +341,9 @@
             "free"
           ],
           "rating": 4.3,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=pieces.app&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=pieces.app&sz=128",
+          "pricing": "Free/$12",
+          "hasFree": true
         },
         {
           "name": "Blackbox AI",
@@ -335,7 +354,9 @@
             "free"
           ],
           "rating": 4.0,
-          "thumbnail": "https://www.google.com/s2/favicons?domain=blackbox.ai&sz=128"
+          "thumbnail": "https://www.google.com/s2/favicons?domain=blackbox.ai&sz=128",
+          "pricing": "Free",
+          "hasFree": true
         }
       ]
     }

@@ -8,19 +8,52 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" rel="stylesheet" />
     <style>
         /* ═══════════════════════════════════════════════════════════
-           SITE CONFIGURATION - Edit these values to customize
+           🎨 USER CONFIGURATION SECTION - EDIT HERE
            ═══════════════════════════════════════════════════════════ */
         :root {
-            /* Corner Button Dimensions */
+            /* ─────────────────────────────────────────────────────
+               CORNER BUTTON DIMENSIONS (Sleeker = smaller height)
+               ───────────────────────────────────────────────────── */
             --corner-btn-width: 52px;
-            --corner-btn-height: 40px;
+            --corner-btn-height: 32px;      /* ← Reduced from 40px */
+            --corner-btn-padding: 0.25rem;  /* ← Reduced padding */
             --corner-radius: 12px;
 
-            /* Animation Speeds */
+            /* ─────────────────────────────────────────────────────
+               ANIMATION SPEEDS
+               ───────────────────────────────────────────────────── */
             --animation-speed-fast: 0.3s;
             --animation-speed-normal: 0.5s;
             --animation-speed-slow: 0.8s;
+
+            /* ─────────────────────────────────────────────────────
+               PRICING PILL STYLING
+               ───────────────────────────────────────────────────── */
+            --pricing-pill-height: 28px;
+            --pricing-pill-padding: 0.4rem 0.75rem;
+            --pricing-pill-font-size: 0.875rem;
+            --pricing-pill-font-weight: 600;
         }
+
+        /* ═══════════════════════════════════════════════════════════
+           📝 THEME CONFIGURATION (Edit available themes below)
+
+           To change themes, edit the JavaScript section:
+           - Search for: "const LIGHT_THEMES"
+           - Search for: "const DARK_THEMES"
+
+           Available DaisyUI themes:
+           Light: light, cupcake, bumblebee, emerald, corporate, 
+                  garden, lofi, pastel, fantasy, wireframe, cmyk,
+                  autumn, acid, lemonade, winter, nord
+
+           Dark:  dark, synthwave, halloween, forest, aqua, black, 
+                  luxury, dracula, business, night, coffee
+
+           Current selection (6 themes):
+           Light: light, cupcake, lemonade
+           Dark:  dark, dracula, synthwave
+           ═══════════════════════════════════════════════════════════ */
 
         /* ═══════════════════════════════════════════════════════════
            LAYOUT & STRUCTURE
@@ -37,7 +70,7 @@
         }
 
         /* ═══════════════════════════════════════════════════════════
-           AVATAR & NAVBAR ENHANCEMENTS
+           AVATAR & NAVBAR
            ═══════════════════════════════════════════════════════════ */
 
         .avatar-hover {
@@ -58,7 +91,7 @@
         }
 
         /* ═══════════════════════════════════════════════════════════
-           ENHANCED TITLE & SUBTITLE
+           HERO TITLE & SUBTITLE
            ═══════════════════════════════════════════════════════════ */
 
         .hero-title-container {
@@ -72,7 +105,6 @@
             box-shadow: 0 8px 32px oklch(var(--bc) / 0.08);
         }
 
-        /* Animated gradient title - each word gets different gradient */
         .hero-title {
             font-size: 3.5rem;
             font-weight: 800;
@@ -137,7 +169,6 @@
             50% { background-position: 50% 100%; }
         }
 
-        /* Animated subtitle with counter */
         .hero-subtitle {
             font-size: 1.25rem;
             margin-top: 1rem;
@@ -166,6 +197,94 @@
             border-radius: 9999px;
             font-weight: 600;
             font-size: 0.95rem;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           💰 PRICING PILL SYSTEM (Theme-aware colors)
+           ═══════════════════════════════════════════════════════════ */
+
+        .pricing-pills {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .pricing-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: var(--pricing-pill-height);
+            padding: var(--pricing-pill-padding);
+            font-size: var(--pricing-pill-font-size);
+            font-weight: var(--pricing-pill-font-weight);
+            border-radius: 9999px;
+            transition: all var(--animation-speed-fast) ease;
+            white-space: nowrap;
+            border: 1px solid transparent;
+        }
+
+        /* Free tier - success/green color */
+        .pricing-pill.free {
+            background: oklch(var(--su) / 0.15);
+            color: oklch(var(--suc));
+            border-color: oklch(var(--su) / 0.3);
+        }
+
+        .pricing-pill.free:hover {
+            background: oklch(var(--su) / 0.25);
+            border-color: oklch(var(--su) / 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px oklch(var(--su) / 0.3);
+        }
+
+        /* First paid tier - primary color */
+        .pricing-pill.tier-1 {
+            background: oklch(var(--p) / 0.15);
+            color: oklch(var(--pc));
+            border-color: oklch(var(--p) / 0.3);
+        }
+
+        .pricing-pill.tier-1:hover {
+            background: oklch(var(--p) / 0.25);
+            border-color: oklch(var(--p) / 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px oklch(var(--p) / 0.3);
+        }
+
+        /* Second paid tier - secondary color */
+        .pricing-pill.tier-2 {
+            background: oklch(var(--s) / 0.15);
+            color: oklch(var(--sc));
+            border-color: oklch(var(--s) / 0.3);
+        }
+
+        .pricing-pill.tier-2:hover {
+            background: oklch(var(--s) / 0.25);
+            border-color: oklch(var(--s) / 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px oklch(var(--s) / 0.3);
+        }
+
+        /* Third paid tier - accent color */
+        .pricing-pill.tier-3 {
+            background: oklch(var(--a) / 0.15);
+            color: oklch(var(--ac));
+            border-color: oklch(var(--a) / 0.3);
+        }
+
+        .pricing-pill.tier-3:hover {
+            background: oklch(var(--a) / 0.25);
+            border-color: oklch(var(--a) / 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px oklch(var(--a) / 0.3);
+        }
+
+        /* Larger pills for modal */
+        .pricing-pill-lg {
+            height: 36px;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
         }
 
         /* Theme dropdown styling */
@@ -223,12 +342,13 @@
         .category-workflow { border-left-color: oklch(var(--su)); }
 
         /* ═══════════════════════════════════════════════════════════
-           CORNER BUTTON SYSTEM
+           CORNER BUTTON SYSTEM (Sleeker with reduced height)
            ═══════════════════════════════════════════════════════════ */
 
         .corner-button {
             width: var(--corner-btn-width);
             height: var(--corner-btn-height);
+            padding: var(--corner-btn-padding);
             background: oklch(var(--b3) / 0.5);
             backdrop-filter: blur(8px);
             border: 1px solid oklch(var(--bc) / 0.1);
@@ -238,7 +358,7 @@
             transition: all var(--animation-speed-fast) ease;
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.8rem;
+            font-size: 0.75rem;  /* Slightly smaller font for sleeker look */
             position: relative;
         }
 
@@ -482,21 +602,6 @@
             line-height: 1.3;
         }
 
-        .price-badge {
-            display: inline-block;
-            font-weight: 600;
-            font-size: 0.95rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 6px;
-            background: oklch(var(--su) / 0.1);
-            color: oklch(var(--suc));
-        }
-
-        .price-badge.paid {
-            background: oklch(var(--wa) / 0.1);
-            color: oklch(var(--wac));
-        }
-
         .benchmark-card {
             background: oklch(var(--p) / 0.05);
             border: 1px solid oklch(var(--p) / 0.2);
@@ -533,16 +638,31 @@
                 transform: translateY(0);
             }
         }
+
+        /* Pricing section in modal */
+        .pricing-section {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: oklch(var(--b2) / 0.5);
+            border-radius: 0.75rem;
+            border: 1px solid oklch(var(--bc) / 0.1);
+        }
+
+        .pricing-section h4 {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
 
     <!-- ═══════════════════════════════════════════════════════════
-         NAVBAR WITH AVATAR, MENU, THEME DROPDOWN
+         NAVBAR
          ═══════════════════════════════════════════════════════════ -->
     <div class="navbar bg-base-100 shadow-lg sticky top-0 z-50 backdrop-blur-lg bg-base-100/80">
         <div class="navbar-start">
-            <!-- Avatar with user's image -->
             <div class="avatar avatar-hover">
                 <div class="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                     <img src="avatar.jpeg" alt="Avatar" />
@@ -557,7 +677,6 @@
         </div>
 
         <div class="navbar-end gap-2">
-            <!-- Menu items (desktop) -->
             <div class="hidden md:flex gap-1">
                 <a href="#about" class="btn btn-ghost btn-sm">About</a>
                 <a href="#newsletter" class="btn btn-ghost btn-sm">Newsletter</a>
@@ -565,7 +684,7 @@
                 <a href="#contact" class="btn btn-ghost btn-sm">Contact</a>
             </div>
 
-            <!-- Theme Dropdown (6 themes) -->
+            <!-- Theme Dropdown -->
             <div class="dropdown dropdown-end">
                 <label tabindex="0" class="btn btn-ghost btn-circle">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -615,7 +734,7 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════════════════
-         ENHANCED HERO SECTION
+         HERO SECTION
          ═══════════════════════════════════════════════════════════ -->
     <div class="container mx-auto px-4">
         <div class="hero-title-container">
@@ -646,15 +765,12 @@
          ═══════════════════════════════════════════════════════════ -->
     <div class="main-content">
         <div class="container mx-auto px-4 py-8 max-w-7xl">
-            <!-- Favorites Section -->
             <div id="favoritesSection" class="mb-12 hidden">
                 <h2 class="text-3xl font-bold mb-4 flex items-center gap-2">
                     ⭐ Your Favorites
                 </h2>
                 <div id="favoritesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"></div>
             </div>
-
-            <!-- All Tools -->
             <div id="toolsContainer"></div>
         </div>
     </div>
@@ -696,7 +812,7 @@
         </div>
     </footer>
 
-    <!-- Regular Tool Modal -->
+    <!-- Modals -->
     <dialog id="toolModal" class="modal">
         <div class="modal-box">
             <form method="dialog">
@@ -707,7 +823,6 @@
         <form method="dialog" class="modal-backdrop"><button>close</button></form>
     </dialog>
 
-    <!-- What's New Modal -->
     <dialog id="whatsNewModal" class="modal">
         <div class="modal-box">
             <form method="dialog">
@@ -720,20 +835,23 @@
 
     <script>
         // ═══════════════════════════════════════════════════════════
-        // THEME CONFIGURATION (6 themes)
+        // 🎨 THEME CONFIGURATION
+        // Edit these arrays to change available themes
         // ═══════════════════════════════════════════════════════════
 
         const LIGHT_THEMES = ['light', 'cupcake', 'lemonade'];
         const DARK_THEMES = ['dark', 'dracula', 'synthwave'];
 
-        // Auto-detect OS theme preference and set light/dark (not random)
+        // TO CHANGE THEMES:
+        // Replace theme names in arrays above with any DaisyUI theme:
+        // Light options: light, cupcake, bumblebee, emerald, corporate, garden, lofi, pastel, fantasy, wireframe, cmyk, autumn, acid, lemonade, winter, nord
+        // Dark options: dark, synthwave, halloween, forest, aqua, black, luxury, dracula, business, night, coffee
+
         function initTheme() {
             const savedTheme = localStorage.getItem('theme');
-
             if (savedTheme) {
                 setTheme(savedTheme);
             } else {
-                // Detect OS preference - default to light or dark (not random)
                 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                 setTheme(prefersDark ? 'dark' : 'light');
             }
@@ -744,7 +862,6 @@
             localStorage.setItem('theme', theme);
         }
 
-        // Theme switcher
         document.querySelectorAll('.theme-option').forEach(option => {
             option.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -755,18 +872,15 @@
         });
 
         initTheme();
-
-        // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
         // ═══════════════════════════════════════════════════════════
-        // ANIMATED COUNTER FOR STATS
+        // ANIMATED COUNTER
         // ═══════════════════════════════════════════════════════════
 
         function animateCounter(element, target, duration = 1000) {
             let start = 0;
             const increment = target / (duration / 16);
-
             const timer = setInterval(() => {
                 start += increment;
                 if (start >= target) {
@@ -861,6 +975,23 @@
         }
 
         // ═══════════════════════════════════════════════════════════
+        // PRICING PILL GENERATOR
+        // ═══════════════════════════════════════════════════════════
+
+        function renderPricingPills(pricing, isLarge = false) {
+            if (!pricing) return '';
+
+            const tiers = pricing.split('/');
+            const sizeClass = isLarge ? 'pricing-pill-lg' : '';
+
+            return tiers.map((tier, index) => {
+                const isFree = tier.toLowerCase() === 'free';
+                const tierClass = isFree ? 'free' : `tier-${Math.min(index, 3)}`;
+                return `<span class="pricing-pill ${tierClass} ${sizeClass}">${tier}</span>`;
+            }).join('');
+        }
+
+        // ═══════════════════════════════════════════════════════════
         // DATA & RENDERING
         // ═══════════════════════════════════════════════════════════
 
@@ -873,74 +1004,40 @@
         };
 
         const badgeLabels = {
-            'new': 'New',
-            'recommended': 'Top',
-            'popular': 'Popular',
-            'free': 'Free',
-            'paid': 'Paid',
-            'open-source': 'Open',
-            'macos': 'macOS',
-            'windows': 'Windows',
-            'web': 'Web',
-            'desktop': 'Desktop',
-            'plugin': 'Plugin',
-            'cli': 'CLI',
-            'enterprise': 'Enterprise',
-            'beta': 'Beta'
+            'new': 'New', 'recommended': 'Top', 'popular': 'Popular',
+            'free': 'Free', 'paid': 'Paid', 'open-source': 'Open',
+            'macos': 'macOS', 'windows': 'Windows', 'web': 'Web',
+            'desktop': 'Desktop', 'plugin': 'Plugin', 'cli': 'CLI',
+            'enterprise': 'Enterprise', 'beta': 'Beta'
         };
 
         const badgeStyles = {
-            'new': 'badge-success',
-            'recommended': 'badge-primary',
-            'popular': 'badge-secondary',
-            'free': 'badge-info',
-            'paid': 'badge-warning',
-            'open-source': 'badge-accent',
-            'macos': 'badge-ghost',
-            'windows': 'badge-ghost',
-            'web': 'badge-ghost',
-            'desktop': 'badge-ghost',
-            'plugin': 'badge-ghost',
-            'cli': 'badge-ghost',
-            'enterprise': 'badge-error',
-            'beta': 'badge-neutral'
+            'new': 'badge-success', 'recommended': 'badge-primary',
+            'popular': 'badge-secondary', 'free': 'badge-info',
+            'paid': 'badge-warning', 'open-source': 'badge-accent',
+            'macos': 'badge-ghost', 'windows': 'badge-ghost',
+            'web': 'badge-ghost', 'desktop': 'badge-ghost',
+            'plugin': 'badge-ghost', 'cli': 'badge-ghost',
+            'enterprise': 'badge-error', 'beta': 'badge-neutral'
         };
 
         const modelVersions = {
-            'Perplexity': 'Sonar Pro',
-            'ChatGPT': 'GPT-4o',
-            'Claude': 'Claude 3.7 Sonnet',
-            'Google Gemini': 'Gemini 2.0 Flash',
-            'Microsoft Copilot': 'GPT-4 Turbo',
-            'Mistral Chat': 'Mistral Large 2',
-            'DeepSeek': 'DeepSeek V3',
-            'Grok': 'Grok 2',
-            'Pi': 'Inflection 2.5',
-            'You.com': 'GPT-4',
-            'HuggingChat': 'Llama 3.3 70B',
-            'Character.AI': 'C1.2'
+            'Perplexity': 'Sonar Pro', 'ChatGPT': 'GPT-4o',
+            'Claude': 'Claude 3.7 Sonnet', 'Google Gemini': 'Gemini 2.0 Flash',
+            'Microsoft Copilot': 'GPT-4 Turbo', 'Mistral Chat': 'Mistral Large 2',
+            'DeepSeek': 'DeepSeek V3', 'Grok': 'Grok 2',
+            'Pi': 'Inflection 2.5', 'You.com': 'GPT-4',
+            'HuggingChat': 'Llama 3.3 70B', 'Character.AI': 'C1.2'
         };
-
-        function formatPrice(price) {
-            if (!price || price === 'Free' || price === '0' || price === 0) {
-                return '<span class="price-badge">Free</span>';
-            }
-            return `<span class="price-badge paid">${price}</span>`;
-        }
 
         function renderStars(rating) {
             const fullStars = Math.floor(rating);
             const halfStar = rating % 1 >= 0.5;
             let html = '';
-
             for (let i = 0; i < 5; i++) {
-                if (i < fullStars) {
-                    html += '★';
-                } else if (i === fullStars && halfStar) {
-                    html += '⯨';
-                } else {
-                    html += '☆';
-                }
+                if (i < fullStars) html += '★';
+                else if (i === fullStars && halfStar) html += '⯨';
+                else html += '☆';
             }
             return html;
         }
@@ -954,18 +1051,14 @@
             const content = document.getElementById('whatsNewContent');
 
             const info = tool.whatsNew || {
-                version: 'Latest Update',
-                releaseDate: 'Recently',
+                version: 'Latest Update', releaseDate: 'Recently',
                 features: ['New features and improvements', 'Enhanced performance', 'Bug fixes and stability updates'],
-                benchmarks: [],
-                rankingUrl: tool.url
+                benchmarks: [], rankingUrl: tool.url
             };
 
             const benchmarksHtml = info.benchmarks && info.benchmarks.length > 0 ? `
                 <div class="mb-6">
-                    <h4 class="font-bold text-lg mb-3 flex items-center gap-2">
-                        📊 Performance Benchmarks
-                    </h4>
+                    <h4 class="font-bold text-lg mb-3 flex items-center gap-2">📊 Performance Benchmarks</h4>
                     <div class="grid grid-cols-1 gap-3">
                         ${info.benchmarks.map(b => `
                             <div class="benchmark-card">
@@ -986,8 +1079,7 @@
 
             content.innerHTML = `
                 <div class="flex items-start gap-4 mb-6">
-                    <img src="${tool.thumbnail}" 
-                         alt="${tool.name}" 
+                    <img src="${tool.thumbnail}" alt="${tool.name}" 
                          class="w-20 h-20 rounded-lg object-contain bg-base-100/50 p-2"
                          onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(tool.name)}&size=128&background=random'">
                     <div class="flex-1">
@@ -1001,9 +1093,7 @@
                 </div>
 
                 <div class="mb-6">
-                    <h4 class="font-bold text-lg mb-3 flex items-center gap-2">
-                        ✨ What's New
-                    </h4>
+                    <h4 class="font-bold text-lg mb-3 flex items-center gap-2">✨ What's New</h4>
                     <ul class="space-y-2">
                         ${info.features.map(f => `
                             <li class="flex items-start gap-3 p-2 rounded-lg hover:bg-base-200 transition-colors">
@@ -1017,12 +1107,8 @@
                 ${benchmarksHtml}
 
                 <div class="flex gap-2 mt-6">
-                    <a href="${info.rankingUrl}" target="_blank" class="btn btn-primary flex-1">
-                        View Rankings →
-                    </a>
-                    <a href="${tool.url}" target="_blank" class="btn btn-outline">
-                        Try ${tool.name}
-                    </a>
+                    <a href="${info.rankingUrl}" target="_blank" class="btn btn-primary flex-1">View Rankings →</a>
+                    <a href="${tool.url}" target="_blank" class="btn btn-outline">Try ${tool.name}</a>
                 </div>
             `;
 
@@ -1036,10 +1122,18 @@
             const modelVersion = modelVersions[tool.name] ? 
                 `<div class="badge badge-neutral badge-outline">Model: ${modelVersions[tool.name]}</div>` : '';
 
+            const pricingHtml = tool.pricing ? `
+                <div class="pricing-section">
+                    <h4>💰 Pricing</h4>
+                    <div class="pricing-pills">
+                        ${renderPricingPills(tool.pricing, true)}
+                    </div>
+                </div>
+            ` : '';
+
             content.innerHTML = `
                 <div class="flex items-start gap-4 mb-4">
-                    <img src="${tool.thumbnail}" 
-                         alt="${tool.name}" 
+                    <img src="${tool.thumbnail}" alt="${tool.name}" 
                          class="w-24 h-24 rounded-lg object-contain bg-base-100/50 p-2"
                          onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(tool.name)}&size=128&background=random'">
                     <div class="flex-1">
@@ -1057,6 +1151,8 @@
 
                 <p class="opacity-80 mb-4">${tool.description}</p>
 
+                ${pricingHtml}
+
                 <div class="flex gap-2 mt-6">
                     <a href="${tool.url}" target="_blank" class="btn btn-primary flex-1">Visit Website →</a>
                     <button onclick="toggleFavorite('${tool.name}', '${category.name}')" 
@@ -1071,7 +1167,6 @@
 
         function createToolCard(tool, category) {
             const isFav = isFavorite(tool.name, category.name);
-            const price = tool.price || 'Free';
             const isNew = hasNewBadge(tool);
 
             return `
@@ -1081,32 +1176,33 @@
                             ${isNew ? `
                                 <div class="new-corner corner-button pop-in" 
                                      onclick="event.stopPropagation(); showWhatsNew(${JSON.stringify(tool).replace(/'/g, "&#39;")})"
-                                     onmouseenter="createSparkles(this)">
-                                    NEW
-                                </div>
+                                     onmouseenter="createSparkles(this)">NEW</div>
                             ` : ''}
 
                             <div class="flex-grow bg-base-100/50 p-2 flex items-center justify-center">
-                                <img src="${tool.thumbnail}" 
-                                     alt="${tool.name}" 
+                                <img src="${tool.thumbnail}" alt="${tool.name}" 
                                      class="max-w-full max-h-full object-contain"
                                      onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(tool.name)}&size=200&background=random'">
                             </div>
-                            <a href="${tool.url}" target="_blank" class="btn-visit corner-button">
-                                Visit
-                            </a>
+                            <a href="${tool.url}" target="_blank" class="btn-visit corner-button">Visit</a>
                         </div>
 
                         <div class="flex-1 p-3 flex flex-col relative">
                             <div class="favorite-corner corner-button" 
-                                 data-tool="${tool.name}" 
-                                 data-category="${category.name}"
+                                 data-tool="${tool.name}" data-category="${category.name}"
                                  onclick="event.stopPropagation(); toggleFavorite('${tool.name}', '${category.name}')"
                                  onmouseenter="createStarSparkles(this)">
                                 <span class="favorite-star ${isFav ? 'favorited' : 'unfavorited'}">★</span>
                             </div>
 
                             <h3 class="font-bold text-lg mb-1 pr-12">${tool.name}</h3>
+
+                            <!-- PRICING PILLS (High Visibility) -->
+                            ${tool.pricing ? `
+                                <div class="pricing-pills mb-2">
+                                    ${renderPricingPills(tool.pricing)}
+                                </div>
+                            ` : ''}
 
                             <div class="flex gap-1 flex-wrap mb-2">
                                 ${(tool.badges || []).filter(b => b !== 'new').slice(0, 4).map(badge => 
@@ -1116,18 +1212,12 @@
 
                             <p class="text-sm opacity-70 mb-2 flex-grow">${tool.description}</p>
 
-                            <div class="mb-2">
-                                ${formatPrice(price)}
-                            </div>
-
                             <div class="flex items-center justify-between gap-2 -mr-3 -mb-3">
                                 <a href="${tool.url}" target="_blank" class="url-link truncate flex-shrink min-w-0">
                                     ${tool.url.replace(/^https?:\/\/(www\.)?/, '')}
                                 </a>
                                 <button onclick='showToolDetails(${JSON.stringify(tool).replace(/'/g, "&#39;")}, ${JSON.stringify(category).replace(/'/g, "&#39;")})' 
-                                        class="btn-more corner-button">
-                                    More
-                                </button>
+                                        class="btn-more corner-button">More</button>
                             </div>
                         </div>
                     </div>
@@ -1136,7 +1226,7 @@
         }
 
         function loadTools() {
-            fetch('ai-tools-directory.json')
+            fetch('ai-tools-directory-with-pricing.json')
                 .then(response => response.json())
                 .then(data => {
                     const container = document.getElementById('toolsContainer');
@@ -1146,13 +1236,11 @@
                     container.innerHTML = '';
                     favGrid.innerHTML = '';
 
-                    // Calculate stats for animated counters
                     let totalTools = 0;
                     data.categories.forEach(category => {
                         totalTools += category.tools.length;
                     });
 
-                    // Animate the counters
                     animateCounter(document.getElementById('toolCount'), totalTools, 1500);
                     animateCounter(document.getElementById('categoryCount'), data.categories.length, 1500);
 
@@ -1171,7 +1259,6 @@
 
                     data.categories.forEach(category => {
                         const categoryClass = categoryStyles[category.name] || 'category-chat';
-
                         const categorySection = document.createElement('div');
                         categorySection.className = 'mb-12';
                         categorySection.innerHTML = `
@@ -1179,12 +1266,10 @@
                                 <h2 class="mb-1">${category.name}</h2>
                                 <p class="opacity-70">${category.description}</p>
                             </div>
-
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 ${category.tools.map(tool => createToolCard(tool, category)).join('')}
                             </div>
                         `;
-
                         container.appendChild(categorySection);
                     });
                 })

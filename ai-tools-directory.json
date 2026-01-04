@@ -16,8 +16,12 @@
           ],
           "rating": 5.0,
           "thumbnail": "https://www.google.com/s2/favicons?domain=perplexity.ai&sz=128",
-          "pricing": "Free/$20/$200",
-          "hasFree": true
+          "cornerBadge": "POPULAR",
+          "allBadges": [
+            "FAST",
+            "POPULAR"
+          ],
+          "pricing": "Free/$20/$200"
         },
         {
           "name": "ChatGPT",
@@ -30,8 +34,12 @@
           ],
           "rating": 4.8,
           "thumbnail": "https://www.google.com/s2/favicons?domain=openai.com&sz=128",
-          "pricing": "Free/$20/$200",
-          "hasFree": true
+          "cornerBadge": "BEST",
+          "allBadges": [
+            "POPULAR",
+            "BEST"
+          ],
+          "pricing": "Free/$20/$200"
         },
         {
           "name": "Claude",
@@ -45,8 +53,12 @@
           ],
           "rating": 4.9,
           "thumbnail": "https://www.google.com/s2/favicons?domain=anthropic.com&sz=128",
-          "pricing": "Free/$20/$200",
-          "hasFree": true
+          "cornerBadge": "BEST",
+          "allBadges": [
+            "BEST",
+            "TOP"
+          ],
+          "pricing": "Free/$20/$200"
         },
         {
           "name": "Google Gemini",
@@ -59,8 +71,12 @@
           ],
           "rating": 4.7,
           "thumbnail": "https://www.google.com/s2/favicons?domain=google.com&sz=128",
-          "pricing": "Free/$20/$30",
-          "hasFree": true
+          "cornerBadge": "FAST",
+          "allBadges": [
+            "UPDATED",
+            "FAST"
+          ],
+          "pricing": "Free/$20/$30"
         },
         {
           "name": "Microsoft Copilot",
@@ -72,8 +88,11 @@
           ],
           "rating": 4.5,
           "thumbnail": "https://www.google.com/s2/favicons?domain=microsoft.com&sz=128",
-          "pricing": "Free/$20/$30",
-          "hasFree": true
+          "cornerBadge": "POPULAR",
+          "allBadges": [
+            "POPULAR"
+          ],
+          "pricing": "Free/$20/$30"
         },
         {
           "name": "Mistral Chat",
@@ -86,8 +105,12 @@
           ],
           "rating": 4.6,
           "thumbnail": "https://www.google.com/s2/favicons?domain=mistral.ai&sz=128",
-          "pricing": "Free/$16/$42",
-          "hasFree": true
+          "cornerBadge": "VALUE",
+          "allBadges": [
+            "VALUE",
+            "FAST"
+          ],
+          "pricing": "Free/$16/$42"
         },
         {
           "name": "DeepSeek",
@@ -100,8 +123,12 @@
           ],
           "rating": 4.4,
           "thumbnail": "https://www.google.com/s2/favicons?domain=deepseek.com&sz=128",
-          "pricing": "Free/$8/$16",
-          "hasFree": true
+          "cornerBadge": "NEW",
+          "allBadges": [
+            "VALUE",
+            "NEW"
+          ],
+          "pricing": "Free/$8/$16"
         },
         {
           "name": "Grok",
@@ -113,8 +140,9 @@
           ],
           "rating": 4.3,
           "thumbnail": "https://www.google.com/s2/favicons?domain=x.ai&sz=128",
-          "pricing": "$16/$84",
-          "hasFree": false
+          "cornerBadge": null,
+          "allBadges": [],
+          "pricing": "$16/$84"
         },
         {
           "name": "Pi",
@@ -126,8 +154,9 @@
           ],
           "rating": 4.2,
           "thumbnail": "https://www.google.com/s2/favicons?domain=pi.ai&sz=128",
-          "pricing": "Free",
-          "hasFree": true
+          "cornerBadge": null,
+          "allBadges": [],
+          "pricing": "Free"
         },
         {
           "name": "You.com",
@@ -139,8 +168,11 @@
           ],
           "rating": 4.4,
           "thumbnail": "https://www.google.com/s2/favicons?domain=you.com&sz=128",
-          "pricing": "Free/$10/$20",
-          "hasFree": true
+          "cornerBadge": "VALUE",
+          "allBadges": [
+            "VALUE"
+          ],
+          "pricing": "Free/$10/$20"
         },
         {
           "name": "HuggingChat",
@@ -153,8 +185,9 @@
           ],
           "rating": 4.3,
           "thumbnail": "https://www.google.com/s2/favicons?domain=huggingface.co&sz=128",
-          "pricing": "Free",
-          "hasFree": true
+          "cornerBadge": null,
+          "allBadges": [],
+          "pricing": "Free"
         },
         {
           "name": "Character.AI",
@@ -167,8 +200,11 @@
           ],
           "rating": 4.1,
           "thumbnail": "https://www.google.com/s2/favicons?domain=character.ai&sz=128",
-          "pricing": "Free/$10",
-          "hasFree": true
+          "cornerBadge": "POPULAR",
+          "allBadges": [
+            "POPULAR"
+          ],
+          "pricing": "Free/$10"
         }
       ]
     },
@@ -188,8 +224,12 @@
           ],
           "rating": 4.9,
           "thumbnail": "https://www.google.com/s2/favicons?domain=cursor.com&sz=128",
-          "pricing": "Free/$20/$40",
-          "hasFree": true
+          "cornerBadge": "BEST",
+          "allBadges": [
+            "POPULAR",
+            "BEST"
+          ],
+          "pricing": "Free/$20/$40"
         },
         {
           "name": "GitHub Copilot",
@@ -202,8 +242,12 @@
           ],
           "rating": 4.7,
           "thumbnail": "https://www.google.com/s2/favicons?domain=github.com&sz=128",
-          "pricing": "Free/$10/$19/$39",
-          "hasFree": true
+          "cornerBadge": "POPULAR",
+          "allBadges": [
+            "POPULAR",
+            "TOP"
+          ],
+          "pricing": "Free/$10/$19/$39"
         },
         {
           "name": "Windsurf",
@@ -216,8 +260,12 @@
           ],
           "rating": 4.6,
           "thumbnail": "https://www.google.com/s2/favicons?domain=codeium.com&sz=128",
-          "pricing": "Free/$10/$20",
-          "hasFree": true
+          "cornerBadge": "NEW",
+          "allBadges": [
+            "NEW",
+            "FAST"
+          ],
+          "pricing": "Free/$10/$20"
         },
         {
           "name": "Bolt.new",
@@ -231,8 +279,12 @@
           ],
           "rating": 4.7,
           "thumbnail": "https://www.google.com/s2/favicons?domain=bolt.new&sz=128",
-          "pricing": "Free/$10/$25",
-          "hasFree": true
+          "cornerBadge": "NEW",
+          "allBadges": [
+            "FAST",
+            "NEW"
+          ],
+          "pricing": "Free/$10/$25"
         },
         {
           "name": "Replit Agent",
@@ -245,8 +297,11 @@
           ],
           "rating": 4.5,
           "thumbnail": "https://www.google.com/s2/favicons?domain=replit.com&sz=128",
-          "pricing": "Free/$20/$33",
-          "hasFree": true
+          "cornerBadge": "VALUE",
+          "allBadges": [
+            "VALUE"
+          ],
+          "pricing": "Free/$20/$33"
         },
         {
           "name": "v0 by Vercel",
@@ -259,8 +314,12 @@
           ],
           "rating": 4.6,
           "thumbnail": "https://www.google.com/s2/favicons?domain=v0.dev&sz=128",
-          "pricing": "Free/$20",
-          "hasFree": true
+          "cornerBadge": "POPULAR",
+          "allBadges": [
+            "POPULAR",
+            "FAST"
+          ],
+          "pricing": "Free/$20"
         },
         {
           "name": "Cline",
@@ -274,8 +333,9 @@
           ],
           "rating": 4.5,
           "thumbnail": "https://www.google.com/s2/favicons?domain=github.com&sz=128",
-          "pricing": "Free",
-          "hasFree": true
+          "cornerBadge": null,
+          "allBadges": [],
+          "pricing": "Free"
         },
         {
           "name": "Aider",
@@ -288,8 +348,11 @@
           ],
           "rating": 4.4,
           "thumbnail": "https://www.google.com/s2/favicons?domain=aider.chat&sz=128",
-          "pricing": "Free",
-          "hasFree": true
+          "cornerBadge": "VALUE",
+          "allBadges": [
+            "VALUE"
+          ],
+          "pricing": "Free"
         },
         {
           "name": "Sourcegraph Cody",
@@ -302,8 +365,11 @@
           ],
           "rating": 4.3,
           "thumbnail": "https://www.google.com/s2/favicons?domain=sourcegraph.com&sz=128",
-          "pricing": "Free/$9/$19",
-          "hasFree": true
+          "cornerBadge": "VALUE",
+          "allBadges": [
+            "VALUE"
+          ],
+          "pricing": "Free/$9/$19"
         },
         {
           "name": "Tabnine",
@@ -316,8 +382,9 @@
           ],
           "rating": 4.2,
           "thumbnail": "https://www.google.com/s2/favicons?domain=tabnine.com&sz=128",
-          "pricing": "Free/$12/$39",
-          "hasFree": true
+          "cornerBadge": null,
+          "allBadges": [],
+          "pricing": "Free/$12/$39"
         },
         {
           "name": "Amazon Q Developer",
@@ -329,8 +396,9 @@
           ],
           "rating": 4.1,
           "thumbnail": "https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=128",
-          "pricing": "Free/$19",
-          "hasFree": true
+          "cornerBadge": null,
+          "allBadges": [],
+          "pricing": "Free/$19"
         },
         {
           "name": "Pieces for Developers",
@@ -342,8 +410,9 @@
           ],
           "rating": 4.3,
           "thumbnail": "https://www.google.com/s2/favicons?domain=pieces.app&sz=128",
-          "pricing": "Free/$12",
-          "hasFree": true
+          "cornerBadge": null,
+          "allBadges": [],
+          "pricing": "Free/$12"
         },
         {
           "name": "Blackbox AI",
@@ -355,8 +424,9 @@
           ],
           "rating": 4.0,
           "thumbnail": "https://www.google.com/s2/favicons?domain=blackbox.ai&sz=128",
-          "pricing": "Free",
-          "hasFree": true
+          "cornerBadge": null,
+          "allBadges": [],
+          "pricing": "Free"
         }
       ]
     }

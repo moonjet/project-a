@@ -62,7 +62,7 @@
         .category-voice { border-left-color: #a855f7; }
         .category-workflow { border-left-color: #84cc16; }
 
-        /* Corner button base styling - uniform height and width across all corners */
+        /* Corner button base styling */
         .corner-button {
             width: 52px;
             height: 40px;
@@ -76,6 +76,7 @@
             cursor: pointer;
             font-weight: 600;
             font-size: 0.8rem;
+            position: relative;
         }
 
         [data-theme="dark"] .corner-button {
@@ -93,7 +94,7 @@
             border-color: rgba(255, 255, 255, 0.08);
         }
 
-        /* Top-left corner: New badge */
+        /* NEW corner badge with animations */
         .new-corner {
             position: absolute;
             top: 0;
@@ -105,6 +106,8 @@
             color: #059669;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            overflow: visible;
+            animation: pulse-glow 2s ease-in-out infinite;
         }
 
         [data-theme="dark"] .new-corner {
@@ -113,37 +116,183 @@
             color: #34d399;
         }
 
-        .new-corner:hover {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.25) 0%, rgba(16, 185, 129, 0.35) 100%);
-            border-color: rgba(16, 185, 129, 0.4);
+        /* Default pulse glow animation */
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 15px 3px rgba(16, 185, 129, 0.6);
+            }
         }
 
-        [data-theme="dark"] .new-corner:hover {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(16, 185, 129, 0.4) 100%);
-            border-color: rgba(16, 185, 129, 0.5);
+        /* Shimmer effect on hover */
+        .new-corner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease;
         }
 
-        /* Top-right corner: Favorite star */
+        .new-corner:hover::before {
+            left: 100%;
+        }
+
+        /* Sparkle particles */
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+            font-size: 0.7rem;
+            animation: sparkle-burst 0.8s ease-out forwards;
+        }
+
+        @keyframes sparkle-burst {
+            0% {
+                transform: translate(0, 0) scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(1.2) rotate(180deg);
+                opacity: 0;
+            }
+        }
+
+        /* Pop-in animation on page load */
+        .new-corner.pop-in {
+            animation: pop-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55), pulse-glow 2s ease-in-out infinite 0.6s;
+        }
+
+        @keyframes pop-in {
+            0% {
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           FAVORITE STAR STYLING - GREY UNFAVORITED (NOT GOLD!)
+           ═══════════════════════════════════════════════════════════ */
+
         .favorite-corner {
             position: absolute;
             top: 0;
             right: 0;
             border-bottom-left-radius: 12px;
+            overflow: visible;
         }
 
         .favorite-star {
             font-size: 1.35rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
         }
 
+        /* GREY unfavorited star - NOT gold! */
         .favorite-star.unfavorited {
-            color: rgba(251, 191, 36, 0.3);
+            color: #9ca3af;
+            opacity: 0.5;
         }
 
+        [data-theme="dark"] .favorite-star.unfavorited {
+            color: #6b7280;
+            opacity: 0.6;
+        }
+
+        /* Gold favorited star */
         .favorite-star.favorited {
-            color: rgb(251, 191, 36);
+            color: #fbbf24;
+            opacity: 1;
+        }
+
+        /* Star hover effects */
+        .favorite-corner:hover .favorite-star {
+            transform: scale(1.2) rotate(15deg);
+            filter: drop-shadow(0 4px 12px rgba(251, 191, 36, 0.5));
+        }
+
+        .favorite-corner:hover .favorite-star.unfavorited {
+            color: #9ca3af;
+            opacity: 0.8;
+        }
+
+        .favorite-corner:hover .favorite-star.favorited {
+            color: #fcd34d;
+            transform: scale(1.25) rotate(20deg);
+        }
+
+        /* Star click animation - pulse */
+        .favorite-star.pulse {
+            animation: star-pulse 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes star-pulse {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg); 
+            }
+            25% { 
+                transform: scale(1.4) rotate(-20deg); 
+            }
+            50% { 
+                transform: scale(1.3) rotate(20deg); 
+            }
+            75% { 
+                transform: scale(1.4) rotate(-15deg); 
+            }
+        }
+
+        /* Up arrow animation when favorited */
+        .arrow-up {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            font-size: 1.4rem;
+            color: #fbbf24;
+            pointer-events: none;
+            animation: arrow-float 1.2s ease-out forwards;
+            text-shadow: 0 2px 8px rgba(251, 191, 36, 0.6);
+        }
+
+        @keyframes arrow-float {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, 0) scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -20px) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50px) scale(1.3);
+            }
+        }
+
+        /* Sparkle on star hover */
+        .star-sparkle {
+            position: absolute;
+            pointer-events: none;
+            font-size: 0.6rem;
+            animation: star-sparkle-anim 0.7s ease-out forwards;
+        }
+
+        @keyframes star-sparkle-anim {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(0) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--sx), var(--sy)) scale(1.5) rotate(180deg);
+            }
         }
 
         /* Bottom-left corner: Visit button */
@@ -151,7 +300,7 @@
             width: 52px;
             height: 40px;
             border-top-right-radius: 12px;
-            border-bottom-left-radius: 0.5rem; /* Match card radius */
+            border-bottom-left-radius: 0.5rem;
             border-top-left-radius: 0;
             border-bottom-right-radius: 0;
         }
@@ -161,7 +310,7 @@
             width: 52px;
             height: 40px;
             border-top-left-radius: 12px;
-            border-bottom-right-radius: 0.5rem; /* Match card radius */
+            border-bottom-right-radius: 0.5rem;
             border-top-right-radius: 0;
             border-bottom-left-radius: 0;
         }
@@ -190,6 +339,30 @@
         [data-theme="dark"] .price-badge.paid {
             color: #fbbf24;
             background: rgba(245, 158, 11, 0.15);
+        }
+
+        /* What's New modal styling */
+        .benchmark-card {
+            background: rgba(99, 102, 241, 0.05);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 12px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .benchmark-card:hover {
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+        }
+
+        [data-theme="dark"] .benchmark-card {
+            background: rgba(129, 140, 248, 0.08);
+            border: 1px solid rgba(129, 140, 248, 0.2);
+        }
+
+        [data-theme="dark"] .benchmark-card:hover {
+            background: rgba(129, 140, 248, 0.12);
         }
 
         .star-rating { color: #fbbf24; }
@@ -226,6 +399,22 @@
             opacity: 1;
             text-decoration: underline;
         }
+
+        /* Modal slide-up animation */
+        dialog[open] {
+            animation: slide-up 0.3s ease-out;
+        }
+
+        @keyframes slide-up {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -260,13 +449,24 @@
         <div id="toolsContainer"></div>
     </div>
 
-    <!-- Modal Template -->
+    <!-- Regular Tool Modal -->
     <dialog id="toolModal" class="modal">
         <div class="modal-box">
             <form method="dialog">
                 <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             </form>
             <div id="modalContent"></div>
+        </div>
+        <form method="dialog" class="modal-backdrop"><button>close</button></form>
+    </dialog>
+
+    <!-- What's New Modal -->
+    <dialog id="whatsNewModal" class="modal">
+        <div class="modal-box">
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <div id="whatsNewContent"></div>
         </div>
         <form method="dialog" class="modal-backdrop"><button>close</button></form>
     </dialog>
@@ -291,19 +491,77 @@
         function toggleFavorite(toolName, categoryName) {
             const favKey = `${categoryName}::${toolName}`;
             const index = favorites.indexOf(favKey);
+            const wasFavorited = index > -1;
 
-            if (index > -1) {
+            if (wasFavorited) {
                 favorites.splice(index, 1);
             } else {
                 favorites.push(favKey);
             }
 
             localStorage.setItem('favorites', JSON.stringify(favorites));
+
+            // Trigger animations
+            const starElements = document.querySelectorAll(`[data-tool="${toolName}"][data-category="${categoryName}"] .favorite-star`);
+            starElements.forEach(star => {
+                star.classList.add('pulse');
+                setTimeout(() => star.classList.remove('pulse'), 500);
+
+                // Show up arrow when favoriting (not unfavoriting)
+                if (!wasFavorited) {
+                    const arrow = document.createElement('div');
+                    arrow.className = 'arrow-up';
+                    arrow.textContent = '⬆';
+                    star.parentElement.appendChild(arrow);
+                    setTimeout(() => arrow.remove(), 1200);
+                }
+            });
+
             loadTools();
         }
 
         function isFavorite(toolName, categoryName) {
             return favorites.includes(`${categoryName}::${toolName}`);
+        }
+
+        // Sparkle effect on NEW badge hover
+        function createSparkles(badge) {
+            const sparkles = ['✨', '⭐', '💫', '✦'];
+            for (let i = 0; i < 4; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    sparkle.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+
+                    const angle = (Math.PI * 2 * i) / 4;
+                    const distance = 20 + Math.random() * 10;
+                    sparkle.style.setProperty('--tx', `${Math.cos(angle) * distance}px`);
+                    sparkle.style.setProperty('--ty', `${Math.sin(angle) * distance}px`);
+
+                    badge.appendChild(sparkle);
+                    setTimeout(() => sparkle.remove(), 800);
+                }, i * 50);
+            }
+        }
+
+        // Star hover sparkles
+        function createStarSparkles(corner) {
+            const sparkles = ['✨', '⭐', '💫'];
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'star-sparkle';
+                    sparkle.textContent = sparkles[i % sparkles.length];
+
+                    const angle = (Math.PI * 2 * i) / 3 - Math.PI / 2;
+                    const distance = 18 + Math.random() * 10;
+                    sparkle.style.setProperty('--sx', `${Math.cos(angle) * distance}px`);
+                    sparkle.style.setProperty('--sy', `${Math.sin(angle) * distance}px`);
+
+                    corner.appendChild(sparkle);
+                    setTimeout(() => sparkle.remove(), 700);
+                }, i * 100);
+            }
         }
 
         // Category styling mapping
@@ -398,7 +656,89 @@
             return tool.badges && tool.badges.includes('new');
         }
 
-        // Show modal
+        // Show What's New modal (reads from JSON)
+        function showWhatsNew(tool) {
+            const modal = document.getElementById('whatsNewModal');
+            const content = document.getElementById('whatsNewContent');
+
+            // Use whatsNew from tool JSON if available
+            const info = tool.whatsNew || {
+                version: 'Latest Update',
+                releaseDate: 'Recently',
+                features: ['New features and improvements', 'Enhanced performance', 'Bug fixes and stability updates'],
+                benchmarks: [],
+                rankingUrl: tool.url
+            };
+
+            const benchmarksHtml = info.benchmarks && info.benchmarks.length > 0 ? `
+                <div class="mb-6">
+                    <h4 class="font-bold text-lg mb-3 flex items-center gap-2">
+                        📊 Performance Benchmarks
+                    </h4>
+                    <div class="grid grid-cols-1 gap-3">
+                        ${info.benchmarks.map(b => `
+                            <div class="benchmark-card">
+                                <div class="flex justify-between items-center">
+                                    <div class="flex-1">
+                                        <div class="font-bold text-lg">${b.name}</div>
+                                        <div class="text-sm text-base-content/60 mt-1">${b.comparison}</div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-2xl font-bold text-primary">${b.score}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            ` : '';
+
+            content.innerHTML = `
+                <div class="flex items-start gap-4 mb-6">
+                    <img src="${tool.thumbnail}" 
+                         alt="${tool.name}" 
+                         class="w-20 h-20 rounded-lg object-contain bg-base-100/50 p-2"
+                         onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(tool.name)}&size=128&background=random'">
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-bold mb-2">${tool.name}</h3>
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <span class="badge badge-success badge-lg">NEW</span>
+                            <span class="font-semibold text-base">${info.version}</span>
+                            <span class="text-sm text-base-content/50">• ${info.releaseDate}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h4 class="font-bold text-lg mb-3 flex items-center gap-2">
+                        ✨ What's New
+                    </h4>
+                    <ul class="space-y-2">
+                        ${info.features.map(f => `
+                            <li class="flex items-start gap-3 p-2 rounded-lg hover:bg-base-200 transition-colors">
+                                <span class="text-success text-xl flex-shrink-0">✓</span>
+                                <span class="flex-1">${f}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+
+                ${benchmarksHtml}
+
+                <div class="flex gap-2 mt-6">
+                    <a href="${info.rankingUrl}" target="_blank" class="btn btn-primary flex-1">
+                        View Rankings →
+                    </a>
+                    <a href="${tool.url}" target="_blank" class="btn btn-outline">
+                        Try ${tool.name}
+                    </a>
+                </div>
+            `;
+
+            modal.showModal();
+        }
+
+        // Show tool details modal
         function showToolDetails(tool, category) {
             const modal = document.getElementById('toolModal');
             const content = document.getElementById('modalContent');
@@ -450,8 +790,14 @@
                     <div class="flex h-full">
                         <!-- Thumbnail (30% width) with Visit button -->
                         <div class="w-[30%] flex-shrink-0 relative flex flex-col">
-                            <!-- New corner badge (top-left) -->
-                            ${isNew ? '<div class="new-corner corner-button">NEW</div>' : ''}
+                            <!-- New corner badge (top-left) with animations -->
+                            ${isNew ? `
+                                <div class="new-corner corner-button pop-in" 
+                                     onclick="event.stopPropagation(); showWhatsNew(${JSON.stringify(tool).replace(/'/g, "&#39;")})"
+                                     onmouseenter="createSparkles(this)">
+                                    NEW
+                                </div>
+                            ` : ''}
 
                             <div class="flex-grow bg-base-100/50 p-2 flex items-center justify-center">
                                 <img src="${tool.thumbnail}" 
@@ -466,8 +812,12 @@
 
                         <!-- Content (70% width) -->
                         <div class="flex-1 p-3 flex flex-col relative">
-                            <!-- Favorite star in top-right corner -->
-                            <div class="favorite-corner corner-button" onclick="event.stopPropagation(); toggleFavorite('${tool.name}', '${category.name}')">
+                            <!-- Favorite star in top-right corner with animations -->
+                            <div class="favorite-corner corner-button" 
+                                 data-tool="${tool.name}" 
+                                 data-category="${category.name}"
+                                 onclick="event.stopPropagation(); toggleFavorite('${tool.name}', '${category.name}')"
+                                 onmouseenter="createStarSparkles(this)">
                                 <span class="favorite-star ${isFav ? 'favorited' : 'unfavorited'}">★</span>
                             </div>
 

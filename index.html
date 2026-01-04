@@ -7,19 +7,93 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" rel="stylesheet" />
     <style>
+        /* ═══════════════════════════════════════════════════════════
+           🎨 USER CONFIGURATION - EDIT THESE VALUES
+           ═══════════════════════════════════════════════════════════
+
+           This section contains all the main layout parameters you
+           can easily adjust without digging through the CSS.
+
+           ═══════════════════════════════════════════════════════════ */
+
         :root {
+            /* ─────────────────────────────────────────────────────
+               🖼️ CARD LAYOUT
+               ───────────────────────────────────────────────────── */
+            --logo-panel-width: 26%;        /* Logo/thumbnail side width
+                                               (reduced from 30% to prevent
+                                               badge overlap with image) */
+
+            /* ─────────────────────────────────────────────────────
+               🏷️ CORNER BADGE (top-left: NEW, POPULAR, etc.)
+               ───────────────────────────────────────────────────── */
+            --corner-badge-height: 26px;    /* Badge vertical height */
+            --corner-badge-min-width: 50px; /* Minimum width */
+            --corner-badge-max-width: 120px;/* Maximum width (for long text) */
+            --corner-badge-padding: 0 0.6rem;
+            --corner-badge-font-size: 0.65rem;
+
+            /* ─────────────────────────────────────────────────────
+               🔘 BOTTOM CORNER BUTTONS (Visit, More)
+               ───────────────────────────────────────────────────── */
             --corner-btn-width: 52px;
-            --corner-btn-height: 32px;
+            --corner-btn-height: 32px;      /* Button vertical height */
             --corner-btn-padding: 0.25rem;
             --corner-radius: 12px;
+
+            /* ─────────────────────────────────────────────────────
+               ⚡ ANIMATION SPEEDS
+               ───────────────────────────────────────────────────── */
             --animation-speed-fast: 0.3s;
             --animation-speed-normal: 0.5s;
             --animation-speed-slow: 0.8s;
+
+            /* ─────────────────────────────────────────────────────
+               💰 PRICING PILL STYLING
+               ───────────────────────────────────────────────────── */
             --pricing-pill-height: 25px;
             --pricing-pill-padding: 0.35rem 0.7rem;
             --pricing-pill-font-size: 0.8rem;
             --pricing-pill-font-weight: 600;
         }
+
+        /* ═══════════════════════════════════════════════════════════
+           💡 QUICK ADJUSTMENT GUIDE
+           ═══════════════════════════════════════════════════════════
+
+           Logo too wide?
+           → Reduce --logo-panel-width: 26% to 24% or 22%
+
+           Badges too short?
+           → Increase --corner-badge-height: 26px to 30px
+
+           Buttons too tall?
+           → Reduce --corner-btn-height: 32px to 28px
+
+           Pricing pills too small?
+           → Increase --pricing-pill-height: 25px to 28px
+
+           ═══════════════════════════════════════════════════════════ */
+
+        /* ═══════════════════════════════════════════════════════════
+           📝 THEME CONFIGURATION
+
+           To change themes, edit JavaScript at bottom (line ~780):
+           const LIGHT_THEMES = ['light', 'cupcake', 'lemonade'];
+           const DARK_THEMES = ['dark', 'dracula', 'synthwave'];
+
+           Available DaisyUI themes:
+           Light: light, cupcake, bumblebee, emerald, corporate, 
+                  garden, lofi, pastel, fantasy, wireframe, cmyk,
+                  autumn, acid, lemonade, winter, nord
+
+           Dark:  dark, synthwave, halloween, forest, aqua, black, 
+                  luxury, dracula, business, night, coffee
+           ═══════════════════════════════════════════════════════════ */
+
+        /* ═══════════════════════════════════════════════════════════
+           🎨 CSS (DON'T EDIT BELOW UNLESS YOU KNOW WHAT YOU'RE DOING)
+           ═══════════════════════════════════════════════════════════ */
 
         body {
             min-height: 100vh;
@@ -312,7 +386,7 @@
             box-shadow: 0 4px 12px oklch(var(--bc) / 0.1);
         }
 
-        /* CORNER BADGE SYSTEM (Auto-width, clickable, hover-only glow) */
+        /* CORNER BADGE SYSTEM */
         .corner-badge {
             position: absolute;
             top: 0;
@@ -324,14 +398,14 @@
             letter-spacing: 0.05em;
             overflow: visible;
 
-            /* Auto-width to fit text */
+            /* Auto-width using CSS variables */
             width: auto;
-            min-width: 50px;
-            max-width: 120px;
-            height: 26px;
-            padding: 0 0.6rem;
+            min-width: var(--corner-badge-min-width);
+            max-width: var(--corner-badge-max-width);
+            height: var(--corner-badge-height);
+            padding: var(--corner-badge-padding);
             white-space: nowrap;
-            font-size: 0.65rem;
+            font-size: var(--corner-badge-font-size);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -782,7 +856,6 @@
         initTheme();
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Smart navbar title
         const heroSection = document.getElementById('heroSection');
         const navbarTitle = document.querySelector('.navbar-title');
 
@@ -1002,7 +1075,7 @@
             return `
                 <div class="card shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 tool-card overflow-hidden">
                     <div class="flex h-full">
-                        <div class="w-[30%] flex-shrink-0 relative flex flex-col">
+                        <div class="flex-shrink-0 relative flex flex-col" style="width: var(--logo-panel-width)">
                             ${cornerBadge}
 
                             <div class="flex-grow bg-base-100/50 p-2 flex items-center justify-center">

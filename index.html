@@ -27,8 +27,8 @@
             /* ─────────────────────────────────────────────────────
                🏷️ CORNER BADGE (top-left: NEW, POPULAR, etc.)
                ───────────────────────────────────────────────────── */
-            --corner-badge-height: 26px;    /* Badge vertical height */
-            --corner-badge-min-width: 50px; /* Minimum width */
+            --corner-badge-height: 22px;    /* Badge vertical height */
+            --corner-badge-min-width: 54px; /* Minimum width */
             --corner-badge-max-width: 120px;/* Maximum width (for long text) */
             --corner-badge-padding: 0 0.6rem;
             --corner-badge-font-size: 0.65rem;
@@ -37,22 +37,22 @@
                🔘 BOTTOM CORNER BUTTONS (Visit, More)
                ───────────────────────────────────────────────────── */
             --corner-btn-width: 52px;
-            --corner-btn-height: 32px;      /* Button vertical height */
+            --corner-btn-height: 28px;      /* Button vertical height */
             --corner-btn-padding: 0.25rem;
             --corner-radius: 12px;
 
             /* ─────────────────────────────────────────────────────
                ⚡ ANIMATION SPEEDS
                ───────────────────────────────────────────────────── */
-            --animation-speed-fast: 0.3s;
-            --animation-speed-normal: 0.5s;
-            --animation-speed-slow: 0.8s;
+            --animation-speed-fast: 0.2s;
+            --animation-speed-normal: 0.4s;
+            --animation-speed-slow: 0.6s;
 
             /* ─────────────────────────────────────────────────────
                💰 PRICING PILL STYLING
                ───────────────────────────────────────────────────── */
             --pricing-pill-height: 25px;
-            --pricing-pill-padding: 0.35rem 0.7rem;
+            --pricing-pill-padding: 0.35rem 0.6rem;
             --pricing-pill-font-size: 0.8rem;
             --pricing-pill-font-weight: 600;
         }
@@ -347,8 +347,8 @@
             width: var(--corner-btn-width);
             height: var(--corner-btn-height);
             padding: var(--corner-btn-padding);
-            background: oklch(var(--b3) / 0.5);
-            backdrop-filter: blur(8px);
+            background: oklch(var(--b3) / 0.3);
+            backdrop-filter: blur(6px);
             border: 1px solid oklch(var(--bc) / 0.1);
             display: flex;
             align-items: center;
@@ -372,7 +372,7 @@
             top: -2px;              /* Overflow at top (extends beyond card) */
             left: -2px;             /* Overflow at left (extends beyond card) */
             border-bottom-right-radius: var(--corner-radius);
-            border: 2px solid;      /* Thicker border for visibility */
+            border: 1px solid;      /* Subtle border */
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -429,45 +429,51 @@
             }
         }
 
-        /* Badge type colors (theme-aware) */
+               /* Badge type colors (theme-aware) - FLAT STYLE */
         .corner-badge.badge-new,
         .corner-badge.badge-updated {
-            background: oklch(var(--su) / 0.25);
+            background: oklch(var(--su));           /* Solid bright green */
             color: oklch(var(--suc));
-            border-color: oklch(var(--su) / 0.5);
+            border-color: oklch(var(--su) / 0.3);   /* Subtle highlight */
         }
 
+
         .corner-badge.badge-popular {
-            background: oklch(var(--p) / 0.25);
+            background: oklch(var(--p));            /* Solid bright blue */
             color: oklch(var(--pc));
-            border-color: oklch(var(--p) / 0.5);
+            border-color: oklch(var(--p) / 0.3);    /* Subtle highlight */
         }
+
 
         .corner-badge.badge-best,
         .corner-badge.badge-top {
-            background: oklch(var(--er) / 0.25);
+            background: oklch(var(--er));           /* Solid bright red */
             color: oklch(var(--erc));
-            border-color: oklch(var(--er) / 0.5);
+            border-color: oklch(var(--er) / 0.3);   /* Subtle highlight */
         }
+
 
         .corner-badge.badge-fast {
-            background: oklch(var(--in) / 0.25);
+            background: oklch(var(--in));           /* Solid bright cyan */
             color: oklch(var(--inc));
-            border-color: oklch(var(--in) / 0.5);
+            border-color: oklch(var(--in) / 0.3);   /* Subtle highlight */
         }
 
+
         .corner-badge.badge-value {
-            background: oklch(var(--s) / 0.25);
+            background: oklch(var(--s));            /* Solid bright purple */
             color: oklch(var(--sc));
-            border-color: oklch(var(--s) / 0.5);
+            border-color: oklch(var(--s) / 0.3);    /* Subtle highlight */
         }
+
 
         .corner-badge.badge-offer,
         .corner-badge.badge-discount {
-            background: oklch(var(--wa) / 0.25);
+            background: oklch(var(--wa));           /* Solid bright orange */
             color: oklch(var(--wac));
-            border-color: oklch(var(--wa) / 0.5);
+            border-color: oklch(var(--wa) / 0.3);   /* Subtle highlight */
         }
+
 
         .sparkle {
             position: absolute;
@@ -695,28 +701,21 @@
                     </svg>
                 </label>
                 <ul tabindex="0" class="dropdown-content menu p-2 shadow-2xl bg-base-100 rounded-box w-52 theme-dropdown">
-                    <li class="menu-title">
-                        <span class="flex items-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                            </svg>
-                            Light Themes
-                        </span>
-                    </li>
-                    <li><a class="theme-option" data-theme="light">Light</a></li>
-                    <li><a class="theme-option" data-theme="cupcake">Cupcake</a></li>
-                    <li><a class="theme-option" data-theme="lemonade">Lemonade</a></li>
-
-                    <div class="theme-divider">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                        </svg>
-                        Dark Themes
-                    </div>
-                    <li><a class="theme-option" data-theme="dark">Dark</a></li>
-                    <li><a class="theme-option" data-theme="dracula">Dracula</a></li>
-                    <li><a class="theme-option" data-theme="synthwave">Synthwave</a></li>
-                </ul>
+    <li class="menu-title">
+        <span class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+            </svg>
+            Choose Theme
+        </span>
+    </li>
+    <li><a class="theme-option" data-theme="light">Light</a></li>
+    <li><a class="theme-option" data-theme="dark">Dark</a></li>
+    <li><a class="theme-option" data-theme="cupcake">Cupcake</a></li>
+    <li><a class="theme-option" data-theme="dracula">Dracula</a></li>
+    <li><a class="theme-option" data-theme="synthwave">Synthwave</a></li>
+    <li><a class="theme-option" data-theme="lemonade">Lemonade</a></li>
+</ul>
             </div>
 
             <div class="dropdown dropdown-end md:hidden">

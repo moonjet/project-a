@@ -39,7 +39,7 @@
             --corner-btn-padding: 0.25rem;
             --corner-radius: 12px;
             --visit-btn-min-width: 120px;   /* Visit button minimum */
-            --visit-btn-max-width: 320px;   /* Visit button maximum (increased) */
+            --visit-btn-max-width: 320px;   /* Visit button maximum */
 
             /* ─────────────────────────────────────────────────────
                ⚡ ANIMATION SPEEDS
@@ -51,7 +51,7 @@
             /* ─────────────────────────────────────────────────────
                💰 PRICING PILL STYLING
                ───────────────────────────────────────────────────── */
-            --pricing-pill-height: 19px;    /* Reduced by 6px (was 25px) */
+            --pricing-pill-height: 19px;    /* Reduced by 6px */
             --pricing-pill-padding: 0.25rem 0.5rem;
             --pricing-pill-font-size: 0.75rem;
             --pricing-pill-font-weight: 600;
@@ -76,11 +76,13 @@
             padding: 0.75rem 0;
         }
 
-        .navbar-title {
-            transition: opacity 0.3s ease;
+        .navbar-extended .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        /* HERO TITLE IN NAVBAR */
+        /* HERO TITLE IN NAVBAR - LEFT JUSTIFIED */
         .hero-title {
             font-size: 2rem;
             font-weight: 800;
@@ -88,6 +90,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
+            margin: 0;
         }
 
         @media (max-width: 768px) {
@@ -171,7 +174,7 @@
             transition: all var(--animation-speed-fast) ease;
             white-space: nowrap;
             border: 1px solid transparent;
-            opacity: 0.67;  /* Reduced by 33% */
+            opacity: 0.67;
         }
 
         .pricing-pill.free {
@@ -222,12 +225,12 @@
             height: 28px;
             padding: 0.4rem 0.8rem;
             font-size: 0.9rem;
-            opacity: 1;  /* Full opacity in modal */
+            opacity: 1;
         }
 
         /* THEME DROPDOWN */
         .theme-dropdown {
-            max-height: 400px;
+            max-height: 500px;
             overflow-y: auto;
         }
 
@@ -249,7 +252,7 @@
             flex-shrink: 0;
         }
 
-        /* CATEGORY HEADERS - DARKER BACKGROUND */
+        /* CATEGORY HEADERS - LEFT JUSTIFIED */
         .category-header {
             background: oklch(var(--b2) / 0.5);
             backdrop-filter: blur(10px);
@@ -262,9 +265,14 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-align: left;
         }
 
-        /* CORNER BUTTONS - CONSISTENT HOVER */
+        .category-header p {
+            text-align: left;
+        }
+
+        /* CORNER BUTTONS - BRIGHTER BORDER ON HOVER */
         .corner-button {
             width: var(--corner-btn-width);
             height: var(--corner-btn-height);
@@ -288,7 +296,7 @@
             border-color: oklch(var(--bc) / 0.2);
         }
 
-        /* CORNER BADGE SYSTEM - CONSISTENT HOVER */
+        /* CORNER BADGE SYSTEM - CLICKABLE */
         .corner-badge {
             position: absolute;
             top: -2px;
@@ -342,7 +350,7 @@
             }
         }
 
-        /* Badge type colors - FLAT STYLE */
+        /* Badge type colors */
         .corner-badge.badge-new,
         .corner-badge.badge-updated {
             background: oklch(var(--su));
@@ -382,7 +390,7 @@
             border-color: oklch(var(--wa) / 0.3);
         }
 
-        /* FAVORITE STAR - CONSISTENT HOVER */
+        /* FAVORITE STAR - GOLD PREVIEW ON HOVER */
         .favorite-corner {
             position: absolute;
             top: 0;
@@ -400,6 +408,10 @@
 
         .favorite-star.unfavorited {
             color: oklch(var(--bc) / 0.3);
+        }
+
+        .favorite-star.unfavorited:hover {
+            color: oklch(var(--wa));
         }
 
         .favorite-star.favorited {
@@ -447,7 +459,7 @@
             }
         }
 
-        /* Bottom corner buttons - DYNAMIC WIDTH FOR URLS */
+        /* Bottom corner buttons */
         .btn-visit {
             min-width: var(--visit-btn-min-width);
             max-width: var(--visit-btn-max-width);
@@ -458,6 +470,38 @@
             padding: 0 0.6rem;
             font-size: 0.65rem;
             white-space: nowrap;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* SHIMMER ANIMATION ON URL HOVER */
+        .btn-visit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                oklch(var(--bc) / 0.3) 50%,
+                transparent 100%
+            );
+            transition: left 0.6s ease;
+        }
+
+        .btn-visit:hover::before {
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 200%;
+            }
         }
 
         .btn-more {
@@ -467,12 +511,12 @@
             border-bottom-right-radius: 0.5rem;
         }
 
-        /* CARDS */
+        /* CARDS - DARKER BORDER */
         .tool-card { 
             min-height: 180px;
             background: oklch(var(--b1) / 0.9);
             backdrop-filter: blur(10px);
-            border: 1px solid oklch(var(--bc) / 0.1);
+            border: 1px solid oklch(var(--bc) / 0.15);
             position: relative;
             overflow: visible;
             transition: all var(--animation-speed-fast) ease;
@@ -490,8 +534,9 @@
             color: oklch(var(--wa)); 
         }
 
+        /* MODAL IMPROVEMENTS - SLEEKER BUTTONS */
         .modal-box { 
-            max-width: 800px; 
+            max-width: 900px;
         }
 
         dialog[open] {
@@ -509,6 +554,14 @@
             }
         }
 
+        .modal-visit-btn {
+            height: 32px;
+            padding: 0 1rem;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            font-weight: 600;
+        }
+
         .pricing-section {
             margin: 1.5rem 0;
             padding: 1rem;
@@ -523,6 +576,52 @@
             margin-bottom: 0.75rem;
             opacity: 0.8;
         }
+
+        /* TIMELINE STYLING - RESPONSIVE */
+        .timeline-section {
+            margin: 1.5rem 0;
+        }
+
+        .timeline-section h4 {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .timeline {
+            padding: 0;
+        }
+
+        .timeline li {
+            min-height: 60px;
+        }
+
+        .timeline-start {
+            font-weight: 600;
+            opacity: 0.7;
+            font-size: 0.85rem;
+        }
+
+        .timeline-box {
+            font-size: 0.9rem;
+            padding: 0.5rem 0.75rem;
+        }
+
+        .timeline-middle svg {
+            color: oklch(var(--p));
+        }
+
+        /* Responsive timeline adjustments */
+        @media (max-width: 1023px) {
+            .timeline-start {
+                font-size: 0.75rem;
+            }
+            .timeline-box {
+                font-size: 0.85rem;
+                padding: 0.4rem 0.6rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -530,13 +629,11 @@
     <div class="navbar navbar-extended sticky top-0 z-50">
         <div class="container mx-auto px-4">
             <div class="flex items-center justify-between w-full">
-                <div class="flex items-center gap-4">
-                    <h1 class="hero-title">
-                        <span class="word-ai">AI</span>
-                        <span class="word-tools">Tools</span>
-                        <span class="word-directory">Directory</span>
-                    </h1>
-                </div>
+                <h1 class="hero-title">
+                    <span class="word-ai">AI</span>
+                    <span class="word-tools">Tools</span>
+                    <span class="word-directory">Directory</span>
+                </h1>
 
                 <div class="flex items-center gap-4">
                     <div class="stats-compact">
@@ -564,10 +661,18 @@
                             </li>
                             <li><a class="theme-option" data-theme="light"><span class="theme-dot" style="background: oklch(0.95 0.02 264);"></span>Light</a></li>
                             <li><a class="theme-option" data-theme="dark"><span class="theme-dot" style="background: oklch(0.25 0.02 264);"></span>Dark</a></li>
+                            <li><a class="theme-option" data-theme="black"><span class="theme-dot" style="background: oklch(0.15 0 0);"></span>Black</a></li>
                             <li><a class="theme-option" data-theme="cupcake"><span class="theme-dot" style="background: oklch(0.92 0.08 320);"></span>Cupcake</a></li>
+                            <li><a class="theme-option" data-theme="cyberpunk"><span class="theme-dot" style="background: oklch(0.40 0.25 280);"></span>Cyberpunk</a></li>
                             <li><a class="theme-option" data-theme="dracula"><span class="theme-dot" style="background: oklch(0.35 0.15 330);"></span>Dracula</a></li>
                             <li><a class="theme-option" data-theme="synthwave"><span class="theme-dot" style="background: oklch(0.45 0.25 300);"></span>Synthwave</a></li>
+                            <li><a class="theme-option" data-theme="retro"><span class="theme-dot" style="background: oklch(0.85 0.12 60);"></span>Retro</a></li>
+                            <li><a class="theme-option" data-theme="valentine"><span class="theme-dot" style="background: oklch(0.90 0.15 10);"></span>Valentine</a></li>
+                            <li><a class="theme-option" data-theme="aqua"><span class="theme-dot" style="background: oklch(0.85 0.15 200);"></span>Aqua</a></li>
+                            <li><a class="theme-option" data-theme="forest"><span class="theme-dot" style="background: oklch(0.40 0.12 150);"></span>Forest</a></li>
                             <li><a class="theme-option" data-theme="lemonade"><span class="theme-dot" style="background: oklch(0.95 0.10 100);"></span>Lemonade</a></li>
+                            <li><a class="theme-option" data-theme="night"><span class="theme-dot" style="background: oklch(0.20 0.08 240);"></span>Night</a></li>
+                            <li><a class="theme-option" data-theme="coffee"><span class="theme-dot" style="background: oklch(0.30 0.05 30);"></span>Coffee</a></li>
                         </ul>
                     </div>
 
@@ -740,14 +845,49 @@
             if (!badgeType) return '';
 
             const badgeClass = `badge-${badgeType.toLowerCase()}`;
-            const toolJson = JSON.stringify(tool).replace(/'/g, "&#39;");
-            const categoryJson = JSON.stringify(category).replace(/'/g, "&#39;");
 
             return `
                 <div class="corner-badge ${badgeClass} pop-in" 
-                     onclick="event.stopPropagation(); showToolDetails(${toolJson}, ${categoryJson})"
+                     onclick="event.stopPropagation(); showToolModal('${tool.name}', '${category.name}')"
                      title="Click to learn more about ${tool.name}">
                     ${badgeType}
+                </div>
+            `;
+        }
+
+        function renderTimeline(timeline) {
+            if (!timeline || timeline.length === 0) return '';
+
+            const formatDate = (dateStr) => {
+                const [year, month] = dateStr.split('-');
+                const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+                                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                return month ? `${monthNames[parseInt(month) - 1]} ${year}` : year;
+            };
+
+            const timelineItems = timeline.map((item, index) => {
+                const isLast = index === timeline.length - 1;
+                return `
+                    <li>
+                        ${index > 0 ? '<hr />' : ''}
+                        <div class="timeline-start">${formatDate(item.date)}</div>
+                        <div class="timeline-middle">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="timeline-end timeline-box">${item.version}</div>
+                        ${!isLast ? '<hr />' : ''}
+                    </li>
+                `;
+            }).join('');
+
+            return `
+                <div class="timeline-section">
+                    <h4>📈 Model Timeline</h4>
+                    <ul class="timeline timeline-vertical lg:timeline-horizontal">
+                        ${timelineItems}
+                    </ul>
                 </div>
             `;
         }
@@ -778,15 +918,25 @@
             return html;
         }
 
-        function showToolDetails(tool, category) {
+        let toolsData = null;
+
+        function showToolModal(toolName, categoryName) {
+            if (!toolsData) return;
+
+            const category = toolsData.categories.find(c => c.name === categoryName);
+            if (!category) return;
+
+            const tool = category.tools.find(t => t.name === toolName);
+            if (!tool) return;
+
             const modal = document.getElementById('toolModal');
             const content = document.getElementById('modalContent');
 
             const modelVersion = modelVersions[tool.name] ? 
-                `<div class="badge badge-neutral badge-outline">Model: ${modelVersions[tool.name]}</div>` : '';
+                `<div class="badge badge-neutral badge-outline badge-sm">Model: ${modelVersions[tool.name]}</div>` : '';
 
             const cornerBadgeDisplay = tool.cornerBadge ? 
-                `<span class="badge badge-lg badge-primary">${tool.cornerBadge}</span>` : '';
+                `<span class="badge badge-primary badge-sm">${tool.cornerBadge}</span>` : '';
 
             const pricingHtml = tool.pricing ? `
                 <div class="pricing-section">
@@ -797,14 +947,19 @@
                 </div>
             ` : '';
 
+            const timelineHtml = renderTimeline(tool.timeline);
+
+            const cleanUrl = tool.url.replace(/^https?:\/\/(www\.)?/, '');
+            const visitUrl = `www.${cleanUrl.split('/')[0]}`;
+
             content.innerHTML = `
                 <div class="flex items-start gap-4 mb-4">
                     <img src="${tool.thumbnail}" alt="${tool.name}" 
-                         class="w-24 h-24 rounded-lg object-contain bg-base-100/50 p-2"
+                         class="w-20 h-20 rounded-lg object-contain bg-base-100/50 p-2"
                          onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(tool.name)}&size=128&background=random'">
                     <div class="flex-1">
-                        <h3 class="text-2xl font-bold">${tool.name}</h3>
-                        <div class="star-rating text-xl mb-2">${renderStars(tool.rating || 0)}</div>
+                        <h3 class="text-xl font-bold">${tool.name}</h3>
+                        <div class="star-rating text-lg mb-2">${renderStars(tool.rating || 0)}</div>
                         <div class="flex gap-2 flex-wrap">
                             ${cornerBadgeDisplay}
                             ${modelVersion}
@@ -812,15 +967,18 @@
                     </div>
                 </div>
 
-                <p class="opacity-80 mb-4">${tool.description}</p>
+                <p class="opacity-80 mb-4 text-sm">${tool.description}</p>
 
                 ${pricingHtml}
+                ${timelineHtml}
 
                 <div class="flex gap-2 mt-6">
-                    <a href="${tool.url}" target="_blank" class="btn btn-primary flex-1">Visit Website →</a>
+                    <a href="${tool.url}" target="_blank" class="btn btn-primary flex-1 modal-visit-btn">
+                        Visit: ${visitUrl} →
+                    </a>
                     <button onclick="toggleFavorite('${tool.name}', '${category.name}')" 
-                            class="btn btn-outline ${isFavorite(tool.name, category.name) ? 'btn-warning' : ''}">
-                        ${isFavorite(tool.name, category.name) ? '★ Favorited' : '☆ Favorite'}
+                            class="btn btn-outline modal-visit-btn ${isFavorite(tool.name, category.name) ? 'btn-warning' : ''}">
+                        ${isFavorite(tool.name, category.name) ? '★' : '☆'}
                     </button>
                 </div>
             `;
@@ -866,7 +1024,7 @@
                             <p class="text-sm opacity-70 mb-2 flex-grow">${tool.description}</p>
 
                             <div class="flex items-center justify-end -mr-3 -mb-3">
-                                <button onclick='showToolDetails(${JSON.stringify(tool).replace(/'/g, "&#39;")}, ${JSON.stringify(category).replace(/'/g, "&#39;")})' 
+                                <button onclick="showToolModal('${tool.name}', '${category.name}')" 
                                         class="btn-more corner-button">More</button>
                             </div>
                         </div>
@@ -879,6 +1037,7 @@
             fetch('ai-tools-directory.json')
                 .then(response => response.json())
                 .then(data => {
+                    toolsData = data;
                     const container = document.getElementById('toolsContainer');
                     const favSection = document.getElementById('favoritesSection');
                     const favGrid = document.getElementById('favoritesGrid');

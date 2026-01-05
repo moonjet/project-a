@@ -20,9 +20,7 @@
             /* ─────────────────────────────────────────────────────
                🖼️ CARD LAYOUT
                ───────────────────────────────────────────────────── */
-            --logo-panel-width: 26%;        /* Logo/thumbnail side width
-                                               (reduced from 30% to prevent
-                                               badge overlap with image) */
+            --logo-panel-width: 26%;        /* Logo/thumbnail side width */
 
             /* ─────────────────────────────────────────────────────
                🏷️ CORNER BADGE (top-left: NEW, POPULAR, etc.)
@@ -40,6 +38,8 @@
             --corner-btn-height: 28px;      /* Button vertical height */
             --corner-btn-padding: 0.25rem;
             --corner-radius: 12px;
+            --visit-btn-min-width: 120px;   /* Visit button minimum */
+            --visit-btn-max-width: 320px;   /* Visit button maximum (increased) */
 
             /* ─────────────────────────────────────────────────────
                ⚡ ANIMATION SPEEDS
@@ -51,29 +51,11 @@
             /* ─────────────────────────────────────────────────────
                💰 PRICING PILL STYLING
                ───────────────────────────────────────────────────── */
-            --pricing-pill-height: 25px;
-            --pricing-pill-padding: 0.35rem 0.6rem;
-            --pricing-pill-font-size: 0.8rem;
+            --pricing-pill-height: 19px;    /* Reduced by 6px (was 25px) */
+            --pricing-pill-padding: 0.25rem 0.5rem;
+            --pricing-pill-font-size: 0.75rem;
             --pricing-pill-font-weight: 600;
         }
-
-        /* ═══════════════════════════════════════════════════════════
-           💡 QUICK ADJUSTMENT GUIDE
-           ═══════════════════════════════════════════════════════════
-
-           Logo too wide?
-           → Reduce --logo-panel-width: 26% to 24% or 22%
-
-           Badges too short?
-           → Increase --corner-badge-height: 26px to 30px
-
-           Buttons too tall?
-           → Reduce --corner-btn-height: 32px to 28px
-
-           Pricing pills too small?
-           → Increase --pricing-pill-height: 25px to 28px
-
-           ═══════════════════════════════════════════════════════════ */
 
         body {
             min-height: 100vh;
@@ -85,63 +67,32 @@
             flex: 1;
         }
 
-        /* NAVBAR */
-        .navbar-title {
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            opacity: 0;
-            transform: translateY(-5px);
-            pointer-events: none;
-        }
-
-        .navbar-title.visible {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
-        }
-
-        /* AVATAR */
-        .avatar-hover {
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        .avatar-hover:hover {
-            transform: scale(1.15) rotate(5deg);
-            box-shadow: 0 8px 20px oklch(var(--p) / 0.3);
-        }
-
-        .avatar-hover img {
-            transition: all 0.3s ease;
-        }
-
-        .avatar-hover:hover img {
-            filter: brightness(1.1);
-        }
-
-        /* HERO */
-        .hero-title-container {
-            background: oklch(var(--b1) / 0.6);
+        /* SLEEK NAVBAR - DARKER BACKGROUND */
+        .navbar-extended {
+            background: oklch(from oklch(var(--b1)) calc(l * 0.9) c h);
             backdrop-filter: blur(20px);
-            border: 1px solid oklch(var(--bc) / 0.1);
-            border-radius: 1.5rem;
-            padding: 2rem;
-            margin: 2rem auto;
-            max-width: 900px;
-            box-shadow: 0 8px 32px oklch(var(--bc) / 0.08);
+            border-bottom: 1px solid oklch(var(--bc) / 0.1);
+            box-shadow: 0 2px 8px oklch(var(--bc) / 0.05);
+            padding: 0.75rem 0;
         }
 
+        .navbar-title {
+            transition: opacity 0.3s ease;
+        }
+
+        /* HERO TITLE IN NAVBAR */
         .hero-title {
-            font-size: 3.5rem;
+            font-size: 2rem;
             font-weight: 800;
             line-height: 1.2;
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
+            gap: 0.5rem;
         }
 
         @media (max-width: 768px) {
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 1.5rem;
             }
         }
 
@@ -187,37 +138,20 @@
             50% { background-position: 50% 100%; }
         }
 
-        .hero-subtitle {
-            font-size: 1.25rem;
-            margin-top: 1rem;
+        .stats-compact {
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 0.5rem;
-            flex-wrap: wrap;
             opacity: 0.8;
+            font-weight: 600;
         }
 
         .stat-number {
-            display: inline-block;
-            font-weight: 700;
             color: oklch(var(--p));
-            min-width: 3ch;
-            text-align: center;
         }
 
-        .stat-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-            padding: 0.25rem 0.75rem;
-            background: oklch(var(--p) / 0.1);
-            border-radius: 9999px;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        /* PRICING PILLS */
+        /* PRICING PILLS - REDUCED HEIGHT & OPACITY */
         .pricing-pills {
             display: flex;
             gap: 0.4rem;
@@ -237,64 +171,58 @@
             transition: all var(--animation-speed-fast) ease;
             white-space: nowrap;
             border: 1px solid transparent;
+            opacity: 0.67;  /* Reduced by 33% */
         }
 
         .pricing-pill.free {
-            background: oklch(var(--su) / 0.2);
+            background: oklch(var(--su));
             color: oklch(var(--suc));
-            border-color: oklch(var(--su) / 0.4);
+            border-color: oklch(var(--su) / 0.3);
         }
 
         .pricing-pill.free:hover {
-            background: oklch(var(--su) / 0.3);
-            border-color: oklch(var(--su) / 0.6);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px oklch(var(--su) / 0.3);
+            transform: scale(1.03);
+            opacity: 0.85;
         }
 
         .pricing-pill.tier-1 {
-            background: oklch(var(--p) / 0.25);
+            background: oklch(var(--p));
             color: oklch(var(--pc));
-            border-color: oklch(var(--p) / 0.4);
+            border-color: oklch(var(--p) / 0.3);
         }
 
         .pricing-pill.tier-1:hover {
-            background: oklch(var(--p) / 0.35);
-            border-color: oklch(var(--p) / 0.6);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px oklch(var(--p) / 0.3);
+            transform: scale(1.03);
+            opacity: 0.85;
         }
 
         .pricing-pill.tier-2 {
-            background: oklch(var(--s) / 0.25);
+            background: oklch(var(--s));
             color: oklch(var(--sc));
-            border-color: oklch(var(--s) / 0.4);
+            border-color: oklch(var(--s) / 0.3);
         }
 
         .pricing-pill.tier-2:hover {
-            background: oklch(var(--s) / 0.35);
-            border-color: oklch(var(--s) / 0.6);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px oklch(var(--s) / 0.3);
+            transform: scale(1.03);
+            opacity: 0.85;
         }
 
         .pricing-pill.tier-3 {
-            background: oklch(var(--a) / 0.25);
+            background: oklch(var(--a));
             color: oklch(var(--ac));
-            border-color: oklch(var(--a) / 0.4);
+            border-color: oklch(var(--a) / 0.3);
         }
 
         .pricing-pill.tier-3:hover {
-            background: oklch(var(--a) / 0.35);
-            border-color: oklch(var(--a) / 0.6);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px oklch(var(--a) / 0.3);
+            transform: scale(1.03);
+            opacity: 0.85;
         }
 
         .pricing-pill-lg {
-            height: 32px;
-            padding: 0.5rem 1rem;
-            font-size: 0.95rem;
+            height: 28px;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.9rem;
+            opacity: 1;  /* Full opacity in modal */
         }
 
         /* THEME DROPDOWN */
@@ -305,29 +233,26 @@
 
         .theme-option {
             transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .theme-option:hover {
             transform: translateX(4px);
         }
 
-        .theme-divider {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            opacity: 0.6;
-            margin: 0.5rem 1rem;
-            padding-top: 0.5rem;
-            border-top: 1px solid currentColor;
+        .theme-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
         }
 
-        /* CATEGORY HEADERS */
+        /* CATEGORY HEADERS - DARKER BACKGROUND */
         .category-header {
-            background: oklch(var(--b2) / 0.3);
+            background: oklch(var(--b2) / 0.5);
             backdrop-filter: blur(10px);
-            border-left-width: 4px;
-            border-left-color: oklch(var(--p));
         }
 
         .category-header h2 {
@@ -339,17 +264,11 @@
             background-clip: text;
         }
 
-        .category-chat { border-left-color: oklch(var(--p)); }
-        .category-dev { border-left-color: oklch(var(--s)); }
-
-        /* CORNER BUTTONS */
+        /* CORNER BUTTONS - CONSISTENT HOVER */
         .corner-button {
             width: var(--corner-btn-width);
             height: var(--corner-btn-height);
             padding: var(--corner-btn-padding);
-            background: oklch(var(--b3) / 0.3);
-            backdrop-filter: blur(6px);
-            border: 1px solid oklch(var(--bc) / 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -358,32 +277,33 @@
             font-weight: 600;
             font-size: 0.7rem;
             position: relative;
+            border: 1px solid oklch(var(--bc) / 0.1);
+            background: oklch(var(--b3) / 0.8);
+            color: oklch(var(--bc));
         }
 
         .corner-button:hover {
-            background: oklch(var(--b3) / 0.8);
+            transform: scale(1.03);
+            background: oklch(var(--b3));
             border-color: oklch(var(--bc) / 0.2);
-            box-shadow: 0 4px 12px oklch(var(--bc) / 0.1);
         }
 
-        /* CORNER BADGE SYSTEM - FIXED FOR "PASTED LABEL" EFFECT */
+        /* CORNER BADGE SYSTEM - CONSISTENT HOVER */
         .corner-badge {
             position: absolute;
-            top: -2px;              /* Overflow at top (extends beyond card) */
-            left: -2px;             /* Overflow at left (extends beyond card) */
+            top: -2px;
+            left: -2px;
             border-bottom-right-radius: var(--corner-radius);
-            border: 1px solid;      /* Subtle border */
+            border: 1px solid;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             overflow: visible;
 
-            /* Layering - appears ON TOP of card */
             z-index: 10;
             box-shadow: 0 2px 8px oklch(var(--bc) / 0.15),
                         0 1px 3px oklch(var(--bc) / 0.1);
 
-            /* Auto-width using CSS variables */
             width: auto;
             min-width: var(--corner-badge-min-width);
             max-width: var(--corner-badge-max-width);
@@ -395,25 +315,18 @@
             align-items: center;
             justify-content: center;
 
-            /* Clickable */
             cursor: pointer;
             user-select: none;
-
-            /* Transition for hover effects */
             transition: all 0.3s ease;
         }
 
-        /* Hover glow effect (NOT constant pulse) */
         .corner-badge:hover {
-            transform: scale(1.08);
-            box-shadow: 0 0 15px 3px currentColor,
-                        0 4px 12px oklch(var(--bc) / 0.2);
-            filter: brightness(1.15);
-            top: -3px;              /* Lifts more on hover */
-            left: -3px;             /* Extends more on hover */
+            transform: scale(1.04);
+            filter: brightness(1.08);
+            box-shadow: 0 0 12px 2px currentColor,
+                        0 3px 10px oklch(var(--bc) / 0.2);
         }
 
-        /* Pop-in animation on load (NO pulse after) */
         .corner-badge.pop-in {
             animation: pop-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
@@ -429,71 +342,47 @@
             }
         }
 
-               /* Badge type colors (theme-aware) - FLAT STYLE */
+        /* Badge type colors - FLAT STYLE */
         .corner-badge.badge-new,
         .corner-badge.badge-updated {
-            background: oklch(var(--su));           /* Solid bright green */
+            background: oklch(var(--su));
             color: oklch(var(--suc));
-            border-color: oklch(var(--su) / 0.3);   /* Subtle highlight */
+            border-color: oklch(var(--su) / 0.3);
         }
-
 
         .corner-badge.badge-popular {
-            background: oklch(var(--p));            /* Solid bright blue */
+            background: oklch(var(--p));
             color: oklch(var(--pc));
-            border-color: oklch(var(--p) / 0.3);    /* Subtle highlight */
+            border-color: oklch(var(--p) / 0.3);
         }
-
 
         .corner-badge.badge-best,
         .corner-badge.badge-top {
-            background: oklch(var(--er));           /* Solid bright red */
+            background: oklch(var(--er));
             color: oklch(var(--erc));
-            border-color: oklch(var(--er) / 0.3);   /* Subtle highlight */
+            border-color: oklch(var(--er) / 0.3);
         }
-
 
         .corner-badge.badge-fast {
-            background: oklch(var(--in));           /* Solid bright cyan */
+            background: oklch(var(--in));
             color: oklch(var(--inc));
-            border-color: oklch(var(--in) / 0.3);   /* Subtle highlight */
+            border-color: oklch(var(--in) / 0.3);
         }
-
 
         .corner-badge.badge-value {
-            background: oklch(var(--s));            /* Solid bright purple */
+            background: oklch(var(--s));
             color: oklch(var(--sc));
-            border-color: oklch(var(--s) / 0.3);    /* Subtle highlight */
+            border-color: oklch(var(--s) / 0.3);
         }
-
 
         .corner-badge.badge-offer,
         .corner-badge.badge-discount {
-            background: oklch(var(--wa));           /* Solid bright orange */
+            background: oklch(var(--wa));
             color: oklch(var(--wac));
-            border-color: oklch(var(--wa) / 0.3);   /* Subtle highlight */
+            border-color: oklch(var(--wa) / 0.3);
         }
 
-
-        .sparkle {
-            position: absolute;
-            pointer-events: none;
-            font-size: 0.7rem;
-            animation: sparkle-burst var(--animation-speed-slow) ease-out forwards;
-        }
-
-        @keyframes sparkle-burst {
-            0% {
-                transform: translate(0, 0) scale(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(var(--tx), var(--ty)) scale(1.2) rotate(180deg);
-                opacity: 0;
-            }
-        }
-
-        /* FAVORITE STAR */
+        /* FAVORITE STAR - CONSISTENT HOVER */
         .favorite-corner {
             position: absolute;
             top: 0;
@@ -518,13 +407,7 @@
         }
 
         .favorite-corner:hover .favorite-star {
-            transform: scale(1.2) rotate(15deg);
-            filter: drop-shadow(0 4px 12px oklch(var(--wa) / 0.5));
-        }
-
-        .favorite-corner:hover .favorite-star.favorited {
-            color: oklch(var(--wa));
-            transform: scale(1.25) rotate(20deg);
+            transform: scale(1.15) rotate(10deg);
         }
 
         .favorite-star.pulse {
@@ -564,30 +447,17 @@
             }
         }
 
-        .star-sparkle {
-            position: absolute;
-            pointer-events: none;
-            font-size: 0.6rem;
-            animation: star-sparkle-anim 0.7s ease-out forwards;
-        }
-
-        @keyframes star-sparkle-anim {
-            0% {
-                opacity: 1;
-                transform: translate(0, 0) scale(0) rotate(0deg);
-            }
-            100% {
-                opacity: 0;
-                transform: translate(var(--sx), var(--sy)) scale(1.5) rotate(180deg);
-            }
-        }
-
-        /* Bottom corner buttons */
+        /* Bottom corner buttons - DYNAMIC WIDTH FOR URLS */
         .btn-visit {
-            width: var(--corner-btn-width);
+            min-width: var(--visit-btn-min-width);
+            max-width: var(--visit-btn-max-width);
+            width: fit-content;
             height: var(--corner-btn-height);
             border-top-right-radius: var(--corner-radius);
             border-bottom-left-radius: 0.5rem;
+            padding: 0 0.6rem;
+            font-size: 0.65rem;
+            white-space: nowrap;
         }
 
         .btn-more {
@@ -597,33 +467,19 @@
             border-bottom-right-radius: 0.5rem;
         }
 
-        /* URL */
-        .url-link {
-            font-size: 0.7rem;
-            opacity: 0.9;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            background: oklch(var(--bc) / 0.05);
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.375rem;
-            border: 1px solid oklch(var(--bc) / 0.08);
-        }
-
-        .url-link:hover {
-            opacity: 1;
-            background: oklch(var(--bc) / 0.1);
-            border-color: oklch(var(--bc) / 0.15);
-        }
-
-        /* CARDS - FIXED FOR BADGE OVERFLOW */
+        /* CARDS */
         .tool-card { 
             min-height: 180px;
             background: oklch(var(--b1) / 0.9);
             backdrop-filter: blur(10px);
             border: 1px solid oklch(var(--bc) / 0.1);
-            position: relative;     /* For z-index context */
-            overflow: visible;      /* Allow badge to overflow */
+            position: relative;
+            overflow: visible;
+            transition: all var(--animation-speed-fast) ease;
+        }
+
+        .tool-card:hover {
+            transform: scale(1.02);
         }
 
         .card p, .card a {
@@ -671,89 +527,64 @@
 </head>
 <body>
 
-    <div class="navbar bg-base-100 shadow-lg sticky top-0 z-50 backdrop-blur-lg bg-base-100/80">
-        <div class="navbar-start">
-            <div class="avatar avatar-hover">
-                <div class="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                    <img src="avatar.jpeg" alt="Avatar" />
+    <div class="navbar navbar-extended sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between w-full">
+                <div class="flex items-center gap-4">
+                    <h1 class="hero-title">
+                        <span class="word-ai">AI</span>
+                        <span class="word-tools">Tools</span>
+                        <span class="word-directory">Directory</span>
+                    </h1>
                 </div>
-            </div>
-        </div>
 
-        <div class="navbar-center">
-            <a class="navbar-title btn btn-ghost text-xl md:text-2xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-                AI Tools Directory
-            </a>
-        </div>
+                <div class="flex items-center gap-4">
+                    <div class="stats-compact">
+                        <span><span class="stat-number" id="toolCount">0</span>+ Tools</span>
+                        <span>•</span>
+                        <span><span class="stat-number" id="categoryCount">0</span> Categories</span>
+                    </div>
 
-        <div class="navbar-end gap-2">
-            <div class="hidden md:flex gap-1">
-                <a href="#about" class="btn btn-ghost btn-sm">About</a>
-                <a href="#newsletter" class="btn btn-ghost btn-sm">Newsletter</a>
-                <a href="#blog" class="btn btn-ghost btn-sm">Blog</a>
-                <a href="#contact" class="btn btn-ghost btn-sm">Contact</a>
-            </div>
+                    <div class="hidden md:flex gap-1">
+                        <a href="#about" class="btn btn-ghost btn-sm">About</a>
+                        <a href="#newsletter" class="btn btn-ghost btn-sm">Newsletter</a>
+                        <a href="#blog" class="btn btn-ghost btn-sm">Blog</a>
+                        <a href="#contact" class="btn btn-ghost btn-sm">Contact</a>
+                    </div>
 
-            <div class="dropdown dropdown-end">
-                <label tabindex="0" class="btn btn-ghost btn-circle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                    </svg>
-                </label>
-                <ul tabindex="0" class="dropdown-content menu p-2 shadow-2xl bg-base-100 rounded-box w-52 theme-dropdown">
-    <li class="menu-title">
-        <span class="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-            </svg>
-            Choose Theme
-        </span>
-    </li>
-    <li><a class="theme-option" data-theme="light">Light</a></li>
-    <li><a class="theme-option" data-theme="dark">Dark</a></li>
-    <li><a class="theme-option" data-theme="cupcake">Cupcake</a></li>
-    <li><a class="theme-option" data-theme="dracula">Dracula</a></li>
-    <li><a class="theme-option" data-theme="synthwave">Synthwave</a></li>
-    <li><a class="theme-option" data-theme="lemonade">Lemonade</a></li>
-</ul>
-            </div>
+                    <div class="dropdown dropdown-end">
+                        <label tabindex="0" class="btn btn-ghost btn-circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                            </svg>
+                        </label>
+                        <ul tabindex="0" class="dropdown-content menu p-2 shadow-2xl bg-base-100 rounded-box w-52 theme-dropdown">
+                            <li class="menu-title">
+                                <span>Choose Theme</span>
+                            </li>
+                            <li><a class="theme-option" data-theme="light"><span class="theme-dot" style="background: oklch(0.95 0.02 264);"></span>Light</a></li>
+                            <li><a class="theme-option" data-theme="dark"><span class="theme-dot" style="background: oklch(0.25 0.02 264);"></span>Dark</a></li>
+                            <li><a class="theme-option" data-theme="cupcake"><span class="theme-dot" style="background: oklch(0.92 0.08 320);"></span>Cupcake</a></li>
+                            <li><a class="theme-option" data-theme="dracula"><span class="theme-dot" style="background: oklch(0.35 0.15 330);"></span>Dracula</a></li>
+                            <li><a class="theme-option" data-theme="synthwave"><span class="theme-dot" style="background: oklch(0.45 0.25 300);"></span>Synthwave</a></li>
+                            <li><a class="theme-option" data-theme="lemonade"><span class="theme-dot" style="background: oklch(0.95 0.10 100);"></span>Lemonade</a></li>
+                        </ul>
+                    </div>
 
-            <div class="dropdown dropdown-end md:hidden">
-                <label tabindex="0" class="btn btn-ghost btn-circle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </label>
-                <ul tabindex="0" class="dropdown-content menu p-2 shadow-2xl bg-base-100 rounded-box w-52">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#newsletter">Newsletter</a></li>
-                    <li><a href="#blog">Blog</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="container mx-auto px-4">
-        <div class="hero-title-container" id="heroSection">
-            <h1 class="hero-title">
-                <span class="word-ai">AI</span>
-                <span class="word-tools">Tools</span>
-                <span class="word-directory">Directory</span>
-            </h1>
-            <div class="hero-subtitle">
-                <span>✨</span>
-                <span>Discover</span>
-                <span class="stat-badge">
-                    <span class="stat-number" id="toolCount">0</span>+ Tools
-                </span>
-                <span>•</span>
-                <span class="stat-badge">
-                    <span class="stat-number" id="categoryCount">0</span> Categories
-                </span>
-                <span>•</span>
-                <span>Updated Daily</span>
-                <span>🚀</span>
+                    <div class="dropdown dropdown-end md:hidden">
+                        <label tabindex="0" class="btn btn-ghost btn-circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </label>
+                        <ul tabindex="0" class="dropdown-content menu p-2 shadow-2xl bg-base-100 rounded-box w-52">
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#newsletter">Newsletter</a></li>
+                            <li><a href="#blog">Blog</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -762,7 +593,7 @@
         <div class="container mx-auto px-4 py-8 max-w-7xl">
             <div id="favoritesSection" class="mb-12 hidden">
                 <h2 class="text-3xl font-bold mb-4 flex items-center gap-2">
-                    ⭐ Your Favorites
+                    Selected Services
                 </h2>
                 <div id="favoritesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"></div>
             </div>
@@ -815,9 +646,6 @@
     </dialog>
 
     <script>
-        const LIGHT_THEMES = ['light', 'cupcake', 'lemonade'];
-        const DARK_THEMES = ['dark', 'dracula', 'synthwave'];
-
         function initTheme() {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme) {
@@ -844,24 +672,6 @@
 
         initTheme();
         document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        const heroSection = document.getElementById('heroSection');
-        const navbarTitle = document.querySelector('.navbar-title');
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    navbarTitle.classList.remove('visible');
-                } else {
-                    navbarTitle.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '-60px 0px 0px 0px'
-        });
-
-        observer.observe(heroSection);
 
         function animateCounter(element, target, duration = 1000) {
             let start = 0;
@@ -913,44 +723,6 @@
             return favorites.includes(`${categoryName}::${toolName}`);
         }
 
-        function createSparkles(badge) {
-            const sparkles = ['✨', '⭐', '💫', '✦'];
-            for (let i = 0; i < 4; i++) {
-                setTimeout(() => {
-                    const sparkle = document.createElement('div');
-                    sparkle.className = 'sparkle';
-                    sparkle.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
-
-                    const angle = (Math.PI * 2 * i) / 4;
-                    const distance = 20 + Math.random() * 10;
-                    sparkle.style.setProperty('--tx', `${Math.cos(angle) * distance}px`);
-                    sparkle.style.setProperty('--ty', `${Math.sin(angle) * distance}px`);
-
-                    badge.appendChild(sparkle);
-                    setTimeout(() => sparkle.remove(), 800);
-                }, i * 50);
-            }
-        }
-
-        function createStarSparkles(corner) {
-            const sparkles = ['✨', '⭐', '💫'];
-            for (let i = 0; i < 3; i++) {
-                setTimeout(() => {
-                    const sparkle = document.createElement('div');
-                    sparkle.className = 'star-sparkle';
-                    sparkle.textContent = sparkles[i % sparkles.length];
-
-                    const angle = (Math.PI * 2 * i) / 3 - Math.PI / 2;
-                    const distance = 18 + Math.random() * 10;
-                    sparkle.style.setProperty('--sx', `${Math.cos(angle) * distance}px`);
-                    sparkle.style.setProperty('--sy', `${Math.sin(angle) * distance}px`);
-
-                    corner.appendChild(sparkle);
-                    setTimeout(() => sparkle.remove(), 700);
-                }, i * 100);
-            }
-        }
-
         function renderPricingPills(pricing, isLarge = false) {
             if (!pricing) return '';
 
@@ -974,7 +746,6 @@
             return `
                 <div class="corner-badge ${badgeClass} pop-in" 
                      onclick="event.stopPropagation(); showToolDetails(${toolJson}, ${categoryJson})"
-                     onmouseenter="createSparkles(this)"
                      title="Click to learn more about ${tool.name}">
                     ${badgeType}
                 </div>
@@ -1060,9 +831,11 @@
         function createToolCard(tool, category) {
             const isFav = isFavorite(tool.name, category.name);
             const cornerBadge = renderCornerBadge(tool.cornerBadge, tool, category);
+            const cleanUrl = tool.url.replace(/^https?:\/\/(www\.)?/, '');
+            const visitText = `www.${cleanUrl.split('/')[0]}`;
 
             return `
-                <div class="card shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 tool-card">
+                <div class="card shadow-xl hover:shadow-2xl transition-all tool-card">
                     <div class="flex h-full">
                         <div class="flex-shrink-0 relative flex flex-col" style="width: var(--logo-panel-width)">
                             ${cornerBadge}
@@ -1072,14 +845,13 @@
                                      class="max-w-full max-h-full object-contain"
                                      onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(tool.name)}&size=200&background=random'">
                             </div>
-                            <a href="${tool.url}" target="_blank" class="btn-visit corner-button">Visit</a>
+                            <a href="${tool.url}" target="_blank" class="btn-visit corner-button" title="${tool.url}">${visitText}</a>
                         </div>
 
                         <div class="flex-1 p-3 flex flex-col relative">
                             <div class="favorite-corner corner-button" 
                                  data-tool="${tool.name}" data-category="${category.name}"
-                                 onclick="event.stopPropagation(); toggleFavorite('${tool.name}', '${category.name}')"
-                                 onmouseenter="createStarSparkles(this)">
+                                 onclick="event.stopPropagation(); toggleFavorite('${tool.name}', '${category.name}')">
                                 <span class="favorite-star ${isFav ? 'favorited' : 'unfavorited'}">★</span>
                             </div>
 
@@ -1093,10 +865,7 @@
 
                             <p class="text-sm opacity-70 mb-2 flex-grow">${tool.description}</p>
 
-                            <div class="flex items-center justify-between gap-2 -mr-3 -mb-3">
-                                <a href="${tool.url}" target="_blank" class="url-link truncate flex-shrink min-w-0">
-                                    ${tool.url.replace(/^https?:\/\/(www\.)?/, '')}
-                                </a>
+                            <div class="flex items-center justify-end -mr-3 -mb-3">
                                 <button onclick='showToolDetails(${JSON.stringify(tool).replace(/'/g, "&#39;")}, ${JSON.stringify(category).replace(/'/g, "&#39;")})' 
                                         class="btn-more corner-button">More</button>
                             </div>
@@ -1143,7 +912,7 @@
                         const categorySection = document.createElement('div');
                         categorySection.className = 'mb-12';
                         categorySection.innerHTML = `
-                            <div class="category-header ${categoryClass} rounded-r-xl py-3 px-6 mb-6">
+                            <div class="category-header rounded-xl py-3 px-6 mb-6">
                                 <h2 class="mb-1">${category.name}</h2>
                                 <p class="opacity-70">${category.description}</p>
                             </div>

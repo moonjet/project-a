@@ -74,13 +74,13 @@
             flex: 1;
         }
 
-        /* SLEEK NAVBAR - COHESIVE GRADIENT DESIGN */
+        /* SLEEK NAVBAR - PURE GRADIENT NO DARK BG */
         .navbar-extended {
-            /* Opposite gradient from body for elevation */
+            /* Opposite gradient from body for elevation - NO DARK BG COLOR */
             background: linear-gradient(
                 145deg,
-                oklch(from oklch(var(--b1)) calc(l * 0.94) c h) 0%,
-                oklch(from oklch(var(--b1)) calc(l * 0.92) c h) 100%
+                oklch(var(--b1)) 0%,
+                oklch(from oklch(var(--b1)) calc(l * 0.985) c h) 100%
             );
             backdrop-filter: blur(20px);
             border-bottom: 1px solid oklch(var(--bc) / 0.08);
@@ -233,11 +233,11 @@
             opacity: 0.85;
         }
 
-        .pricing-pill-lg {
-            height: 28px;
-            padding: 0.4rem 0.8rem;
-            font-size: 0.9rem;
-            opacity: 1;
+        .pricing-pill-sm {
+            height: 22px;
+            padding: 0.25rem 0.55rem;
+            font-size: 0.75rem;
+            opacity: 0.85;
         }
 
         /* THEME DROPDOWN */
@@ -287,11 +287,8 @@
             font-size: 0.95rem;
         }
 
-        /* CORNER BUTTONS - BRIGHTER BORDER ON HOVER WITH SHIMMER */
-        .corner-button {
-            width: var(--corner-btn-width);
-            height: var(--corner-btn-height);
-            padding: var(--corner-btn-padding);
+        /* BOTTOM CORNER BUTTONS - SHIMMER ONLY (NO STAR) */
+        .btn-visit, .btn-more {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -306,14 +303,14 @@
             overflow: hidden;
         }
 
-        .corner-button:hover {
+        .btn-visit:hover, .btn-more:hover {
             transform: scale(1.03);
             background: oklch(var(--b3));
             border-color: oklch(var(--bc) / 0.2);
         }
 
-        /* SHIMMER EFFECT FOR ALL CORNER BUTTONS */
-        .corner-button::before {
+        /* SHIMMER EFFECT FOR URL AND MORE BUTTONS ONLY */
+        .btn-visit::before, .btn-more::before {
             content: '';
             position: absolute;
             top: 0;
@@ -329,7 +326,7 @@
             transition: left 0.6s ease;
         }
 
-        .corner-button:hover::before {
+        .btn-visit:hover::before, .btn-more:hover::before {
             animation: shimmer 1.5s infinite;
         }
 
@@ -436,13 +433,18 @@
             border-color: oklch(var(--wa) / 0.3);
         }
 
-        /* FAVORITE STAR - GOLD PREVIEW ON HOVER */
+        /* FAVORITE STAR - NO SHIMMER, SEPARATE STYLING */
         .favorite-corner {
             position: absolute;
             top: 0;
             right: 0;
             border-bottom-left-radius: var(--corner-radius);
             overflow: visible;
+            /* NO shimmer effect here */
+            padding: 0.25rem 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .favorite-star {
@@ -523,6 +525,7 @@
             height: var(--corner-btn-height);
             border-top-left-radius: var(--corner-radius);
             border-bottom-right-radius: 0.5rem;
+            padding: var(--corner-btn-padding);
         }
 
         /* CARDS - MODERN GLASS EFFECT WITH SUBTLE GRADIENT */
@@ -560,9 +563,12 @@
             color: oklch(var(--wa)); 
         }
 
-        /* MODAL IMPROVEMENTS - SLEEKER BUTTONS */
+        /* ENHANCED MODAL - SEMI-FULLSCREEN WITH RICH CONTENT */
         .modal-box { 
-            max-width: 900px;
+            max-width: 1000px;
+            width: 90vw;
+            max-height: 85vh;
+            padding: 2rem;
         }
 
         dialog[open] {
@@ -580,39 +586,127 @@
             }
         }
 
-        .modal-visit-btn {
-            height: 32px;
-            padding: 0 1rem;
-            font-size: 0.8rem;
-            white-space: nowrap;
+        /* MODAL HEADER WITH INTEGRATED PRICING */
+        .modal-header-flex {
+            display: flex;
+            gap: 1rem;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .modal-header-content {
+            flex: 1;
+        }
+
+        .modal-badges-pricing {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+
+        /* OPTIMIZED MODAL BUTTONS - BALANCED SIZE */
+        .modal-action-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .modal-btn {
+            /* 44-48px height recommended for touch targets */
+            height: 44px;
+            padding: 0 1.25rem;
+            font-size: 0.9rem;
             font-weight: 600;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
         }
 
-        .pricing-section {
-            margin: 1.5rem 0;
-            padding: 1rem;
+        .modal-btn-primary {
+            /* Balanced width: not too wide, not too narrow */
+            min-width: 160px;
+            max-width: 280px;
+        }
+
+        .modal-btn-icon {
+            flex-shrink: 0;
+            min-width: 44px;
+        }
+
+        /* INFO GRID FOR QUICK STATS */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.75rem;
+            margin: 1.25rem 0;
+        }
+
+        .info-card {
             background: oklch(var(--b2) / 0.5);
-            border-radius: 0.75rem;
             border: 1px solid oklch(var(--bc) / 0.1);
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            text-align: center;
         }
 
-        .pricing-section h4 {
-            font-weight: 700;
+        .info-card-label {
+            font-size: 0.7rem;
+            opacity: 0.6;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-card-value {
             font-size: 1rem;
-            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        /* FEATURE LIST */
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: oklch(var(--b2) / 0.3);
+            border-radius: 0.375rem;
+            font-size: 0.85rem;
+        }
+
+        .feature-icon {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin: 1.25rem 0 0.75rem 0;
             opacity: 0.8;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         /* TIMELINE STYLING - HORIZONTAL DEFAULT ON DESKTOP */
         .timeline-section {
-            margin: 1.5rem 0;
-        }
-
-        .timeline-section h4 {
-            font-weight: 700;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            opacity: 0.8;
+            margin: 1.25rem 0;
         }
 
         .timeline {
@@ -626,12 +720,12 @@
         .timeline-start {
             font-weight: 600;
             opacity: 0.7;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
         .timeline-box {
-            font-size: 0.9rem;
-            padding: 0.5rem 0.75rem;
+            font-size: 0.85rem;
+            padding: 0.4rem 0.65rem;
         }
 
         .timeline-middle svg {
@@ -644,16 +738,18 @@
                 font-size: 0.75rem;
             }
             .timeline-box {
-                font-size: 0.85rem;
-                padding: 0.4rem 0.6rem;
+                font-size: 0.8rem;
+                padding: 0.35rem 0.55rem;
             }
-        }
-
-        /* Horizontal layout preference for desktop */
-        @media (min-width: 768px) {
-            .timeline-horizontal-preferred {
-                display: flex;
-                flex-direction: row;
+            .modal-box {
+                padding: 1.5rem;
+            }
+            .modal-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .modal-btn-primary {
+                max-width: none;
             }
         }
     </style>
@@ -862,11 +958,11 @@
             return favorites.includes(`${categoryName}::${toolName}`);
         }
 
-        function renderPricingPills(pricing, isLarge = false) {
+        function renderPricingPills(pricing, isSmall = false) {
             if (!pricing) return '';
 
             const tiers = pricing.split('/');
-            const sizeClass = isLarge ? 'pricing-pill-lg' : '';
+            const sizeClass = isSmall ? 'pricing-pill-sm' : '';
 
             return tiers.map((tier, index) => {
                 const isFree = tier.toLowerCase() === 'free';
@@ -923,7 +1019,7 @@
 
             return `
                 <div class="timeline-section">
-                    <h4>📈 Model Timeline</h4>
+                    <h4 class="section-title">📈 Model Timeline</h4>
                     <ul class="timeline ${timelineOrientation}">
                         ${timelineItems}
                     </ul>
@@ -971,53 +1067,94 @@
             const modal = document.getElementById('toolModal');
             const content = document.getElementById('modalContent');
 
-            const modelVersion = modelVersions[tool.name] ? 
-                `<div class="badge badge-neutral badge-outline badge-sm">Model: ${modelVersions[tool.name]}</div>` : '';
-
-            const cornerBadgeDisplay = tool.cornerBadge ? 
-                `<span class="badge badge-primary badge-sm">${tool.cornerBadge}</span>` : '';
-
-            const pricingHtml = tool.pricing ? `
-                <div class="pricing-section">
-                    <h4>💰 Pricing</h4>
-                    <div class="pricing-pills">
-                        ${renderPricingPills(tool.pricing, true)}
-                    </div>
-                </div>
-            ` : '';
-
-            const timelineHtml = renderTimeline(tool.timeline);
-
+            const modelVersion = modelVersions[tool.name] || null;
             const cleanUrl = tool.url.replace(/^https?:\/\/(www\.)?/, '');
-            const visitUrl = `www.${cleanUrl.split('/')[0]}`;
+            const displayUrl = cleanUrl.split('/')[0];
+
+            // Quick stats for info cards
+            const launchYear = tool.timeline && tool.timeline.length > 0 ? 
+                tool.timeline[0].date.split('-')[0] : 'N/A';
+            const totalVersions = tool.timeline ? tool.timeline.length : 0;
+
+            // Key features (mock data - would come from JSON in production)
+            const features = [
+                { icon: '🚀', text: 'Real-time responses' },
+                { icon: '🌐', text: 'Web access' },
+                { icon: '📱', text: 'Mobile apps' },
+                { icon: '🔒', text: 'Secure & private' },
+                { icon: '💻', text: 'API available' },
+                { icon: '🎯', text: 'Context aware' }
+            ];
+
+            // Build pricing inline badges
+            const pricingBadges = tool.pricing ? renderPricingPills(tool.pricing, true) : '';
 
             content.innerHTML = `
-                <div class="flex items-start gap-4 mb-4">
+                <div class="modal-header-flex">
                     <img src="${tool.thumbnail}" alt="${tool.name}" 
-                         class="w-20 h-20 rounded-lg object-contain bg-base-100/50 p-2"
+                         class="w-20 h-20 rounded-lg object-contain bg-base-100/50 p-2 flex-shrink-0"
                          onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(tool.name)}&size=128&background=random'">
-                    <div class="flex-1">
-                        <h3 class="text-xl font-bold">${tool.name}</h3>
-                        <div class="star-rating text-lg mb-2">${renderStars(tool.rating || 0)}</div>
-                        <div class="flex gap-2 flex-wrap">
-                            ${cornerBadgeDisplay}
-                            ${modelVersion}
+                    <div class="modal-header-content">
+                        <h3 class="text-2xl font-bold mb-2">${tool.name}</h3>
+                        <div class="star-rating text-lg mb-2">${renderStars(tool.rating || 0)} <span class="text-sm opacity-60">(${tool.rating || 0}/5)</span></div>
+                        <div class="modal-badges-pricing">
+                            ${tool.cornerBadge ? `<span class="badge badge-primary badge-sm">${tool.cornerBadge}</span>` : ''}
+                            ${modelVersion ? `<span class="badge badge-neutral badge-outline badge-sm">Model: ${modelVersion}</span>` : ''}
+                            ${pricingBadges}
                         </div>
                     </div>
                 </div>
 
-                <p class="opacity-80 mb-4 text-sm">${tool.description}</p>
+                <p class="opacity-80 mb-4">${tool.description}</p>
 
-                ${pricingHtml}
-                ${timelineHtml}
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-card-label">Category</div>
+                        <div class="info-card-value">${categoryName.replace('AI ', '')}</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-label">Launched</div>
+                        <div class="info-card-value">${launchYear}</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-label">Versions</div>
+                        <div class="info-card-value">${totalVersions}</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-label">Rating</div>
+                        <div class="info-card-value">${tool.rating || 'N/A'}/5</div>
+                    </div>
+                </div>
 
-                <div class="flex gap-2 mt-6">
-                    <a href="${tool.url}" target="_blank" class="btn btn-primary flex-1 modal-visit-btn">
-                        Visit: ${visitUrl} →
+                <h4 class="section-title">✨ Key Features</h4>
+                <div class="feature-list">
+                    ${features.slice(0, 6).map(f => `
+                        <div class="feature-item">
+                            <span class="feature-icon">${f.icon}</span>
+                            <span>${f.text}</span>
+                        </div>
+                    `).join('')}
+                </div>
+
+                ${renderTimeline(tool.timeline)}
+
+                <div class="modal-action-buttons mt-6">
+                    <a href="${tool.url}" target="_blank" class="btn btn-primary modal-btn modal-btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                        ${displayUrl}
                     </a>
-                    <button onclick="toggleFavorite('${tool.name}', '${category.name}')" 
-                            class="btn btn-outline modal-visit-btn ${isFavorite(tool.name, category.name) ? 'btn-warning' : ''}">
-                        ${isFavorite(tool.name, category.name) ? '★' : '☆'}
+                    <button onclick="toggleFavorite('${tool.name}', '${categoryName}'); showToolModal('${tool.name}', '${categoryName}')" 
+                            class="btn ${isFavorite(tool.name, categoryName) ? 'btn-warning' : 'btn-outline'} modal-btn modal-btn-icon">
+                        ${isFavorite(tool.name, categoryName) ? '★ Saved' : '☆ Save'}
+                    </button>
+                    <button onclick="navigator.share({title: '${tool.name}', text: '${tool.description}', url: '${tool.url}'}).catch(()=>{})" 
+                            class="btn btn-outline modal-btn modal-btn-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                        </svg>
+                        Share
                     </button>
                 </div>
             `;
@@ -1042,11 +1179,11 @@
                                      class="max-w-full max-h-full object-contain"
                                      onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(tool.name)}&size=200&background=random'">
                             </div>
-                            <a href="${tool.url}" target="_blank" class="btn-visit corner-button" title="${tool.url}">${visitText}</a>
+                            <a href="${tool.url}" target="_blank" class="btn-visit" title="${tool.url}">${visitText}</a>
                         </div>
 
                         <div class="flex-1 p-3 flex flex-col relative">
-                            <div class="favorite-corner corner-button" 
+                            <div class="favorite-corner" 
                                  data-tool="${tool.name}" data-category="${category.name}"
                                  onclick="event.stopPropagation(); toggleFavorite('${tool.name}', '${category.name}')">
                                 <span class="favorite-star ${isFav ? 'favorited' : 'unfavorited'}">★</span>
@@ -1064,7 +1201,7 @@
 
                             <div class="flex items-center justify-end -mr-3 -mb-3">
                                 <button onclick="showToolModal('${tool.name}', '${category.name}')" 
-                                        class="btn-more corner-button">More</button>
+                                        class="btn-more">More</button>
                             </div>
                         </div>
                     </div>

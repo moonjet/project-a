@@ -464,8 +464,9 @@
 
         .tool-card { 
             min-height: 180px;
-            background: linear-gradient(145deg, oklch(var(--b1)) 0%, oklch(from oklch(var(--b1)) calc(l * 1.02) c h) 100%);
-            border: 1px solid oklch(var(--bc) / 0.08);
+            background: linear-gradient(145deg, oklch(var(--b1)) 0%, 
+            oklch(from oklch(var(--b1)) calc(l * 1.25) c h) 100%);
+            border: 1px solid oklch(var(--bc) / 0.01);
             position: relative;
             box-shadow: 0 1px 3px oklch(var(--bc) / 0.05);
             transition: all 0.2s ease;
@@ -473,7 +474,7 @@
 
         .tool-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px oklch(var(--bc) / 0.08);
+            box-shadow: 2 1px 1px oklch(var(--bc) / 0.10);
         }
 
         .modern-footer {

@@ -1,0 +1,167 @@
+
+═══════════════════════════════════════════════════════════════════
+🏷️ CORNER BADGE SYSTEM - COMPLETE REFERENCE
+═══════════════════════════════════════════════════════════════════
+
+📋 PRIORITY HIERARCHY (Higher number = Higher priority)
+─────────────────────────────────────────────────────────────────
+
+10. 🥇 OFFER      → Limited time offers (e.g., "50% off launch")
+ 9. 🥈 DISCOUNT   → Price reductions (e.g., "20% discount")
+ 8. 🥉 NEW        → Recently added (within last 30 days)
+ 7.    BEST       → Top rated by users/experts
+ 6.    POPULAR    → Most used/downloaded
+ 5.    VALUE      → Best price-to-performance ratio
+ 4.    FAST       → Speed/efficiency focused
+ 3.    UPDATED    → Recently improved (major update)
+ 2.    TOP        → Editor's choice / Featured
+
+═══════════════════════════════════════════════════════════════════
+🎨 THEME COLORS (DaisyUI Variables)
+─────────────────────────────────────────────────────────────────
+
+Badge Type      Color              Variable       Adapts To Theme
+─────────────  ─────────────────  ─────────────  ─────────────────
+OFFER          Orange/Yellow      warning (wa)   ✓ Yes
+DISCOUNT       Orange/Yellow      warning (wa)   ✓ Yes
+NEW            Green              success (su)   ✓ Yes
+BEST           Red/Pink           error (er)     ✓ Yes
+POPULAR        Blue               primary (p)    ✓ Yes
+VALUE          Purple             secondary (s)  ✓ Yes
+FAST           Cyan               info (in)      ✓ Yes
+UPDATED        Green              success (su)   ✓ Yes
+TOP            Violet             accent (a)     ✓ Yes
+
+═══════════════════════════════════════════════════════════════════
+📊 CURRENT ASSIGNMENTS (25 Tools Total)
+─────────────────────────────────────────────────────────────────
+
+POPULAR (5 tools) - Blue:
+  • Perplexity (also: FAST)
+  • Microsoft Copilot
+  • Character.AI
+  • GitHub Copilot (also: TOP)
+  • v0 by Vercel (also: FAST)
+
+BEST (3 tools) - Red/Pink:
+  • ChatGPT (also: POPULAR)
+  • Claude (also: TOP)
+  • Cursor (also: POPULAR)
+
+VALUE (5 tools) - Purple:
+  • Mistral Chat (also: FAST)
+  • You.com
+  • Replit Agent
+  • Aider
+  • Sourcegraph Cody
+
+NEW (3 tools) - Green:
+  • DeepSeek (also: VALUE)
+  • Windsurf (also: FAST)
+  • Bolt.new (also: FAST)
+
+FAST (1 tool) - Cyan:
+  • Google Gemini (also: UPDATED)
+
+No Badge (8 tools):
+  • Grok, Pi, HuggingChat
+  • Cline, Tabnine, Amazon Q Developer
+  • Pieces for Developers, Blackbox AI
+
+═══════════════════════════════════════════════════════════════════
+🔧 HOW TO UPDATE BADGES IN JSON
+─────────────────────────────────────────────────────────────────
+
+1. Each tool has TWO badge fields:
+   {
+     "cornerBadge": "BEST",              // ← What displays
+     "allBadges": ["POPULAR", "BEST"]    // ← All possible badges
+   }
+
+2. To change a badge, edit "allBadges" array:
+   {
+     "name": "ChatGPT",
+     "allBadges": ["POPULAR", "BEST", "OFFER"]  // ← Add OFFER
+   }
+
+   System will automatically show "OFFER" (priority 10)
+
+3. To add promotional badge:
+   {
+     "name": "DeepSeek",
+     "allBadges": ["VALUE", "NEW", "DISCOUNT"]  // ← Add DISCOUNT
+   }
+
+   System will show "DISCOUNT" (priority 9 > 8 > 5)
+
+4. To remove badge completely:
+   {
+     "allBadges": []  // ← Empty array = no badge
+   }
+
+═══════════════════════════════════════════════════════════════════
+💡 USAGE EXAMPLES
+─────────────────────────────────────────────────────────────────
+
+Scenario 1: Launch Promotion
+─────────────────────────────
+Before: "allBadges": ["VALUE", "FAST"]  → Shows: VALUE
+Change: "allBadges": ["VALUE", "FAST", "OFFER"]
+Result: Shows OFFER (priority 10 overrides others)
+
+Scenario 2: Tool Gets Popular
+──────────────────────────────
+Before: "allBadges": ["FAST"]  → Shows: FAST
+Change: "allBadges": ["FAST", "POPULAR"]
+Result: Shows POPULAR (priority 6 > 4)
+
+Scenario 3: Remove Badge After Promo Ends
+──────────────────────────────────────────
+Before: "allBadges": ["POPULAR", "OFFER"]  → Shows: OFFER
+Change: "allBadges": ["POPULAR"]  ← Remove OFFER
+Result: Shows POPULAR (back to normal)
+
+Scenario 4: Multiple Attributes
+────────────────────────────────
+Tool is new, fast, AND on offer:
+"allBadges": ["NEW", "FAST", "OFFER"]
+Result: Shows OFFER (priority 10 > 8 > 4)
+
+═══════════════════════════════════════════════════════════════════
+🎯 BEST PRACTICES
+─────────────────────────────────────────────────────────────────
+
+✓ DO:
+  • Use OFFER/DISCOUNT sparingly (limited time only)
+  • Give NEW badge to tools added in last 30 days
+  • Use VALUE for genuinely good pricing
+  • Update UPDATED badge after major releases
+
+✗ DON'T:
+  • Give every tool a badge (dilutes impact)
+  • Keep OFFER badges after promotion ends
+  • Overuse BEST (only top 3-5 tools)
+  • Mix similar badges (e.g., NEW + UPDATED)
+
+Good Examples:
+  ✓ ["POPULAR", "BEST"] - Makes sense
+  ✓ ["FAST", "VALUE"] - Complementary
+  ✓ ["NEW", "OFFER"] - Promotional launch
+
+Bad Examples:
+  ✗ ["NEW", "UPDATED"] - Redundant
+  ✗ ["BEST", "TOP"] - Too similar
+  ✗ ["OFFER", "DISCOUNT"] - Pick one
+
+═══════════════════════════════════════════════════════════════════
+📝 NOTES
+─────────────────────────────────────────────────────────────────
+
+• Priority system is automatic - no manual overrides needed
+• Badges adapt to ALL 6 DaisyUI themes automatically
+• Hover effect shows sparkle animations
+• "allBadges" field is for admin reference only
+• Users only see the highest priority badge
+• Empty "allBadges" = clean card with no badge
+
+═══════════════════════════════════════════════════════════════════

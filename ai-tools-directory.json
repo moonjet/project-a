@@ -21,7 +21,25 @@
             "FAST",
             "POPULAR"
           ],
-          "pricing": "Free/$20/$200"
+          "pricing": "Free/$20/$200",
+          "timeline": [
+            {
+              "version": "Perplexity",
+              "date": "2022-12"
+            },
+            {
+              "version": "Pro Search",
+              "date": "2023-06"
+            },
+            {
+              "version": "Sonar Large",
+              "date": "2024-01"
+            },
+            {
+              "version": "Sonar Pro",
+              "date": "2024-11"
+            }
+          ]
         },
         {
           "name": "ChatGPT",
@@ -39,7 +57,33 @@
             "POPULAR",
             "BEST"
           ],
-          "pricing": "Free/$20/$200"
+          "pricing": "Free/$20/$200",
+          "timeline": [
+            {
+              "version": "GPT-3",
+              "date": "2020-06"
+            },
+            {
+              "version": "GPT-3.5",
+              "date": "2022-11"
+            },
+            {
+              "version": "GPT-4",
+              "date": "2023-03"
+            },
+            {
+              "version": "GPT-4 Turbo",
+              "date": "2023-11"
+            },
+            {
+              "version": "GPT-4o",
+              "date": "2024-05"
+            },
+            {
+              "version": "o1",
+              "date": "2024-09"
+            }
+          ]
         },
         {
           "name": "Claude",
@@ -58,7 +102,29 @@
             "BEST",
             "TOP"
           ],
-          "pricing": "Free/$20/$200"
+          "pricing": "Free/$20/$200",
+          "timeline": [
+            {
+              "version": "Claude 1",
+              "date": "2023-03"
+            },
+            {
+              "version": "Claude 2",
+              "date": "2023-07"
+            },
+            {
+              "version": "Claude 3 Opus",
+              "date": "2024-03"
+            },
+            {
+              "version": "Claude 3.5 Sonnet",
+              "date": "2024-06"
+            },
+            {
+              "version": "Claude 3.7 Sonnet",
+              "date": "2024-12"
+            }
+          ]
         },
         {
           "name": "Google Gemini",
@@ -76,7 +142,25 @@
             "UPDATED",
             "FAST"
           ],
-          "pricing": "Free/$20/$30"
+          "pricing": "Free/$20/$30",
+          "timeline": [
+            {
+              "version": "Bard",
+              "date": "2023-03"
+            },
+            {
+              "version": "Gemini Pro",
+              "date": "2023-12"
+            },
+            {
+              "version": "Gemini 1.5",
+              "date": "2024-02"
+            },
+            {
+              "version": "Gemini 2.0 Flash",
+              "date": "2024-12"
+            }
+          ]
         },
         {
           "name": "Microsoft Copilot",
@@ -92,7 +176,21 @@
           "allBadges": [
             "POPULAR"
           ],
-          "pricing": "Free/$20/$30"
+          "pricing": "Free/$20/$30",
+          "timeline": [
+            {
+              "version": "Bing Chat",
+              "date": "2023-02"
+            },
+            {
+              "version": "Copilot",
+              "date": "2023-11"
+            },
+            {
+              "version": "GPT-4 Turbo",
+              "date": "2024-03"
+            }
+          ]
         },
         {
           "name": "Mistral Chat",
@@ -110,7 +208,21 @@
             "VALUE",
             "FAST"
           ],
-          "pricing": "Free/$16/$42"
+          "pricing": "Free/$16/$42",
+          "timeline": [
+            {
+              "version": "Mistral 7B",
+              "date": "2023-09"
+            },
+            {
+              "version": "Mistral Large",
+              "date": "2024-02"
+            },
+            {
+              "version": "Mistral Large 2",
+              "date": "2024-07"
+            }
+          ]
         },
         {
           "name": "DeepSeek",
@@ -128,7 +240,21 @@
             "VALUE",
             "NEW"
           ],
-          "pricing": "Free/$8/$16"
+          "pricing": "Free/$8/$16",
+          "timeline": [
+            {
+              "version": "DeepSeek V1",
+              "date": "2023-11"
+            },
+            {
+              "version": "DeepSeek V2",
+              "date": "2024-05"
+            },
+            {
+              "version": "DeepSeek V3",
+              "date": "2024-12"
+            }
+          ]
         },
         {
           "name": "Grok",
@@ -142,7 +268,21 @@
           "thumbnail": "https://www.google.com/s2/favicons?domain=x.ai&sz=128",
           "cornerBadge": null,
           "allBadges": [],
-          "pricing": "$16/$84"
+          "pricing": "$16/$84",
+          "timeline": [
+            {
+              "version": "Grok-1",
+              "date": "2023-11"
+            },
+            {
+              "version": "Grok-1.5",
+              "date": "2024-03"
+            },
+            {
+              "version": "Grok-2",
+              "date": "2024-08"
+            }
+          ]
         },
         {
           "name": "Pi",

@@ -163,6 +163,7 @@
             white-space: nowrap;
         }
 
+
         .badge-chip:hover {
             border-color: oklch(var(--s) / 0.4);
             background: oklch(var(--s) / 0.1);
@@ -310,11 +311,11 @@
         }
 
         .theme-dropdown {
-    max-height: 500px;
-    overflow-y: auto;
-    width: 400px;                          /* Wide enough for 3 columns */
-    right: 0;                              /* Align to right edge */
-}
+        max-height: 300px;
+        overflow-y: auto;
+        width: 400px;                          /* Wide enough for 3 columns */
+        right: 0;                              /* Align to right edge */
+        }
 
         .theme-dropdown .menu {
             display: grid;
@@ -741,11 +742,11 @@
             </div>
 
             <div class="badge-filters-container" id="badgeFilters">
-                <div class="badge-chip" data-badge="recommended">⭐ Recommended</div>
-                <div class="badge-chip" data-badge="new">🆕 New</div>
-                <div class="badge-chip" data-badge="popular">🔥 Popular</div>
-                <div class="badge-chip" data-badge="open-source">🌐 Open Source</div>
-                <div class="badge-chip" data-badge="free">💰 Free</div>
+                <div class="badge-chip" data-badge="recommended"> Recommended</div>
+                <div class="badge-chip" data-badge="new"> New</div>
+                <div class="badge-chip" data-badge="popular"> Popular</div>
+                <div class="badge-chip" data-badge="open-source"> Open Source</div>
+                <div class="badge-chip" data-badge="free"> Free</div>
                 <button class="clear-filters-btn hidden" id="clearFilters">Clear All</button>
                 <span class="result-count" id="resultCount"></span>
             </div>
@@ -787,7 +788,7 @@
             <!-- Favorites Header (matching tool modal style) -->
             <div class="modal-header">
                 <div class="modal-title-section">
-                    <h3 class="modal-title">⭐ Your Favorites</h3>
+                    <h3 class="modal-title"> Your Favorites</h3>
                     <p class="modal-description" id="favoritesCount">0 saved tools</p>
                 </div>
             </div>
@@ -807,11 +808,10 @@
         let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
 
         const themes = [
-            'light', 'dark', 'cupcake', 'bumblebee', 'emerald', 'corporate', 'synthwave',
-            'retro', 'cyberpunk', 'valentine', 'halloween', 'garden', 'forest', 'aqua',
-            'lofi', 'pastel', 'fantasy', 'wireframe', 'black', 'luxury', 'dracula',
-            'cmyk', 'autumn', 'business', 'acid', 'lemonade', 'night', 'coffee', 'winter',
-            'dim', 'nord', 'sunset'
+            'light', 'dark', 'synthwave', 'cupcake', 
+            'retro', 'valentine', 'forest',
+            'lofi', 'pastel','dracula', 'cmyk', 'business', 
+            'lemonade', 'night', 'dim', 'cyberpunk',
         ];
 
         const themeColors = {
